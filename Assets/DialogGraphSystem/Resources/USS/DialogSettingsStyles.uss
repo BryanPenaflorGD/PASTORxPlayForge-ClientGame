@@ -1,0 +1,724 @@
+﻿/* =========================================================
+   ROOT & BODY
+   ========================================================= */
+.dgs-root {
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: #222428;
+  overflow: hidden;
+}
+
+.dgs-header {
+  height: 40px;
+  min-height: 40px;
+  padding: 0 12px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2a2d33;
+  border-bottom: 1px solid #32353b;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  flex-shrink: 0;
+}
+
+.dgs-breadcrumb {
+  color: #d7dbe7;
+  font-size: 12px;
+  opacity: 0.95;
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dgs-version {
+  padding: 2.5px 10px 0 10px;
+  height: 20px;
+  min-height: 20px;
+  align-items: center;
+  justify-content: bottom;
+  color: #d7e3ff;
+  background-color: #2f4ea3;
+  border-radius: 6px;
+  unity-font-style: bold;
+  font-size: 11px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.dgs-body {
+  flex-direction: row;
+  flex-grow: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* =========================================================
+   LEFT NAVIGATION WITH SCROLLVIEW
+   ========================================================= */
+.dgs-nav {
+  width: 260px;
+  min-width: 200px;
+  max-width: 320px;
+  background-color: #1e2126;
+  border-right: 1px solid #2b2f35;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.dgs-nav-scroll {
+  flex-grow: 1;
+  background-color: #1e2126;
+}
+
+.dgs-nav-scroll > .unity-scroll-view__content-viewport {
+  background-color: #1e2126;
+}
+
+.dgs-nav-scroll > .unity-scroll-view__content-container {
+  padding: 10px;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Navigation Scrollbar Styling */
+.dgs-nav-scroll > .unity-scroller--vertical {
+  width: 10px;
+  background-color: #151719;
+}
+
+.dgs-nav-scroll .unity-scroller--vertical .unity-base-slider__tracker {
+  background-color: #151719;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+.dgs-nav-scroll .unity-scroller--vertical .unity-base-slider__dragger {
+  background-color: #2b2f35;
+  border-radius: 5px;
+  margin: 1px;
+  min-height: 30px;
+}
+
+.dgs-nav-scroll .unity-scroller--vertical .unity-base-slider__dragger:hover {
+  background-color: #353a42;
+}
+
+.dgs-nav-title {
+  color: #e7eaf2;
+  font-size: 11px;
+  opacity: 0.9;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dgs-nav-sep {
+  height: 1px;
+  min-height: 1px;
+  margin: 8px 0;
+  background-color: #2b2f35;
+  flex-shrink: 0;
+}
+
+.dgs-nav-button {
+  height: 30px;
+  min-height: 30px;
+  padding: 0 8px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 6px;
+  color: #c8cfde;
+  font-size: 11px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.dgs-nav-button:hover {
+  background-color: #2b3037;
+}
+
+.dgs-nav-button.active {
+  background-color: #3759d6;
+  color: white;
+}
+
+.dgs-nav-icon {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  margin-right: 8px;
+  -unity-background-scale-mode: scale-to-fit;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   CONTENT AREA WITH SCROLLVIEW & MARGINS
+   ========================================================= */
+.dgs-content {
+  flex-grow: 1;
+  flex-shrink: 1;
+  background-color: #222428;
+  padding: 5px;
+}
+
+.dgs-content-scroll {
+  flex-grow: 1;
+  background-color: #222428;
+}
+
+.dgs-content-scroll > .unity-scroll-view__content-viewport {
+  background-color: #222428;
+}
+
+.dgs-content-scroll > .unity-scroll-view__content-container {
+  padding: 0;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Content Scrollbar Styling */
+.dgs-content-scroll > .unity-scroller--vertical {
+  width: 12px;
+  background-color: #1a1d22;
+  margin-left: 4px;
+}
+
+.dgs-content-scroll .unity-scroller--vertical .unity-base-slider__tracker {
+  background-color: #1a1d22;
+  border-radius: 6px;
+  margin: 2px;
+}
+
+.dgs-content-scroll .unity-scroller--vertical .unity-base-slider__dragger {
+  background-color: #3a3f49;
+  border-radius: 6px;
+  margin: 1px;
+  min-height: 40px;
+  transition-property: background-color;
+  transition-duration: 0.1s;
+}
+
+.dgs-content-scroll .unity-scroller--vertical .unity-base-slider__dragger:hover {
+  background-color: #454b57;
+}
+
+.dgs-content-scroll .unity-scroller--vertical .unity-base-slider__dragger:active {
+  background-color: #505863;
+}
+
+/* Hide horizontal scrollbar */
+.dgs-content-scroll > .unity-scroller--horizontal {
+  display: none;
+}
+
+.dgs-nav-scroll > .unity-scroller--horizontal {
+  display: none;
+}
+
+.dgs-card {
+  background-color: #2b2f36;
+  border: 1px solid #323742;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+  width: 100%;
+  transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+}
+
+.dgs-card:hover {
+  background-color: #30343b;
+  border-color: #3a404d;
+}
+
+.dgs-card-title {
+  color: #eaf0ff;
+  unity-font-style: bold;
+  font-size: 12px;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+  white-space: normal;
+  overflow: visible;
+}
+
+/* =========================================================
+   TEXT FIELDS & TEXT AREAS - FULL WIDTH
+   ========================================================= */
+.dgs-card TextField,
+.dgs-card .unity-text-field {
+  width: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin-bottom: 6px;
+}
+
+.dgs-card TextField .unity-text-field__input,
+.dgs-card .unity-text-field .unity-text-field__input {
+  width: 100%;
+  min-width: 200px;
+  background-color: #2a2e38;
+  border: 1px solid #3a4050;
+  border-radius: 6px;
+  padding: 6px 8px;
+  color: #d7dbe7;
+  font-size: 11px;
+  flex-grow: 1;
+}
+
+.dgs-card TextField .unity-text-field__input:focus,
+.dgs-card .unity-text-field .unity-text-field__input:focus {
+  border-color: #4a6bdb;
+  background-color: #2e3340;
+}
+
+.dgs-card TextField .unity-text-field__input:hover,
+.dgs-card .unity-text-field .unity-text-field__input:hover {
+  border-color: #4a5163;
+}
+
+/* Text Area (Multi-line) */
+.dgs-card .unity-text-field--multiline,
+.dgs-text-area {
+  width: 100%;
+  flex-grow: 1;
+  margin-bottom: 6px;
+}
+
+.dgs-card .unity-text-field--multiline .unity-text-field__input,
+.dgs-text-area .unity-text-field__input {
+  width: 100%;
+  min-width: 200px;
+  min-height: 80px;
+  max-height: 300px;
+  background-color: #2a2e38;
+  border: 1px solid #3a4050;
+  border-radius: 6px;
+  padding: 8px;
+  color: #d7dbe7;
+  font-size: 11px;
+  flex-grow: 1;
+  white-space: pre-wrap;
+}
+
+.dgs-card .unity-text-field--multiline .unity-text-field__input:focus,
+.dgs-text-area .unity-text-field__input:focus {
+  border-color: #4a6bdb;
+  background-color: #2e3340;
+}
+
+/* Text field row with label */
+.dgs-text-row {
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 8px;
+  width: 100%;
+}
+
+.dgs-text-row > Label {
+  color: #d0d6e0;
+  font-size: 11px;
+  flex-shrink: 0;
+  min-width: 80px;
+  white-space: nowrap;
+}
+
+.dgs-text-row > TextField,
+.dgs-text-row > .unity-text-field {
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: auto;
+}
+
+/* Text field column layout */
+.dgs-text-column {
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.dgs-text-column > Label {
+  color: #d0d6e0;
+  font-size: 11px;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.dgs-text-column > TextField,
+.dgs-text-column > .unity-text-field,
+.dgs-text-column > .unity-text-field--multiline {
+  width: 100%;
+  flex-grow: 1;
+}
+
+/* =========================================================
+   ROWS, SLIDERS & PILL INPUTS
+   ========================================================= */
+.dgs-row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  gap: 8px;
+  flex-wrap: nowrap;
+  min-height: 22px;
+  width: 100%;
+}
+
+.dgs-muted {
+  color: #c8cfde;
+  opacity: 0.9;
+  font-size: 11px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  min-width: 80px;
+}
+
+.dgs-slider {
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin: 0 10px;
+  min-width: 120px;
+}
+
+.dgs-pill {
+  min-width: 54px;
+  max-width: 80px;
+  height: 22px;
+  background-color: #1e2229;
+  color: #cfd7eb;
+  border-radius: 6px;
+  padding: 0 6px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #3a4050;
+  flex-shrink: 0;
+}
+
+.dgs-pill .unity-base-field__input {
+  padding: 0 4px;
+  text-align: center;
+}
+
+/* Value badge in header */
+.dgs-adv-value-badge {
+  background-color: #2e323a;
+  color: #d1d6e3;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  unity-font-style: bold;
+  min-width: 40px;
+  unity-text-align: middle-center;
+  flex-shrink: 0;
+}
+
+/* Floating value tooltip */
+.dgs-adv-floating-value {
+  position: absolute;
+  top: -24px;
+  background-color: rgba(51, 102, 255, 0.95);
+  color: white;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  unity-font-style: bold;
+  min-width: 35px;
+  unity-text-align: middle-center;
+  transition: left 0.05s ease-out;
+}
+
+/* =========================================================
+   FOOTER BUTTONS
+   ========================================================= */
+.dgs-footer {
+  margin-top: 8px;
+  padding: 12px 0 30 0;
+  flex-direction: row;
+  justify-content: flex-end;
+  column-gap: 6px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  width: 100%;
+  border-top: 1px solid #2b2f35;
+}
+
+.dgs-save {
+  height: 26px;
+  min-height: 26px;
+  padding: 0 12px;
+  border-radius: 6px;
+  color: #eaf2ff;
+  background-color: #3366ff;
+  transition: background-color 0.1s ease-in-out;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.dgs-save:hover {
+  background-color: #2b59e0;
+}
+
+.dgs-coming {
+  color: #c0c5d0;
+  opacity: 0.7;
+  margin-top: 8px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   ADVANCED SLIDER (WITH RECOMMENDED RANGE) - CENTERED
+   ========================================================= */
+.dgs-adv-row {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.dgs-adv-header {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: nowrap;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.dgs-adv-label {
+  color: #d0d6e0;
+  font-size: 11px;
+  flex-shrink: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 0;
+}
+
+.dgs-adv-slider-container {
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  min-height: 22px;
+  flex-shrink: 0;
+}
+
+.dgs-adv-slider {
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 150px;
+  height: 20px;
+  position: relative;
+}
+
+/* ✅ Recommended Range Background - Positioned behind slider */
+.dgs-adv-range-bg {
+  position: absolute;
+  height: 6px;
+  background-color: rgba(122, 165, 255, 0.15);
+  border-radius: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Slider Track Styling */
+.dgs-adv-slider > .unity-base-slider__tracker {
+  background-color: #3a3f49;
+  border-radius: 3px;
+  height: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Slider Dragger (Handle) */
+.dgs-adv-slider > .unity-base-slider__dragger {
+  background-color: #e6e6e6;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #222428;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.1s ease-in-out;
+}
+
+.dgs-adv-slider > .unity-base-slider__dragger:hover {
+  background-color: #ffffff;
+  border-color: #3366ff;
+}
+
+.dgs-adv-slider > .unity-base-slider__dragger:active {
+  background-color: #3366ff;
+}
+
+/* Legacy support for non-container sliders */
+.dgs-adv-slider-container .unity-slider__track {
+  background-color: #3a3f49;
+  border-radius: 3px;
+  height: 6px;
+}
+
+.dgs-adv-slider-container .unity-slider__dragger {
+  background-color: #e6e6e6;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #222428;
+}
+
+.dgs-adv-value {
+  min-width: 45px;
+  max-width: 60px;
+  text-align: right;
+  color: #b5c1d5;
+  font-size: 11px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.dgs-adv-range-label {
+  font-size: 10px;
+  color: #7aa5ff;
+  opacity: 0.9;
+  margin-top: 2px;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+  white-space: normal;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+/* =========================================================
+   ADVANCED ENUM DROPDOWN
+   ========================================================= */
+.dgs-adv-dropdown {
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.dgs-adv-dropdown-row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  flex-wrap: nowrap;
+  gap: 8px;
+  width: 100%;
+}
+
+.dgs-adv-dropdown-label {
+  color: #d0d6e0;
+  font-size: 11px;
+  flex-shrink: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 0;
+  min-width: 80px;
+}
+
+.dgs-adv-enumfield {
+  min-width: 150px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  background-color: #2a2e38;
+  border-radius: 4px;
+  margin-left: 2px;
+  margin-bottom: 4px;
+  padding: 1px 3px;
+}
+
+.dgs-adv-enumfield:disabled {
+  opacity: 0.7;
+  background-color: #23272f;
+}
+
+.dgs-adv-hint {
+  font-size: 10px;
+  color: #9aa3b5;
+  opacity: 0.9;
+  margin-top: 1px;
+  flex-shrink: 0;
+  white-space: normal;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+/* =========================================================
+   RESPONSIVENESS & GLOBAL TEXT HANDLING
+   ========================================================= */
+Label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Ensure proper text wrapping for multi-line labels */
+.dgs-card-title,
+.dgs-adv-range-label,
+.dgs-adv-hint {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: visible;
+}
+
+/* Ensure single-line labels truncate properly */
+.dgs-breadcrumb,
+.dgs-nav-title,
+.dgs-muted,
+.dgs-adv-label,
+.dgs-adv-dropdown-label,
+.dgs-adv-value {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =========================================================
+   GLOBAL TEXT INPUT WIDTH FIX
+   ========================================================= */
+TextField,
+.unity-text-field,
+.unity-text-field--multiline {
+  width: 100%;
+  flex-grow: 1;
+}
+
+TextField .unity-text-field__input,
+.unity-text-field .unity-text-field__input {
+  width: 100%;
+  flex-grow: 1;
+}
+
+/* Ensure all base fields inside cards expand */
+.dgs-card .unity-base-field {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.dgs-card .unity-base-field__input {
+  width: 100%;
+  flex-grow: 1;
+}
+.dgs-letter { max-width: 64px; }

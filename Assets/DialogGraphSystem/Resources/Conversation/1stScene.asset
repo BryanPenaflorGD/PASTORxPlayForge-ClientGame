@@ -1,0 +1,216 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8731503750273670580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.7
+  m_EditorClassIdentifier: 
+  GUID: a30b612452574f4ba7233b2167c790ea
+  nodePosition: {x: 2711, y: 26}
+  speakerName: Liam
+  speakerPortrait: {fileID: 0}
+  questionText: ' A story? About a typhoon? That sounds cool!'
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-5523041631057489958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.3
+  m_EditorClassIdentifier: 
+  GUID: 00710ecb980f4ab692619b23481e70bc
+  nodePosition: {x: 1111, y: 26}
+  speakerName: Aira
+  speakerPortrait: {fileID: 0}
+  questionText: "I don\u2019t like typhoons. They\u2019re scary."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c45c6e4622be54698e67e4868db7e5, type: 3}
+  m_Name: 1stScene
+  m_EditorClassIdentifier: 
+  links:
+  - fromGuid: 4b7121033d85455783d6b8101a9ad5f8
+    toGuid: 9407e2116c1344f18078537f96057299
+    fromPortIndex: 0
+  - fromGuid: 9407e2116c1344f18078537f96057299
+    toGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
+    fromPortIndex: 0
+  - fromGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
+    toGuid: fb1187b9d5b34625b087eddc5ddcc828
+    fromPortIndex: 0
+  - fromGuid: fb1187b9d5b34625b087eddc5ddcc828
+    toGuid: 00710ecb980f4ab692619b23481e70bc
+    fromPortIndex: 0
+  - fromGuid: 00710ecb980f4ab692619b23481e70bc
+    toGuid: 011a4e52c60f4290a266cedd9d41a5bf
+    fromPortIndex: 0
+  - fromGuid: 011a4e52c60f4290a266cedd9d41a5bf
+    toGuid: 0442f722af0548a3b2b01f8f206579b7
+    fromPortIndex: 0
+  - fromGuid: 0442f722af0548a3b2b01f8f206579b7
+    toGuid: 7e4880b879c74adb8f7bac7fe402fe43
+    fromPortIndex: 0
+  - fromGuid: 7e4880b879c74adb8f7bac7fe402fe43
+    toGuid: a30b612452574f4ba7233b2167c790ea
+    fromPortIndex: 0
+  - fromGuid: a30b612452574f4ba7233b2167c790ea
+    toGuid: 438da4e25e0749a08d8da66006632564
+    fromPortIndex: 0
+  nodes:
+  - {fileID: 3747633473853875118}
+  - {fileID: 2992287810593884786}
+  - {fileID: 2059277719481695296}
+  - {fileID: -5523041631057489958}
+  - {fileID: 3091181503321500061}
+  - {fileID: 2002747292441693513}
+  - {fileID: 2846865447722261849}
+  - {fileID: -8731503750273670580}
+  choiceNodes: []
+  actionNodes: []
+  startGuid: 4b7121033d85455783d6b8101a9ad5f8
+  startPosition: {x: -320, y: 80}
+  startInitialized: 1
+  endGuid: 438da4e25e0749a08d8da66006632564
+  endPosition: {x: 3275, y: 61}
+  endInitialized: 1
+--- !u!114 &2002747292441693513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.5
+  m_EditorClassIdentifier: 
+  GUID: 0442f722af0548a3b2b01f8f206579b7
+  nodePosition: {x: 1911, y: 26}
+  speakerName: Aira
+  speakerPortrait: {fileID: 0}
+  questionText: Really, Sir?
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &2059277719481695296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.2
+  m_EditorClassIdentifier: 
+  GUID: fb1187b9d5b34625b087eddc5ddcc828
+  nodePosition: {x: 711, y: 26}
+  speakerName: Liam
+  speakerPortrait: {fileID: 0}
+  questionText: "Yeah\u2026 My dad said it might turn into a super typhoon. The streets
+    are already \r\nflooding!"
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &2846865447722261849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.6
+  m_EditorClassIdentifier: 
+  GUID: 7e4880b879c74adb8f7bac7fe402fe43
+  nodePosition: {x: 2311, y: 26}
+  speakerName: Mr.Corin
+  speakerPortrait: {fileID: 0}
+  questionText: "How about I tell you a story? about how a typhoon is born, grows
+    strong, and what \r\nhappens when it meets land and water?"
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &2992287810593884786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.1
+  m_EditorClassIdentifier: 
+  GUID: 8cf8632a5d9349c8ba7eeefc9e85d413
+  nodePosition: {x: 311, y: 26}
+  speakerName: Aira
+  speakerPortrait: {fileID: 0}
+  questionText: it's still raining! The wind is so strong... I hope the typhoon doesn't
+    get worse
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &3091181503321500061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.4
+  m_EditorClassIdentifier: 
+  GUID: 011a4e52c60f4290a266cedd9d41a5bf
+  nodePosition: {x: 1511, y: 26}
+  speakerName: Mr.Corin
+  speakerPortrait: {fileID: 0}
+  questionText: " Hey there, Aira and Liam! Your parents might come a little late
+    to pick you up but  \r\ndon\u2019t worry, once you understand how typhoons work,
+    they won\u2019t seem so scary anymore. "
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &3747633473853875118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.0
+  m_EditorClassIdentifier: 
+  GUID: 9407e2116c1344f18078537f96057299
+  nodePosition: {x: -89, y: 26}
+  speakerName: 
+  speakerPortrait: {fileID: 0}
+  questionText: (Sounds of heavy rain and thunder)
+  dialogAudio: {fileID: 0}
+  displayTime: 0
