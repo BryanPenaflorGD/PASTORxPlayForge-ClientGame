@@ -1,13 +1,14 @@
-﻿using System;
+﻿using DialogSystem.Runtime.Models;
+using DialogSystem.Runtime.Models.Nodes;
+using DialogSystem.Runtime.Utils;         // TextResources
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;                         // Undo, AssetDatabase, EditorUtility
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using DialogSystem.Runtime.Models;
-using DialogSystem.Runtime.Models.Nodes;
-using DialogSystem.Runtime.Utils;         // TextResources
 
 namespace DialogSystem.EditorTools.View.Elements.Nodes
 {
@@ -36,6 +37,9 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
         public Sprite portraitSprite;
         public AudioClip dialogueAudio;
         public float displayTimeSeconds;
+
+        // [NEW] Local list to store the visual novel characters
+        public List<VNCharacterEntry> sceneCharacters = new List<VNCharacterEntry>();
         #endregion
 
         #region Graph / UI
@@ -45,6 +49,7 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
         private Image _avatar;
         private Label _titleLabel;
         private VisualElement _portraitPreview;
+        private VisualElement _charactersContainer;
 
         private TextField _titleField;
         private TextField _speakerField;
@@ -338,9 +343,12 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
             mainContainer.Add(_displayTimeField);
             mainContainer.Add(_audioField);
 
+            BuildCharacterListUI();
             UpdatePortraitPreview();
-        }
 
+
+
+        }
         #endregion
 
         #region Ports
@@ -379,8 +387,13 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
         /// Does not record Undo; Undo is handled by changes after this point.
         /// </summary>
         public void LoadNodeData(
-            string speaker, string question, string titleText, Sprite sprite,
-            AudioClip audioClip, float displayTime)
+            string speaker,
+            string question,
+            string titleText,
+            Sprite sprite,
+            AudioClip audioClip,
+            float displayTime,
+            List<VNCharacterEntry> loadedCharacters)
         {
             speakerName = speaker;
             questionText = question;
@@ -388,6 +401,10 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
             portraitSprite = sprite;
             dialogueAudio = audioClip;
             displayTimeSeconds = displayTime;
+
+            // [NEW] Load the list
+            sceneCharacters = new List<VNCharacterEntry>(loadedCharacters ?? new List<VNCharacterEntry>());
+            RefreshCharacterList();
 
             if (_titleLabel != null) _titleLabel.text = titleText;
             title = titleText;
@@ -431,6 +448,153 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
         public override void SetPosition(Rect newPos)
         {
             base.SetPosition(newPos);
+        }
+
+        #endregion
+
+        #region Visual Novel Characters List
+
+        private void BuildCharacterListUI()
+        {
+            // Separator / Header
+            var header = new Label("Stage Characters");
+            header.style.unityFontStyleAndWeight = FontStyle.Bold;
+            header.style.marginTop = 8;
+            header.style.marginLeft = 4;
+            mainContainer.Add(header);
+
+            // Container for the rows
+            _charactersContainer = new VisualElement();
+            _charactersContainer.style.marginBottom = 8;
+            mainContainer.Add(_charactersContainer);
+
+            // "Add Character" Button
+            var addButton = new Button(() =>
+            {
+                // Add default entry
+                sceneCharacters.Add(new VNCharacterEntry
+                {
+                    characterName = "New Char",
+                    position = VNPosition.Center,
+                    flipX = false
+                });
+
+                SaveCharactersToAsset();
+                RefreshCharacterList();
+            })
+            { text = "+ Add Character" };
+
+            mainContainer.Add(addButton);
+        }
+
+        private void RefreshCharacterList()
+        {
+            _charactersContainer.Clear();
+
+            for (int i = 0; i < sceneCharacters.Count; i++)
+            {
+                int index = i; // Cache index for callbacks
+                var entry = sceneCharacters[i];
+
+                // --- Row Container ---
+                var row = new VisualElement();
+                row.style.flexDirection = FlexDirection.Row;
+                row.style.backgroundColor = new Color(0, 0, 0, 0.2f); // Darker background for contrast
+                row.style.borderBottomLeftRadius = 4;
+                row.style.borderBottomRightRadius = 4;
+                row.style.borderTopLeftRadius = 4;
+                row.style.borderTopRightRadius = 4;
+                row.style.marginBottom = 4;
+                row.style.paddingTop = 4;
+                row.style.paddingBottom = 4;
+                row.style.paddingLeft = 4;
+                row.style.paddingRight = 4;
+                row.style.alignItems = Align.Center;
+
+                // 1. Sprite Field (Left side, big icon)
+                var spriteField = new ObjectField
+                {
+                    objectType = typeof(Sprite),
+                    value = entry.expression,
+                    allowSceneObjects = false
+                };
+                spriteField.style.width = 50;
+                spriteField.style.height = 50;
+                spriteField.RegisterValueChangedCallback(evt =>
+                {
+                    sceneCharacters[index].expression = evt.newValue as Sprite;
+                    SaveCharactersToAsset();
+                });
+
+                // 2. Middle Column (Name + Position)
+                var midCol = new VisualElement();
+                midCol.style.flexGrow = 1;
+                midCol.style.marginLeft = 6;
+                midCol.style.marginRight = 6;
+                midCol.style.justifyContent = Justify.Center;
+
+                var nameField = new TextField
+                {
+                    value = entry.characterName,
+                    isDelayed = true
+                };
+                nameField.style.marginBottom = 2;
+                nameField.RegisterValueChangedCallback(evt =>
+                {
+                    sceneCharacters[index].characterName = evt.newValue;
+                    SaveCharactersToAsset();
+                });
+
+                var posField = new EnumField(entry.position);
+                posField.RegisterValueChangedCallback(evt =>
+                {
+                    sceneCharacters[index].position = (VNPosition)evt.newValue;
+                    SaveCharactersToAsset();
+                });
+
+                midCol.Add(nameField);
+                midCol.Add(posField);
+
+                // 3. Right Column (Flip + Delete)
+                var rightCol = new VisualElement();
+                rightCol.style.alignItems = Align.Center;
+
+                var flipToggle = new Toggle("Flip") { value = entry.flipX };
+                flipToggle.RegisterValueChangedCallback(evt =>
+                {
+                    sceneCharacters[index].flipX = evt.newValue;
+                    SaveCharactersToAsset();
+                });
+
+                var removeBtn = new Button(() =>
+                {
+                    sceneCharacters.RemoveAt(index);
+                    SaveCharactersToAsset();
+                    RefreshCharacterList();
+                })
+                { text = "X" };
+                removeBtn.style.marginTop = 4;
+                removeBtn.style.color = new Color(1, 0.5f, 0.5f); // Reddish text
+
+                rightCol.Add(flipToggle);
+                rightCol.Add(removeBtn);
+
+                // Add all parts to row
+                row.Add(spriteField);
+                row.Add(midCol);
+                row.Add(rightCol);
+
+                _charactersContainer.Add(row);
+            }
+        }
+
+        private void SaveCharactersToAsset()
+        {
+            WithAssetNode("Edit Stage Characters", (_, soNode) =>
+            {
+                // Create a new list copy to ensure Unity serialization picks it up
+                soNode.sceneCharacters = new List<VNCharacterEntry>(sceneCharacters);
+            });
         }
 
         #endregion

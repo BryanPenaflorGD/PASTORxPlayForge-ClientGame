@@ -175,7 +175,15 @@ MonoBehaviour:
   nodePosition: {x: 311, y: 26}
   speakerName: Aira
   speakerPortrait: {fileID: 0}
-  sceneCharacters: []
+  sceneCharacters:
+  - characterName: Aira
+    position: 1
+    expression: {fileID: 21300000, guid: a3c9596bdc495e84c9c6dce73e9c5863, type: 3}
+    flipX: 0
+  - characterName: Liam
+    position: 4
+    expression: {fileID: 21300000, guid: 906b606b9a2704142bb84efefa5647bc, type: 3}
+    flipX: 1
   questionText: it's still raining! The wind is so strong... I hope the typhoon doesn't
     get worse
   dialogAudio: {fileID: 0}
@@ -215,13 +223,17 @@ MonoBehaviour:
   m_Name: Node_Scene1.0
   m_EditorClassIdentifier: 
   GUID: 9407e2116c1344f18078537f96057299
-  nodePosition: {x: -129, y: 26}
+  nodePosition: {x: -176, y: -26}
   speakerName: 
   speakerPortrait: {fileID: 0}
   sceneCharacters:
   - characterName: Aira
     position: 0
     expression: {fileID: 21300000, guid: a3c9596bdc495e84c9c6dce73e9c5863, type: 3}
+    flipX: 0
+  - characterName: Liam
+    position: 1
+    expression: {fileID: 21300000, guid: b78fb401723e51f4cb142be16e7ac614, type: 3}
     flipX: 0
   questionText: (Sounds of heavy rain and thunder)
   dialogAudio: {fileID: 0}

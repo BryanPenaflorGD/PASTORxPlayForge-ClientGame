@@ -597,7 +597,8 @@ namespace DialogSystem.EditorTools.View
                 title,
                 dNode.speakerPortrait,
                 dNode.dialogAudio,
-                dNode.displayTime
+                dNode.displayTime,
+                dNode.sceneCharacters
             );
 
             AddElement(view);
@@ -800,7 +801,8 @@ namespace DialogSystem.EditorTools.View
                     src.nodeTitle,
                     src.portraitSprite,
                     src.dialogueAudio,
-                    src.displayTimeSeconds
+                    src.displayTimeSeconds,
+                    src.sceneCharacters
                 );
                 clone.SetPosition(new Rect(pos, srcRect.size));
                 mapDialogNodes[src] = clone;
