@@ -16,6 +16,7 @@ MonoBehaviour:
   nodePosition: {x: 2711, y: 26}
   speakerName: Liam
   speakerPortrait: {fileID: 0}
+  sceneCharacters: []
   questionText: ' A story? About a typhoon? That sounds cool!'
   dialogAudio: {fileID: 0}
   displayTime: 0
@@ -35,6 +36,7 @@ MonoBehaviour:
   nodePosition: {x: 1111, y: 26}
   speakerName: Aira
   speakerPortrait: {fileID: 0}
+  sceneCharacters: []
   questionText: "I don\u2019t like typhoons. They\u2019re scary."
   dialogAudio: {fileID: 0}
   displayTime: 0
@@ -90,10 +92,10 @@ MonoBehaviour:
   choiceNodes: []
   actionNodes: []
   startGuid: 4b7121033d85455783d6b8101a9ad5f8
-  startPosition: {x: -320, y: 80}
+  startPosition: {x: -452, y: -22}
   startInitialized: 1
   endGuid: 438da4e25e0749a08d8da66006632564
-  endPosition: {x: 3275, y: 61}
+  endPosition: {x: 357, y: -99}
   endInitialized: 1
 --- !u!114 &2002747292441693513
 MonoBehaviour:
@@ -111,6 +113,7 @@ MonoBehaviour:
   nodePosition: {x: 1911, y: 26}
   speakerName: Aira
   speakerPortrait: {fileID: 0}
+  sceneCharacters: []
   questionText: Really, Sir?
   dialogAudio: {fileID: 0}
   displayTime: 0
@@ -130,6 +133,7 @@ MonoBehaviour:
   nodePosition: {x: 711, y: 26}
   speakerName: Liam
   speakerPortrait: {fileID: 0}
+  sceneCharacters: []
   questionText: "Yeah\u2026 My dad said it might turn into a super typhoon. The streets
     are already \r\nflooding!"
   dialogAudio: {fileID: 0}
@@ -150,6 +154,7 @@ MonoBehaviour:
   nodePosition: {x: 2311, y: 26}
   speakerName: Mr.Corin
   speakerPortrait: {fileID: 0}
+  sceneCharacters: []
   questionText: "How about I tell you a story? about how a typhoon is born, grows
     strong, and what \r\nhappens when it meets land and water?"
   dialogAudio: {fileID: 0}
@@ -170,6 +175,7 @@ MonoBehaviour:
   nodePosition: {x: 311, y: 26}
   speakerName: Aira
   speakerPortrait: {fileID: 0}
+  sceneCharacters: []
   questionText: it's still raining! The wind is so strong... I hope the typhoon doesn't
     get worse
   dialogAudio: {fileID: 0}
@@ -190,6 +196,7 @@ MonoBehaviour:
   nodePosition: {x: 1511, y: 26}
   speakerName: Mr.Corin
   speakerPortrait: {fileID: 0}
+  sceneCharacters: []
   questionText: " Hey there, Aira and Liam! Your parents might come a little late
     to pick you up but  \r\ndon\u2019t worry, once you understand how typhoons work,
     they won\u2019t seem so scary anymore. "
@@ -208,9 +215,14 @@ MonoBehaviour:
   m_Name: Node_Scene1.0
   m_EditorClassIdentifier: 
   GUID: 9407e2116c1344f18078537f96057299
-  nodePosition: {x: -89, y: 26}
+  nodePosition: {x: -129, y: 26}
   speakerName: 
   speakerPortrait: {fileID: 0}
+  sceneCharacters:
+  - characterName: Aira
+    position: 0
+    expression: {fileID: 21300000, guid: a3c9596bdc495e84c9c6dce73e9c5863, type: 3}
+    flipX: 0
   questionText: (Sounds of heavy rain and thunder)
   dialogAudio: {fileID: 0}
   displayTime: 0

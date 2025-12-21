@@ -321,6 +321,7 @@ namespace DialogSystem.Runtime.Core
                 {
                     if (uiPanel.speakerName != null) uiPanel.speakerName.text = currentDialog.speakerName;
                     if (uiPanel.portraitImage != null) uiPanel.portraitImage.sprite = currentDialog.speakerPortrait;
+                    uiPanel.UpdateVNStage(currentDialog.sceneCharacters);
                 }
                 else
                 {

@@ -15,6 +15,7 @@ namespace DialogSystem.EditorTools.Dialog
         SerializedProperty pQuestionText;
         SerializedProperty pDialogAudio;
         SerializedProperty pDisplayTime;
+        SerializedProperty pSceneCharacters; // <--- ADD THIS
 
         void OnEnable()
         {
@@ -27,6 +28,7 @@ namespace DialogSystem.EditorTools.Dialog
             pQuestionText = serializedObject.FindProperty("questionText");
             pDialogAudio = serializedObject.FindProperty("dialogAudio");
             pDisplayTime = serializedObject.FindProperty("displayTime");
+            pSceneCharacters = serializedObject.FindProperty("sceneCharacters"); // <--- ADD THIS
         }
 
         public override void OnInspectorGUI()
@@ -75,7 +77,16 @@ namespace DialogSystem.EditorTools.Dialog
             {
                 EditorGUILayout.LabelField("Speaker", EditorStyles.boldLabel);
                 DrawProp(pSpeakerName, "Name");
-                DrawProp(pSpeakerPortrait, "Portrait");
+                DrawProp(pSpeakerPortrait, "Speaker Portrait");
+
+                // -------- ADD THIS BLOCK --------
+                EditorGUILayout.Space(10);
+                EditorGUILayout.LabelField("Stage Characters (Gestures)", EditorStyles.boldLabel);
+                EditorGUI.indentLevel++;
+                // The "true" argument allows it to draw the array elements
+                EditorGUILayout.PropertyField(pSceneCharacters, new GUIContent("Active Characters"), true);
+                EditorGUI.indentLevel--;
+                // --------------------------------
             }
 
             // Content + Audio

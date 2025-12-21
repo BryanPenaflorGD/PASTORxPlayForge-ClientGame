@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace DialogSystem.Runtime.Models.Nodes
 {
@@ -15,6 +16,12 @@ namespace DialogSystem.Runtime.Models.Nodes
 
         [Tooltip("Portrait/avatar shown for the speaker.")]
         [SerializeField] public Sprite speakerPortrait;
+
+        // -------- ADD THIS SECTION --------
+        [Header("Visual Novel Stage")]
+        [Tooltip("Add characters here to show them on screen for this dialogue.")]
+        [SerializeField] public List<VNCharacterEntry> sceneCharacters = new List<VNCharacterEntry>();
+        // ----------------------------------
         #endregion
 
         #region -------- Content --------
@@ -34,6 +41,8 @@ namespace DialogSystem.Runtime.Models.Nodes
         [Tooltip("Seconds to show this node before auto-advancing. Use 0 to wait for input.")]
         [Min(0f)] public float displayTime = 0f;
         #endregion
+
+
 
         public DialogNode()
         {
