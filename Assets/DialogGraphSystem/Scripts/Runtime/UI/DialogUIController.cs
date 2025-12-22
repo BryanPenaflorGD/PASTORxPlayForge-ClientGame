@@ -75,58 +75,67 @@ namespace DialogSystem.Runtime.UI
         public void SetText(string text) { if (dialogText) dialogText.text = text ?? string.Empty; }
         public void SetPortrait(Sprite s) { if (portraitImage) portraitImage.sprite = s; }
 
-        // -------- ADD THIS METHOD --------
-        // -------- ADD THIS METHOD --------
+        #endregion
+
+        #region Visual Novel Runtime Logic
+
         public void UpdateVNStage(List<VNCharacterEntry> characters)
         {
-            // 1. Reset all images (Hide them first)
-            HideImage(posFarLeft);
-            HideImage(posLeft);
-            HideImage(posCenter);
-            HideImage(posRight);
-            HideImage(posFarRight);
+            // 1. Hide everything first
+            ResetImage(posFarLeft);
+            ResetImage(posLeft);
+            ResetImage(posCenter);
+            ResetImage(posRight);
+            ResetImage(posFarRight);
 
-            if (characters == null || characters.Count == 0) return;
+            if (characters == null) return;
 
-            // 2. Loop through the list and activate the correct ones
+            // 2. Turn on specific characters
             foreach (var entry in characters)
             {
-                if (entry.expression == null) continue;
+                Image target = GetImageByPosition(entry.position);
+                if (target == null) continue;
 
-                Image target = null;
-
-                switch (entry.position)
+                if (entry.state == VNCharacterState.Hidden)
                 {
-                    case VNPosition.FarLeft: target = posFarLeft; break;
-                    case VNPosition.Left: target = posLeft; break;
-                    case VNPosition.Center: target = posCenter; break;
-                    case VNPosition.Right: target = posRight; break;
-                    case VNPosition.FarRight: target = posFarRight; break;
+                    target.gameObject.SetActive(false);
+                    continue;
                 }
 
-                if (target != null)
-                {
-                    target.sprite = entry.expression;
-                    target.gameObject.SetActive(true);
-                    target.preserveAspect = true; // Keep sprite proportions
+                target.gameObject.SetActive(true);
+                target.sprite = entry.expression;
+                target.preserveAspect = true;
 
-                    // Handle Flip
-                    if (entry.flipX) target.transform.localScale = new Vector3(-1, 1, 1);
-                    else target.transform.localScale = Vector3.one;
-                }
+                // Handle Flip
+                target.rectTransform.localScale = entry.flipX ? new Vector3(-1, 1, 1) : Vector3.one;
+
+                // Handle Dim
+                target.color = (entry.state == VNCharacterState.Dimmed) ? new Color(0.5f, 0.5f, 0.5f, 1f) : Color.white;
             }
         }
 
-        private void HideImage(Image img)
+        private Image GetImageByPosition(VNPosition pos)
         {
-            if (img)
+            switch (pos)
+            {
+                case VNPosition.FarLeft: return posFarLeft;
+                case VNPosition.Left: return posLeft;
+                case VNPosition.Center: return posCenter;
+                case VNPosition.Right: return posRight;
+                case VNPosition.FarRight: return posFarRight;
+                default: return posCenter;
+            }
+        }
+
+        private void ResetImage(Image img)
+        {
+            if (img != null)
             {
                 img.gameObject.SetActive(false);
-                img.sprite = null;
-                img.transform.localScale = Vector3.one; // Reset flip
+                img.color = Color.white;
+                img.rectTransform.localScale = Vector3.one;
             }
         }
-        // ----------------------------------
         #endregion
 
         #region ---------------- Choices (simple build) ----------------

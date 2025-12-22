@@ -489,97 +489,60 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
 
         private void RefreshCharacterList()
         {
+            if (_charactersContainer == null) return;
             _charactersContainer.Clear();
 
             for (int i = 0; i < sceneCharacters.Count; i++)
             {
-                int index = i; // Cache index for callbacks
+                int index = i;
                 var entry = sceneCharacters[i];
 
-                // --- Row Container ---
                 var row = new VisualElement();
                 row.style.flexDirection = FlexDirection.Row;
-                row.style.backgroundColor = new Color(0, 0, 0, 0.2f); // Darker background for contrast
-                row.style.borderBottomLeftRadius = 4;
-                row.style.borderBottomRightRadius = 4;
-                row.style.borderTopLeftRadius = 4;
-                row.style.borderTopRightRadius = 4;
+                row.style.backgroundColor = new Color(0, 0, 0, 0.2f);
                 row.style.marginBottom = 4;
-                row.style.paddingTop = 4;
                 row.style.paddingBottom = 4;
+                row.style.paddingTop = 4;
                 row.style.paddingLeft = 4;
                 row.style.paddingRight = 4;
                 row.style.alignItems = Align.Center;
 
-                // 1. Sprite Field (Left side, big icon)
-                var spriteField = new ObjectField
-                {
-                    objectType = typeof(Sprite),
-                    value = entry.expression,
-                    allowSceneObjects = false
-                };
-                spriteField.style.width = 50;
-                spriteField.style.height = 50;
-                spriteField.RegisterValueChangedCallback(evt =>
-                {
-                    sceneCharacters[index].expression = evt.newValue as Sprite;
-                    SaveCharactersToAsset();
-                });
+                // 1. Sprite
+                var spriteField = new ObjectField { objectType = typeof(Sprite), value = entry.expression, allowSceneObjects = false };
+                spriteField.style.width = 45; spriteField.style.height = 45;
+                spriteField.RegisterValueChangedCallback(evt => { sceneCharacters[index].expression = evt.newValue as Sprite; SaveCharactersToAsset(); });
 
-                // 2. Middle Column (Name + Position)
+                // 2. Middle Column
                 var midCol = new VisualElement();
-                midCol.style.flexGrow = 1;
-                midCol.style.marginLeft = 6;
-                midCol.style.marginRight = 6;
-                midCol.style.justifyContent = Justify.Center;
+                midCol.style.flexGrow = 1; midCol.style.marginLeft = 5;
 
-                var nameField = new TextField
-                {
-                    value = entry.characterName,
-                    isDelayed = true
-                };
-                nameField.style.marginBottom = 2;
-                nameField.RegisterValueChangedCallback(evt =>
-                {
-                    sceneCharacters[index].characterName = evt.newValue;
-                    SaveCharactersToAsset();
-                });
+                // Name
+                var nameField = new TextField { value = entry.characterName, isDelayed = true };
+                nameField.RegisterValueChangedCallback(evt => { sceneCharacters[index].characterName = evt.newValue; SaveCharactersToAsset(); });
 
+                // Position
                 var posField = new EnumField(entry.position);
-                posField.RegisterValueChangedCallback(evt =>
-                {
-                    sceneCharacters[index].position = (VNPosition)evt.newValue;
-                    SaveCharactersToAsset();
-                });
+                posField.RegisterValueChangedCallback(evt => { sceneCharacters[index].position = (VNPosition)evt.newValue; SaveCharactersToAsset(); });
+
+                // State (Normal/Dimmed/Hidden)
+                var stateField = new EnumField(entry.state);
+                stateField.RegisterValueChangedCallback(evt => { sceneCharacters[index].state = (VNCharacterState)evt.newValue; SaveCharactersToAsset(); });
 
                 midCol.Add(nameField);
                 midCol.Add(posField);
+                midCol.Add(stateField);
 
-                // 3. Right Column (Flip + Delete)
+                // 3. Right Column
                 var rightCol = new VisualElement();
-                rightCol.style.alignItems = Align.Center;
-
                 var flipToggle = new Toggle("Flip") { value = entry.flipX };
-                flipToggle.RegisterValueChangedCallback(evt =>
-                {
-                    sceneCharacters[index].flipX = evt.newValue;
-                    SaveCharactersToAsset();
-                });
+                flipToggle.RegisterValueChangedCallback(evt => { sceneCharacters[index].flipX = evt.newValue; SaveCharactersToAsset(); });
 
-                var removeBtn = new Button(() =>
-                {
-                    sceneCharacters.RemoveAt(index);
-                    SaveCharactersToAsset();
-                    RefreshCharacterList();
-                })
-                { text = "X" };
-                removeBtn.style.marginTop = 4;
-                removeBtn.style.color = new Color(1, 0.5f, 0.5f); // Reddish text
+                var removeBtn = new Button(() => { sceneCharacters.RemoveAt(index); SaveCharactersToAsset(); RefreshCharacterList(); }) { text = "X" };
+                removeBtn.style.color = Color.red;
 
                 rightCol.Add(flipToggle);
                 rightCol.Add(removeBtn);
 
-                // Add all parts to row
                 row.Add(spriteField);
                 row.Add(midCol);
                 row.Add(rightCol);

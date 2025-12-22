@@ -3,7 +3,7 @@ using System;
 
 namespace DialogSystem.Runtime.Models
 {
-    // 1. The 5 specific positions you requested
+    // 1. Position Enum
     public enum VNPosition
     {
         FarLeft,
@@ -13,13 +13,24 @@ namespace DialogSystem.Runtime.Models
         FarRight
     }
 
-    // 2. The data for one character on screen
+    // 2. State Enum (New!)
+    public enum VNCharacterState
+    {
+        Normal,     // Fully lit
+        Dimmed,     // Darker/Gray (Active listener)
+        Hidden      // Completely invisible
+    }
+
+    // 3. Character Entry Data
     [Serializable]
     public class VNCharacterEntry
     {
-        public string characterName; // Optional, for reference
-        public VNPosition position;  // Where they stand
-        public Sprite expression;    // The gesture/sprite
-        public bool flipX;           // Useful if a character looks the wrong way
+        public string characterName;
+        public VNPosition position;
+        public Sprite expression;
+        public bool flipX;
+
+        // The new State field
+        public VNCharacterState state = VNCharacterState.Normal;
     }
 }

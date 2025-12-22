@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Node_Scene1.7
   m_EditorClassIdentifier: 
   GUID: a30b612452574f4ba7233b2167c790ea
-  nodePosition: {x: 2711, y: 26}
+  nodePosition: {x: 2624, y: -22}
   speakerName: Liam
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
@@ -33,7 +33,7 @@ MonoBehaviour:
   m_Name: Node_Scene1.3
   m_EditorClassIdentifier: 
   GUID: 00710ecb980f4ab692619b23481e70bc
-  nodePosition: {x: 1111, y: 26}
+  nodePosition: {x: 1024, y: -22}
   speakerName: Aira
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
@@ -95,7 +95,7 @@ MonoBehaviour:
   startPosition: {x: -452, y: -22}
   startInitialized: 1
   endGuid: 438da4e25e0749a08d8da66006632564
-  endPosition: {x: 357, y: -99}
+  endPosition: {x: 3183, y: 124}
   endInitialized: 1
 --- !u!114 &2002747292441693513
 MonoBehaviour:
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: Node_Scene1.5
   m_EditorClassIdentifier: 
   GUID: 0442f722af0548a3b2b01f8f206579b7
-  nodePosition: {x: 1911, y: 26}
+  nodePosition: {x: 1824, y: -22}
   speakerName: Aira
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
@@ -130,10 +130,20 @@ MonoBehaviour:
   m_Name: Node_Scene1.2
   m_EditorClassIdentifier: 
   GUID: fb1187b9d5b34625b087eddc5ddcc828
-  nodePosition: {x: 711, y: 26}
+  nodePosition: {x: 624, y: -22}
   speakerName: Liam
   speakerPortrait: {fileID: 0}
-  sceneCharacters: []
+  sceneCharacters:
+  - characterName: New Char
+    position: 1
+    expression: {fileID: -547327343, guid: cc90c7ab6913800498433350610b3904, type: 3}
+    flipX: 0
+    state: 0
+  - characterName: New Char
+    position: 3
+    expression: {fileID: -1299144831, guid: 2d81ca5b81f639d499a7f29870bf5bc4, type: 3}
+    flipX: 1
+    state: 0
   questionText: "Yeah\u2026 My dad said it might turn into a super typhoon. The streets
     are already \r\nflooding!"
   dialogAudio: {fileID: 0}
@@ -151,7 +161,7 @@ MonoBehaviour:
   m_Name: Node_Scene1.6
   m_EditorClassIdentifier: 
   GUID: 7e4880b879c74adb8f7bac7fe402fe43
-  nodePosition: {x: 2311, y: 26}
+  nodePosition: {x: 2224, y: -22}
   speakerName: Mr.Corin
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
@@ -172,18 +182,20 @@ MonoBehaviour:
   m_Name: Node_Scene1.1
   m_EditorClassIdentifier: 
   GUID: 8cf8632a5d9349c8ba7eeefc9e85d413
-  nodePosition: {x: 311, y: 26}
+  nodePosition: {x: 224, y: -22}
   speakerName: Aira
   speakerPortrait: {fileID: 0}
   sceneCharacters:
   - characterName: Aira
     position: 1
-    expression: {fileID: 21300000, guid: a3c9596bdc495e84c9c6dce73e9c5863, type: 3}
+    expression: {fileID: -547327343, guid: cc90c7ab6913800498433350610b3904, type: 3}
     flipX: 0
-  - characterName: Liam
-    position: 4
-    expression: {fileID: 21300000, guid: 906b606b9a2704142bb84efefa5647bc, type: 3}
+    state: 0
+  - characterName: New Char
+    position: 3
+    expression: {fileID: -1299144831, guid: 2d81ca5b81f639d499a7f29870bf5bc4, type: 3}
     flipX: 1
+    state: 1
   questionText: it's still raining! The wind is so strong... I hope the typhoon doesn't
     get worse
   dialogAudio: {fileID: 0}
@@ -201,7 +213,7 @@ MonoBehaviour:
   m_Name: Node_Scene1.4
   m_EditorClassIdentifier: 
   GUID: 011a4e52c60f4290a266cedd9d41a5bf
-  nodePosition: {x: 1511, y: 26}
+  nodePosition: {x: 1424, y: -22}
   speakerName: Mr.Corin
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
@@ -226,15 +238,7 @@ MonoBehaviour:
   nodePosition: {x: -176, y: -26}
   speakerName: 
   speakerPortrait: {fileID: 0}
-  sceneCharacters:
-  - characterName: Aira
-    position: 0
-    expression: {fileID: 21300000, guid: a3c9596bdc495e84c9c6dce73e9c5863, type: 3}
-    flipX: 0
-  - characterName: Liam
-    position: 1
-    expression: {fileID: 21300000, guid: b78fb401723e51f4cb142be16e7ac614, type: 3}
-    flipX: 0
+  sceneCharacters: []
   questionText: (Sounds of heavy rain and thunder)
   dialogAudio: {fileID: 0}
   displayTime: 0
