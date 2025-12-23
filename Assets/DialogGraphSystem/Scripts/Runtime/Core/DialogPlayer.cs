@@ -8,6 +8,7 @@ namespace DialogSystem.Runtime.Core
         public void StartDialog(string dialogID)
         {
             DialogManager.Instance.PlayDialogByID(dialogID, OnDialogEnded);
+            mainMenu.SetActive(false);
         }
 
         public void OnDialogEnded()

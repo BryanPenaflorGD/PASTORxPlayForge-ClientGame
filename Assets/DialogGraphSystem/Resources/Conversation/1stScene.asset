@@ -53,9 +53,6 @@ MonoBehaviour:
   m_Name: 1stScene
   m_EditorClassIdentifier: 
   links:
-  - fromGuid: 4b7121033d85455783d6b8101a9ad5f8
-    toGuid: 9407e2116c1344f18078537f96057299
-    fromPortIndex: 0
   - fromGuid: 9407e2116c1344f18078537f96057299
     toGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
     fromPortIndex: 0
@@ -80,6 +77,12 @@ MonoBehaviour:
   - fromGuid: a30b612452574f4ba7233b2167c790ea
     toGuid: 438da4e25e0749a08d8da66006632564
     fromPortIndex: 0
+  - fromGuid: 4b7121033d85455783d6b8101a9ad5f8
+    toGuid: e73e2d9c524f4375bd4a1f7131c4ddb5
+    fromPortIndex: 0
+  - fromGuid: e73e2d9c524f4375bd4a1f7131c4ddb5
+    toGuid: 9407e2116c1344f18078537f96057299
+    fromPortIndex: 0
   nodes:
   - {fileID: 3747633473853875118}
   - {fileID: 2992287810593884786}
@@ -90,9 +93,10 @@ MonoBehaviour:
   - {fileID: 2846865447722261849}
   - {fileID: -8731503750273670580}
   choiceNodes: []
-  actionNodes: []
+  actionNodes:
+  - {fileID: 8324482172473215370}
   startGuid: 4b7121033d85455783d6b8101a9ad5f8
-  startPosition: {x: -452, y: -22}
+  startPosition: {x: -780, y: -22}
   startInitialized: 1
   endGuid: 438da4e25e0749a08d8da66006632564
   endPosition: {x: 3183, y: 124}
@@ -136,12 +140,14 @@ MonoBehaviour:
   sceneCharacters:
   - characterName: New Char
     position: 1
-    expression: {fileID: -547327343, guid: cc90c7ab6913800498433350610b3904, type: 3}
+    animatorController: {fileID: 0}
+    animationName: 
     flipX: 0
     state: 0
   - characterName: New Char
     position: 3
-    expression: {fileID: -1299144831, guid: 2d81ca5b81f639d499a7f29870bf5bc4, type: 3}
+    animatorController: {fileID: 0}
+    animationName: 
     flipX: 1
     state: 0
   questionText: "Yeah\u2026 My dad said it might turn into a super typhoon. The streets
@@ -188,12 +194,14 @@ MonoBehaviour:
   sceneCharacters:
   - characterName: Aira
     position: 1
-    expression: {fileID: -547327343, guid: cc90c7ab6913800498433350610b3904, type: 3}
+    animatorController: {fileID: 0}
+    animationName: 
     flipX: 0
     state: 0
   - characterName: New Char
     position: 3
-    expression: {fileID: -1299144831, guid: 2d81ca5b81f639d499a7f29870bf5bc4, type: 3}
+    animatorController: {fileID: 0}
+    animationName: 
     flipX: 1
     state: 1
   questionText: it's still raining! The wind is so strong... I hope the typhoon doesn't
@@ -235,10 +243,28 @@ MonoBehaviour:
   m_Name: Node_Scene1.0
   m_EditorClassIdentifier: 
   GUID: 9407e2116c1344f18078537f96057299
-  nodePosition: {x: -176, y: -26}
+  nodePosition: {x: -207, y: -26}
   speakerName: 
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
   questionText: (Sounds of heavy rain and thunder)
   dialogAudio: {fileID: 0}
-  displayTime: 0
+  displayTime: 2
+--- !u!114 &8324482172473215370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: e73e2d9c524f4375bd4a1f7131c4ddb5
+  nodePosition: {x: -588, y: -26}
+  actionId: PlayCutscene
+  payloadJson: S1
+  waitForCompletion: 0
+  waitSeconds: 0

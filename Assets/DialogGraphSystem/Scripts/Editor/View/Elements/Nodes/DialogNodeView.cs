@@ -487,6 +487,8 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
             mainContainer.Add(addButton);
         }
 
+        // Inside DialogNodeView.cs
+
         private void RefreshCharacterList()
         {
             if (_charactersContainer == null) return;
@@ -494,56 +496,96 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
 
             for (int i = 0; i < sceneCharacters.Count; i++)
             {
-                int index = i;
+                int index = i; // Cache index for closures
                 var entry = sceneCharacters[i];
 
+                // Create Row Container
                 var row = new VisualElement();
                 row.style.flexDirection = FlexDirection.Row;
                 row.style.backgroundColor = new Color(0, 0, 0, 0.2f);
                 row.style.marginBottom = 4;
                 row.style.paddingBottom = 4;
-                row.style.paddingTop = 4;
-                row.style.paddingLeft = 4;
-                row.style.paddingRight = 4;
+                row.style.marginLeft = 4;
+                row.style.marginRight = 4;
+                row.style.marginTop = 4;
                 row.style.alignItems = Align.Center;
 
-                // 1. Sprite
-                var spriteField = new ObjectField { objectType = typeof(Sprite), value = entry.expression, allowSceneObjects = false };
-                spriteField.style.width = 45; spriteField.style.height = 45;
-                spriteField.RegisterValueChangedCallback(evt => { sceneCharacters[index].expression = evt.newValue as Sprite; SaveCharactersToAsset(); });
+                // --- LEFT COLUMN: ANIMATOR FIELD ---
+                var animField = new ObjectField
+                {
+                    objectType = typeof(RuntimeAnimatorController),
+                    value = entry.animatorController,
+                    allowSceneObjects = false
+                };
+                animField.tooltip = "Drag an Animator Controller here";
+                animField.style.width = 100;
+                animField.style.height = 65; // Taller for visibility
+                animField.RegisterValueChangedCallback(evt =>
+                {
+                    sceneCharacters[index].animatorController = evt.newValue as RuntimeAnimatorController;
+                    SaveCharactersToAsset();
+                });
 
-                // 2. Middle Column
+                // --- MIDDLE COLUMN: NAME, ANIM STATE, POS, STATE ---
                 var midCol = new VisualElement();
-                midCol.style.flexGrow = 1; midCol.style.marginLeft = 5;
+                midCol.style.flexGrow = 2;
+                midCol.style.marginLeft = 5;
+                midCol.style.marginRight = 5;
 
                 // Name
                 var nameField = new TextField { value = entry.characterName, isDelayed = true };
+                nameField.tooltip = "Character Name (for reference)";
                 nameField.RegisterValueChangedCallback(evt => { sceneCharacters[index].characterName = evt.newValue; SaveCharactersToAsset(); });
+
+                // Anim State Name (String)
+                var animNameField = new TextField { value = entry.animationName, isDelayed = true };
+                animNameField.tooltip = "Animation State;";
+                animNameField.RegisterValueChangedCallback(evt => { sceneCharacters[index].animationName = evt.newValue; SaveCharactersToAsset(); });
 
                 // Position
                 var posField = new EnumField(entry.position);
+                posField.tooltip = "Screen Position";
                 posField.RegisterValueChangedCallback(evt => { sceneCharacters[index].position = (VNPosition)evt.newValue; SaveCharactersToAsset(); });
 
-                // State (Normal/Dimmed/Hidden)
+                // Visual State (Normal/Dimmed)
                 var stateField = new EnumField(entry.state);
+                stateField.tooltip = "Visual State (Normal, Dimmed, Hidden)";
                 stateField.RegisterValueChangedCallback(evt => { sceneCharacters[index].state = (VNCharacterState)evt.newValue; SaveCharactersToAsset(); });
 
                 midCol.Add(nameField);
+                midCol.Add(animNameField);
                 midCol.Add(posField);
                 midCol.Add(stateField);
 
-                // 3. Right Column
+                // --- RIGHT COLUMN: FLIP & DELETE ---
                 var rightCol = new VisualElement();
-                var flipToggle = new Toggle("Flip") { value = entry.flipX };
-                flipToggle.RegisterValueChangedCallback(evt => { sceneCharacters[index].flipX = evt.newValue; SaveCharactersToAsset(); });
+                rightCol.style.alignItems = Align.Center;
+                rightCol.style.justifyContent = Justify.SpaceBetween;
 
-                var removeBtn = new Button(() => { sceneCharacters.RemoveAt(index); SaveCharactersToAsset(); RefreshCharacterList(); }) { text = "X" };
-                removeBtn.style.color = Color.red;
+                // 1. FLIP TOGGLE (Restored!)
+                var flipToggle = new Toggle("Flip") { value = entry.flipX };
+                flipToggle.RegisterValueChangedCallback(evt =>
+                {
+                    sceneCharacters[index].flipX = evt.newValue;
+                    SaveCharactersToAsset();
+                });
+
+                // 2. DELETE BUTTON
+                var removeBtn = new Button(() =>
+                {
+                    sceneCharacters.RemoveAt(index);
+                    SaveCharactersToAsset();
+                    RefreshCharacterList();
+                })
+                { text = "X" };
+                removeBtn.style.color = new Color(1f, 0.4f, 0.4f); // Red
+                removeBtn.style.marginTop = 5;
 
                 rightCol.Add(flipToggle);
                 rightCol.Add(removeBtn);
 
-                row.Add(spriteField);
+                // Add columns to row
+                row.Add(animField);
                 row.Add(midCol);
                 row.Add(rightCol);
 

@@ -52,7 +52,13 @@ MonoBehaviour:
   nodePosition: {x: -1039.2, y: 43.199997}
   speakerName: Guid
   speakerPortrait: {fileID: 21300000, guid: ffde12b7f3c029f418663d7979d15648, type: 3}
-  sceneCharacters: []
+  sceneCharacters:
+  - characterName: New Char
+    position: 2
+    animatorController: {fileID: 0}
+    animationName: 
+    flipX: 0
+    state: 0
   questionText: We are going to start a countup for the dialog
   dialogAudio: {fileID: 0}
   displayTime: 0
@@ -162,7 +168,7 @@ MonoBehaviour:
   m_Name: ActionNode
   m_EditorClassIdentifier: 
   GUID: ed4ddb28d36141349c8e60d287a37996
-  nodePosition: {x: -623, y: 17}
+  nodePosition: {x: -624, y: 43}
   actionId: Countup
   payloadJson: 
   waitForCompletion: 1
@@ -253,7 +259,13 @@ MonoBehaviour:
   nodePosition: {x: -259, y: 38}
   speakerName: Guid
   speakerPortrait: {fileID: 21300000, guid: ffde12b7f3c029f418663d7979d15648, type: 3}
-  sceneCharacters: []
+  sceneCharacters:
+  - characterName: New Char
+    position: 2
+    animatorController: {fileID: 0}
+    animationName: 
+    flipX: 0
+    state: 0
   questionText: "Now, there is going to be an image shown, Chose a color for the
     image? After you choose, I\u2019ll start a 5-second countdown."
   dialogAudio: {fileID: 0}

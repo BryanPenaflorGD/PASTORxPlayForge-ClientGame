@@ -23,6 +23,7 @@ namespace DialogSystem.Runtime.Core
         #region ---------------- Inspector: Debug & Scene References ----------------
         [Header("Debug")]
         [SerializeField] private bool doDebug = true;
+        public bool isInputLocked = false;
 
         [Serializable]
         public class DialogGraphModel
@@ -150,6 +151,8 @@ namespace DialogSystem.Runtime.Core
 
         private void Update()
         {
+            if (isInputLocked) return;
+
             if (!conversationActive || isPausedByHistory) return;
 
             // block any input while actions are resolving

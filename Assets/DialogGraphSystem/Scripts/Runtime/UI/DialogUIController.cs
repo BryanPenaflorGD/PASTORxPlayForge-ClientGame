@@ -79,6 +79,10 @@ namespace DialogSystem.Runtime.UI
 
         #region Visual Novel Runtime Logic
 
+        // Inside DialogUIController.cs
+
+        // Inside DialogUIController.cs -> UpdateVNStage
+
         public void UpdateVNStage(List<VNCharacterEntry> characters)
         {
             // 1. Hide everything first
@@ -90,30 +94,50 @@ namespace DialogSystem.Runtime.UI
 
             if (characters == null) return;
 
-            // 2. Turn on specific characters
             foreach (var entry in characters)
             {
-                Image target = GetImageByPosition(entry.position);
-                if (target == null) continue;
+                Image targetImage = GetImageByPosition(entry.position);
+                if (targetImage == null) continue;
 
+                // Hide if state is Hidden
                 if (entry.state == VNCharacterState.Hidden)
                 {
-                    target.gameObject.SetActive(false);
+                    targetImage.gameObject.SetActive(false);
                     continue;
                 }
 
-                target.gameObject.SetActive(true);
-                target.sprite = entry.expression;
-                target.preserveAspect = true;
+                targetImage.gameObject.SetActive(true);
 
-                // Handle Flip
-                target.rectTransform.localScale = entry.flipX ? new Vector3(-1, 1, 1) : Vector3.one;
+                // --- ANIMATOR LOGIC ---
+                Animator anim = targetImage.GetComponent<Animator>();
+                if (anim == null) anim = targetImage.gameObject.AddComponent<Animator>();
 
-                // Handle Dim
-                target.color = (entry.state == VNCharacterState.Dimmed) ? new Color(0.5f, 0.5f, 0.5f, 1f) : Color.white;
+                if (entry.animatorController != null)
+                {
+                    if (anim.runtimeAnimatorController != entry.animatorController)
+                        anim.runtimeAnimatorController = entry.animatorController;
+
+                    if (!string.IsNullOrEmpty(entry.animationName))
+                        anim.Play(entry.animationName);
+                }
+                else
+                {
+                    anim.runtimeAnimatorController = null;
+                    targetImage.sprite = null;
+                }
+
+                // --- FLIP LOGIC (Restored!) ---
+                // If flipX is true, scale X becomes -1. Otherwise 1.
+                if (entry.flipX)
+                    targetImage.rectTransform.localScale = new Vector3(-1, 1, 1);
+                else
+                    targetImage.rectTransform.localScale = Vector3.one;
+
+                // --- DIM LOGIC ---
+                targetImage.color = (entry.state == VNCharacterState.Dimmed) ? new Color(0.5f, 0.5f, 0.5f, 1f) : Color.white;
+                targetImage.preserveAspect = true;
             }
         }
-
         private Image GetImageByPosition(VNPosition pos)
         {
             switch (pos)
