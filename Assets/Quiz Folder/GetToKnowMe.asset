@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58833a1fd0adbed4d87fe40759af0ded, type: 3}
+  m_Name: GetToKnowMe
+  m_EditorClassIdentifier: 
+  quizName: Simple Answers
+  questions:
+  - {fileID: 11400000, guid: 9bdce8a19f90ce74ebba7bfa1d534031, type: 2}
+  - {fileID: 11400000, guid: 362d16ca578029d4f81ece773a71b5fe, type: 2}
+  - {fileID: 11400000, guid: d7301c01563a2c24dac2890c3da7fe72, type: 2}
+  - {fileID: 11400000, guid: b9cd249665fe8854780ac4465c28e9aa, type: 2}
+  - {fileID: 11400000, guid: 5ef0e61a7b50d87499ae49da3d3cc61c, type: 2}
