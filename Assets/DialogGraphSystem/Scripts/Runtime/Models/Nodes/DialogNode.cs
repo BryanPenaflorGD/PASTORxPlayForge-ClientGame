@@ -40,9 +40,10 @@ namespace DialogSystem.Runtime.Models.Nodes
         #region -------- Flow --------
         [Tooltip("Seconds to show this node before auto-advancing. Use 0 to wait for input.")]
         [Min(0f)] public float displayTime = 0f;
+
+        [Tooltip("If greater than 0, the dialog will stay until the Video Player reaches this specific timestamp.")]
+        public float videoEndTime = 0f;
         #endregion
-
-
 
         public DialogNode()
         {

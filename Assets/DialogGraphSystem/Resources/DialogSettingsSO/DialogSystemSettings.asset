@@ -108,11 +108,11 @@ MonoBehaviour:
   typewriterEffect: 2
   charsPerSecond: 43.1
   allowSkipAll: 0
-  allowSkipCurrentLine: 1
-  allowFastForwardHold: 1
+  allowSkipCurrentLine: 0
+  allowFastForwardHold: 0
   fastForwardMultiplier: 2.006
-  autoAdvance: 0
-  autoAdvanceDelay: 0.763
+  autoAdvance: 1
+  autoAdvanceDelay: 0.296
   commaPause: 0.1096
   periodPause: 0.1301
   questionPause: 0.1885

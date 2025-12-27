@@ -9,6 +9,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Video;
 
 namespace DialogSystem.EditorTools.View.Elements.Nodes
 {
@@ -37,6 +38,7 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
         public Sprite portraitSprite;
         public AudioClip dialogueAudio;
         public float displayTimeSeconds;
+        public float videoEndTime;
 
         // [NEW] Local list to store the visual novel characters
         public List<VNCharacterEntry> sceneCharacters = new List<VNCharacterEntry>();
@@ -57,6 +59,7 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
         private TextField _questionField;
         private FloatField _displayTimeField;
         private ObjectField _audioField;
+        private FloatField _videoTimeField;
 
         public Port inputPort;
         public Port outputPort;
@@ -328,6 +331,18 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
                 WithAssetNode("Change Dialogue Audio", (_, soNode) => soNode.dialogAudio = dialogueAudio);
             });
 
+
+            _videoTimeField = new FloatField("Video Target Time")
+            {
+                value = 0f // Default to 0, don't use 'data' here!
+            };
+            _videoTimeField.tooltip = "Wait until video player reaches this second.";
+            _videoTimeField.RegisterValueChangedCallback(e =>
+            {
+                videoEndTime = e.newValue;
+                WithAssetNode("Edit Video Time", (_, soNode) => soNode.videoEndTime = videoEndTime);
+            });
+
             // Layout row for portrait preview + dialog text
             var dialogRow = new VisualElement { name = "dialogue-row" };
             dialogRow.style.flexDirection = FlexDirection.Row;
@@ -341,6 +356,7 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
             mainContainer.Add(_spriteField);
             mainContainer.Add(dialogRow);
             mainContainer.Add(_displayTimeField);
+            mainContainer.Add(_videoTimeField);
             mainContainer.Add(_audioField);
 
             BuildCharacterListUI();
@@ -393,6 +409,7 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
             Sprite sprite,
             AudioClip audioClip,
             float displayTime,
+            float videoEnd,
             List<VNCharacterEntry> loadedCharacters)
         {
             speakerName = speaker;
@@ -401,6 +418,7 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
             portraitSprite = sprite;
             dialogueAudio = audioClip;
             displayTimeSeconds = displayTime;
+            videoEndTime = videoEnd;
 
             // [NEW] Load the list
             sceneCharacters = new List<VNCharacterEntry>(loadedCharacters ?? new List<VNCharacterEntry>());
@@ -415,6 +433,7 @@ namespace DialogSystem.EditorTools.View.Elements.Nodes
             if (_spriteField != null) _spriteField.SetValueWithoutNotify(sprite);
             if (_audioField != null) _audioField.SetValueWithoutNotify(audioClip);
             if (_displayTimeField != null) _displayTimeField.SetValueWithoutNotify(displayTime);
+            if (_videoTimeField != null) _videoTimeField.SetValueWithoutNotify(videoEnd);
 
             UpdatePortraitPreview();
             UpdateAvatarVisual();

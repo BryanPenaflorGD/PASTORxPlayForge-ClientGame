@@ -1,26 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8731503750273670580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
-  m_Name: Node_Scene1.7
-  m_EditorClassIdentifier: 
-  GUID: a30b612452574f4ba7233b2167c790ea
-  nodePosition: {x: 2624, y: -22}
-  speakerName: Liam
-  speakerPortrait: {fileID: 0}
-  sceneCharacters: []
-  questionText: ' A story? About a typhoon? That sounds cool!'
-  dialogAudio: {fileID: 0}
-  displayTime: 0
---- !u!114 &-5523041631057489958
+--- !u!114 &-7120373736348803261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,14 +12,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
   m_Name: Node_Scene1.3
   m_EditorClassIdentifier: 
-  GUID: 00710ecb980f4ab692619b23481e70bc
-  nodePosition: {x: 1024, y: -22}
-  speakerName: Aira
+  GUID: c09be215a2114ca0838d86d1973c9ceb
+  nodePosition: {x: 541, y: -22}
+  speakerName: Liam
   speakerPortrait: {fileID: 0}
-  sceneCharacters: []
-  questionText: "I don\u2019t like typhoons. They\u2019re scary."
+  sceneCharacters:
+  - characterName: Aira
+    position: 1
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_HoldingBag
+    flipX: 0
+    state: 1
+  - characterName: Liam
+    position: 3
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_Normal
+    flipX: 1
+    state: 0
+  questionText: " Yeah\u2026 My dad said it might turn into a super typhoon. The
+    streets are already \r\nflooding!"
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
+--- !u!114 &-4766639165739112822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8ae5de5139b1b43a025447ffdec81e, type: 3}
+  m_Name: WaitForVideoNode
+  m_EditorClassIdentifier: 
+  GUID: 224f7a2df62f4636b8d2ae78cc19c561
+  nodePosition: {x: -592, y: -26}
+  videoName: S1
+--- !u!114 &-3380173749851213298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: 875e407fa7fb4642926ae3dcd458765d
+  nodePosition: {x: -611, y: -22}
+  actionId: PlayCutscene
+  payloadJson: S1
+  waitForCompletion: 0
+  waitSeconds: 0
+--- !u!114 &-3067259065945869182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: 42a6ad65a6a34feb902459f49e2d9c87
+  nodePosition: {x: 1341, y: -22}
+  actionId: PlayCutscene
+  payloadJson: s5
+  waitForCompletion: 0
+  waitSeconds: 0
+--- !u!114 &-1880920845834252667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_0
+  m_EditorClassIdentifier: 
+  GUID: f214358695f548ccac5a0e34a51b1fdf
+  nodePosition: {x: 1693, y: -22}
+  speakerName: 
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: (Door Opening)
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 3
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,72 +122,44 @@ MonoBehaviour:
   - fromGuid: 9407e2116c1344f18078537f96057299
     toGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
     fromPortIndex: 0
-  - fromGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
-    toGuid: fb1187b9d5b34625b087eddc5ddcc828
-    fromPortIndex: 0
-  - fromGuid: fb1187b9d5b34625b087eddc5ddcc828
-    toGuid: 00710ecb980f4ab692619b23481e70bc
-    fromPortIndex: 0
-  - fromGuid: 00710ecb980f4ab692619b23481e70bc
-    toGuid: 011a4e52c60f4290a266cedd9d41a5bf
-    fromPortIndex: 0
-  - fromGuid: 011a4e52c60f4290a266cedd9d41a5bf
-    toGuid: 0442f722af0548a3b2b01f8f206579b7
-    fromPortIndex: 0
-  - fromGuid: 0442f722af0548a3b2b01f8f206579b7
-    toGuid: 7e4880b879c74adb8f7bac7fe402fe43
-    fromPortIndex: 0
-  - fromGuid: 7e4880b879c74adb8f7bac7fe402fe43
-    toGuid: a30b612452574f4ba7233b2167c790ea
-    fromPortIndex: 0
-  - fromGuid: a30b612452574f4ba7233b2167c790ea
-    toGuid: 438da4e25e0749a08d8da66006632564
-    fromPortIndex: 0
   - fromGuid: 4b7121033d85455783d6b8101a9ad5f8
-    toGuid: e73e2d9c524f4375bd4a1f7131c4ddb5
+    toGuid: 875e407fa7fb4642926ae3dcd458765d
     fromPortIndex: 0
-  - fromGuid: e73e2d9c524f4375bd4a1f7131c4ddb5
+  - fromGuid: 875e407fa7fb4642926ae3dcd458765d
     toGuid: 9407e2116c1344f18078537f96057299
+    fromPortIndex: 0
+  - fromGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
+    toGuid: c09be215a2114ca0838d86d1973c9ceb
+    fromPortIndex: 0
+  - fromGuid: c09be215a2114ca0838d86d1973c9ceb
+    toGuid: d519ff9995b74e1486f96e5de47f0fcf
+    fromPortIndex: 0
+  - fromGuid: d519ff9995b74e1486f96e5de47f0fcf
+    toGuid: 42a6ad65a6a34feb902459f49e2d9c87
+    fromPortIndex: 0
+  - fromGuid: 42a6ad65a6a34feb902459f49e2d9c87
+    toGuid: f214358695f548ccac5a0e34a51b1fdf
+    fromPortIndex: 0
+  - fromGuid: f214358695f548ccac5a0e34a51b1fdf
+    toGuid: 438da4e25e0749a08d8da66006632564
     fromPortIndex: 0
   nodes:
   - {fileID: 3747633473853875118}
   - {fileID: 2992287810593884786}
-  - {fileID: 2059277719481695296}
-  - {fileID: -5523041631057489958}
-  - {fileID: 3091181503321500061}
-  - {fileID: 2002747292441693513}
-  - {fileID: 2846865447722261849}
-  - {fileID: -8731503750273670580}
+  - {fileID: -7120373736348803261}
+  - {fileID: 4990807746583476366}
+  - {fileID: -1880920845834252667}
   choiceNodes: []
   actionNodes:
-  - {fileID: 8324482172473215370}
+  - {fileID: -3380173749851213298}
+  - {fileID: -3067259065945869182}
   startGuid: 4b7121033d85455783d6b8101a9ad5f8
   startPosition: {x: -780, y: -22}
   startInitialized: 1
   endGuid: 438da4e25e0749a08d8da66006632564
-  endPosition: {x: 3183, y: 124}
+  endPosition: {x: 2285, y: -46}
   endInitialized: 1
---- !u!114 &2002747292441693513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
-  m_Name: Node_Scene1.5
-  m_EditorClassIdentifier: 
-  GUID: 0442f722af0548a3b2b01f8f206579b7
-  nodePosition: {x: 1824, y: -22}
-  speakerName: Aira
-  speakerPortrait: {fileID: 0}
-  sceneCharacters: []
-  questionText: Really, Sir?
-  dialogAudio: {fileID: 0}
-  displayTime: 0
---- !u!114 &2059277719481695296
+--- !u!114 &2992287810593884786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,49 +171,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
   m_Name: Node_Scene1.2
   m_EditorClassIdentifier: 
-  GUID: fb1187b9d5b34625b087eddc5ddcc828
-  nodePosition: {x: 624, y: -22}
-  speakerName: Liam
+  GUID: 8cf8632a5d9349c8ba7eeefc9e85d413
+  nodePosition: {x: 141, y: -22}
+  speakerName: Aira
   speakerPortrait: {fileID: 0}
   sceneCharacters:
-  - characterName: New Char
+  - characterName: Aira
     position: 1
-    animatorController: {fileID: 0}
-    animationName: 
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_HoldingBag
     flipX: 0
     state: 0
-  - characterName: New Char
+  - characterName: Liam
     position: 3
-    animatorController: {fileID: 0}
-    animationName: 
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_Normal
     flipX: 1
-    state: 0
-  questionText: "Yeah\u2026 My dad said it might turn into a super typhoon. The streets
-    are already \r\nflooding!"
+    state: 1
+  questionText: it's still raining! The wind is so strong... I hope the typhoon doesn't
+    get worse
   dialogAudio: {fileID: 0}
   displayTime: 0
---- !u!114 &2846865447722261849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
-  m_Name: Node_Scene1.6
-  m_EditorClassIdentifier: 
-  GUID: 7e4880b879c74adb8f7bac7fe402fe43
-  nodePosition: {x: 2224, y: -22}
-  speakerName: Mr.Corin
-  speakerPortrait: {fileID: 0}
-  sceneCharacters: []
-  questionText: "How about I tell you a story? about how a typhoon is born, grows
-    strong, and what \r\nhappens when it meets land and water?"
-  dialogAudio: {fileID: 0}
-  displayTime: 0
---- !u!114 &2992287810593884786
+  videoEndTime: 0
+--- !u!114 &3747633473853875118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,28 +205,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
   m_Name: Node_Scene1.1
   m_EditorClassIdentifier: 
-  GUID: 8cf8632a5d9349c8ba7eeefc9e85d413
-  nodePosition: {x: 224, y: -22}
-  speakerName: Aira
+  GUID: 9407e2116c1344f18078537f96057299
+  nodePosition: {x: -259, y: -22}
+  speakerName: 
   speakerPortrait: {fileID: 0}
-  sceneCharacters:
-  - characterName: Aira
-    position: 1
-    animatorController: {fileID: 0}
-    animationName: 
-    flipX: 0
-    state: 0
-  - characterName: New Char
-    position: 3
-    animatorController: {fileID: 0}
-    animationName: 
-    flipX: 1
-    state: 1
-  questionText: it's still raining! The wind is so strong... I hope the typhoon doesn't
-    get worse
+  sceneCharacters: []
+  questionText: (Sounds of heavy rain and thunder)
   dialogAudio: {fileID: 0}
   displayTime: 0
---- !u!114 &3091181503321500061
+  videoEndTime: 5.5
+--- !u!114 &4990807746583476366
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,51 +226,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
   m_Name: Node_Scene1.4
   m_EditorClassIdentifier: 
-  GUID: 011a4e52c60f4290a266cedd9d41a5bf
-  nodePosition: {x: 1424, y: -22}
-  speakerName: Mr.Corin
+  GUID: d519ff9995b74e1486f96e5de47f0fcf
+  nodePosition: {x: 941, y: -22}
+  speakerName: Aira
   speakerPortrait: {fileID: 0}
-  sceneCharacters: []
-  questionText: " Hey there, Aira and Liam! Your parents might come a little late
-    to pick you up but  \r\ndon\u2019t worry, once you understand how typhoons work,
-    they won\u2019t seem so scary anymore. "
+  sceneCharacters:
+  - characterName: Aira
+    position: 1
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_HoldingBag
+    flipX: 0
+    state: 0
+  - characterName: Liam
+    position: 3
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_Normal
+    flipX: 1
+    state: 1
+  questionText: "I don\u2019t like typhoons. They\u2019re scary."
   dialogAudio: {fileID: 0}
   displayTime: 0
---- !u!114 &3747633473853875118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
-  m_Name: Node_Scene1.0
-  m_EditorClassIdentifier: 
-  GUID: 9407e2116c1344f18078537f96057299
-  nodePosition: {x: -207, y: -26}
-  speakerName: 
-  speakerPortrait: {fileID: 0}
-  sceneCharacters: []
-  questionText: (Sounds of heavy rain and thunder)
-  dialogAudio: {fileID: 0}
-  displayTime: 2
---- !u!114 &8324482172473215370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
-  m_Name: ActionNode
-  m_EditorClassIdentifier: 
-  GUID: e73e2d9c524f4375bd4a1f7131c4ddb5
-  nodePosition: {x: -588, y: -26}
-  actionId: PlayCutscene
-  payloadJson: S1
-  waitForCompletion: 0
-  waitSeconds: 0
+  videoEndTime: 0
