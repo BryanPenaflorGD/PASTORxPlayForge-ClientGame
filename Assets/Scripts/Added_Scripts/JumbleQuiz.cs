@@ -2,12 +2,14 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class JumbleQuiz : MonoBehaviour
 {
     [Header("----Letter Buttons----")]
     public List<LetterButton> buttons;
     public List<TextMeshProUGUI> letterTextAnswer;
+    public List<GameObject> questions;
 
     [Header("-----Word Source-----")]
     public string word = "ENERGY";
@@ -16,8 +18,7 @@ public class JumbleQuiz : MonoBehaviour
     private string wordResult = "";
 
     [Header("-----Auto Next------")]
-    public GameObject currentQuestion;
-    public GameObject nextQuestion;
+    public int currentQuestionIndex = 0;
 
     void Start()
     {
@@ -70,24 +71,45 @@ public class JumbleQuiz : MonoBehaviour
     }
     private IEnumerator Retry()
     {
+        //IGDI MAGLAAG SOUND PAGSALA 
+
         yield return new WaitForSeconds(1f);
 
+        //Enable All BTN
         foreach (var btn in buttons)
         {
             btn.EnableButton(true);
         }
 
+        //Clear All Slot
         for (int i = 0; i < letterTextAnswer.Count; i++)
         {
-            letterTextAnswer[i].text = ""; // clear each slot
+            letterTextAnswer[i].text = "";
         }
         ShuffleAndAssign();
     }
     private IEnumerator Correct()
     {
+        //IGDI MAGLAAG NING SOUND PAGTAMA ANG SIMBAG
+
         yield return new WaitForSeconds(1f);
-        currentQuestion.SetActive(false);
-        nextQuestion.SetActive(true);
+
+        questions[currentQuestionIndex].SetActive(false);
+
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.Count)
+        {
+            questions[currentQuestionIndex].SetActive(true);
+        }
+        else
+        {
+            //IGDI ANG PAGLIPAT NING SCENE
+
+            //SceneManager.LoadSceneAsync();
+            Debug.LogError("Change Scene hyp ka");
+        }
+
     }
     void ShuffleLetters(List<char> letters)
     {
