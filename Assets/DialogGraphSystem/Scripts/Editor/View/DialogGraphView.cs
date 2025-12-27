@@ -598,6 +598,7 @@ namespace DialogSystem.EditorTools.View
                 dNode.speakerPortrait,
                 dNode.dialogAudio,
                 dNode.displayTime,
+                dNode.videoEndTime,
                 dNode.sceneCharacters
             );
 
@@ -802,6 +803,7 @@ namespace DialogSystem.EditorTools.View
                     src.portraitSprite,
                     src.dialogueAudio,
                     src.displayTimeSeconds,
+                    src.videoEndTime,
                     src.sceneCharacters
                 );
                 clone.SetPosition(new Rect(pos, srcRect.size));

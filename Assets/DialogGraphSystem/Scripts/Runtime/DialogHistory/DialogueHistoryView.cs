@@ -2,19 +2,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DialogSystem.Runtime.DialogHistory;
+using DialogSystem.Runtime.Core;
 
 namespace DialogSystem.Runtime
 {
-    /// <summary>
-    /// Pooled, scroll-to-bottom history list renderer for <see cref="HistoryEntry"/>.
-    /// Expects a row prefab of type <see cref="DialogueHistoryItem"/>.
-    /// </summary>
     [DisallowMultipleComponent]
     public class DialogueHistoryView : MonoBehaviour
     {
-        #region -------- UI --------
-        [Header("UI")]
-        [Tooltip("Root panel GameObject that contains the history UI.")]
+        #region -------- UI References --------
+        [Header("UI References")]
+        [Tooltip("The actual panel GameObject to toggle on/off. (Do NOT attach this script to this object!)")]
         public GameObject root;
 
         [Tooltip("Vertical ScrollRect controlling the content viewport.")]
@@ -27,23 +24,56 @@ namespace DialogSystem.Runtime
         public DialogueHistoryItem itemPrefab;
         #endregion
 
-        #region -------- Pool --------
-        [Header("Pool")]
+        #region -------- Settings --------
+        [Header("Settings")]
         [Min(0), Tooltip("Pre-instantiate this many pooled rows on start.")]
         public int prewarm = 24;
 
         [Tooltip("If true, choice rows hide their icon by default.")]
         public bool hideChoiceIcon = true;
 
+        [Tooltip("If AutoPlay was ON when opening history, should we turn it back ON when closing?")]
+        public bool resumeAutoplayOnClose = true;
+        #endregion
+
+        #region -------- Internal State --------
         private readonly List<DialogueHistoryItem> _pool = new();
         private int _activeCount = 0;
         private bool _dirtyScrollToBottom;
+
+        // History Data
+        private List<HistoryEntry> _historyLog = new List<HistoryEntry>();
+
+        // AutoPlay State Memory
+        private bool _lastAutoPlayState;
         #endregion
 
         #region -------- Unity Lifecycle --------
         private void Start()
         {
+            // Safety Check
+            if (root == gameObject)
+            {
+                Debug.LogError("[DialogueHistoryView] CRITICAL ERROR: This script is on the object it disables. Move it to DialogManager.");
+            }
+
             Prewarm(prewarm);
+
+            // Subscribe to DialogManager events
+            if (DialogManager.Instance != null)
+            {
+                DialogManager.Instance.OnLineShown += OnLineShownRecorded;
+                DialogManager.Instance.OnChoicePicked += OnChoicePickedRecorded;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (DialogManager.Instance != null)
+            {
+                DialogManager.Instance.OnLineShown -= OnLineShownRecorded;
+                DialogManager.Instance.OnChoicePicked -= OnChoicePickedRecorded;
+            }
         }
 
         private void LateUpdate()
@@ -53,26 +83,90 @@ namespace DialogSystem.Runtime
 
             Canvas.ForceUpdateCanvases();
             if (scrollRect != null)
-                scrollRect.verticalNormalizedPosition = 0f; // snap to bottom (newest)
+                scrollRect.verticalNormalizedPosition = 0f; // Snap to bottom
         }
         #endregion
 
-        #region -------- Public API --------
-        /// <summary>Shows the history panel.</summary>
+        #region -------- Event Listeners (Fixing Speaker Name) --------
+        private void OnLineShownRecorded(string guid, string speaker, string text)
+        {
+            // 1. Get Portrait
+            Sprite currentPortrait = null;
+            if (DialogManager.Instance != null && DialogManager.Instance.uiPanel != null && DialogManager.Instance.uiPanel.portraitImage != null)
+            {
+                currentPortrait = DialogManager.Instance.uiPanel.portraitImage.sprite;
+            }
+
+            // 2. FIX SPEAKER NAME
+            // If speaker is null, empty, or "None", change it to "???"
+            string finalSpeaker = speaker;
+            if (string.IsNullOrEmpty(finalSpeaker) || finalSpeaker.Equals("None", System.StringComparison.OrdinalIgnoreCase))
+            {
+                finalSpeaker = "???";
+            }
+
+            // 3. Create Entry
+            var entry = new HistoryEntry(HistoryKind.Line, finalSpeaker, text, guid, currentPortrait);
+            _historyLog.Add(entry);
+
+            // 4. Update UI if open
+            if (root != null && root.activeSelf)
+            {
+                AppendItem(entry);
+            }
+        }
+
+        private void OnChoicePickedRecorded(string guid, string text)
+        {
+            var entry = new HistoryEntry(HistoryKind.Choice, "Choice", text, guid, null);
+            _historyLog.Add(entry);
+
+            if (root != null && root.activeSelf)
+            {
+                AppendItem(entry);
+            }
+        }
+        #endregion
+
+        #region -------- Public API (Toggle) --------
+        public void Toggle()
+        {
+            if (root != null && root.activeSelf)
+                Hide();
+            else
+                Show();
+        }
+
         public void Show()
         {
             if (root) root.SetActive(true);
+
+            if (DialogManager.Instance != null)
+            {
+                _lastAutoPlayState = DialogManager.Instance.GetAutoPlayState();
+                DialogManager.Instance.PauseForHistory();
+            }
+
+            Refresh(_historyLog);
         }
 
-        /// <summary>Hides the history panel.</summary>
         public void Hide()
         {
+            if (DialogManager.Instance != null)
+            {
+                DialogManager.Instance.ResumeAfterHistory();
+
+                if (resumeAutoplayOnClose && _lastAutoPlayState && !DialogManager.Instance.GetAutoPlayState())
+                {
+                    DialogManager.Instance.ToggleAutoPlay();
+                }
+            }
+
             if (root) root.SetActive(false);
         }
+        #endregion
 
-        /// <summary>
-        /// Rebuilds the list from <paramref name="entries"/> and scrolls to bottom.
-        /// </summary>
+        #region -------- Display Logic --------
         public void Refresh(IReadOnlyList<HistoryEntry> entries)
         {
             ReturnAll();
@@ -83,45 +177,26 @@ namespace DialogSystem.Runtime
                 for (int i = 0; i < entries.Count; i++)
                     BindToNext(entries[i]);
             }
-
             _dirtyScrollToBottom = true;
         }
 
-        /// <summary>
-        /// Appends one entry to the end and scrolls to bottom.
-        /// </summary>
         public void AppendItem(HistoryEntry entry)
         {
             EnsurePool(_activeCount + 1);
             BindToNext(entry);
             _dirtyScrollToBottom = true;
         }
-        #endregion
 
-        #region -------- Pool Helpers --------
-        private void Prewarm(int count)
-        {
-            EnsurePool(count);
-        }
+        private void Prewarm(int count) => EnsurePool(count);
 
         private void EnsurePool(int count)
         {
-            if (!itemPrefab)
-            {
-                Debug.LogError("[DialogueHistoryView] Item prefab not assigned.");
-                return;
-            }
-            if (!contentRoot)
-            {
-                Debug.LogError("[DialogueHistoryView] Content root not assigned.");
-                return;
-            }
-
+            if (!itemPrefab || !contentRoot) return;
             while (_pool.Count < count)
             {
                 var item = Instantiate(itemPrefab, contentRoot);
                 item.gameObject.SetActive(false);
-                item.hideIconForChoices = hideChoiceIcon; // pass choice icon policy down
+                item.hideIconForChoices = hideChoiceIcon;
                 _pool.Add(item);
             }
         }
@@ -129,10 +204,7 @@ namespace DialogSystem.Runtime
         private void ReturnAll()
         {
             for (int i = 0; i < _activeCount; i++)
-            {
-                var item = _pool[i];
-                if (item) item.gameObject.SetActive(false);
-            }
+                if (_pool[i]) _pool[i].gameObject.SetActive(false);
             _activeCount = 0;
         }
 
@@ -143,7 +215,6 @@ namespace DialogSystem.Runtime
             var item = _pool[_activeCount++];
             item.gameObject.SetActive(true);
 
-            // For choices, null out portrait if icons are hidden
             var portrait = (e.kind == HistoryKind.Choice && item.hideIconForChoices) ? null : e.portrait;
 
             item.Bind(

@@ -14,6 +14,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 namespace DialogSystem.Runtime.Core
 {
@@ -42,6 +43,9 @@ namespace DialogSystem.Runtime.Core
 
         [Header("Audio (Scene Reference)")]
         public AudioSource audioSource;
+
+        [Header("Video Synchronization")]
+        public VideoPlayer syncVideoPlayer;
         #endregion
 
         #region ---------------- Inspector: Local Overrides (Optional) ----------------
@@ -322,6 +326,7 @@ namespace DialogSystem.Runtime.Core
             {
                 if (currentDialog != null)
                 {
+                    uiPanel.SetTheme(currentDialog.speakerName);
                     if (uiPanel.speakerName != null) uiPanel.speakerName.text = currentDialog.speakerName;
                     if (uiPanel.portraitImage != null) uiPanel.portraitImage.sprite = currentDialog.speakerPortrait;
 
@@ -618,26 +623,99 @@ namespace DialogSystem.Runtime.Core
         #region ---------------- Auto-Advance ----------------
         private IEnumerator AutoAdvanceAfterDelay(string nextGuid, DialogNode nodeForTiming)
         {
-            float wait = (nodeForTiming == null || nodeForTiming.displayTime < 0.01f)
-                ? AutoAdvanceDelay()
-                : nodeForTiming.displayTime;
+            // --- LOGIC: WAIT ---
 
-            yield return new WaitForSeconds(wait);
+            // CASE A: Sync with Video Time
+            if (nodeForTiming != null && nodeForTiming.videoEndTime > 0 && syncVideoPlayer != null)
+            {
+                while (syncVideoPlayer.time < nodeForTiming.videoEndTime)
+                {
+                    // If paused by history, just wait here forever until unpaused
+                    if (isPausedByHistory)
+                    {
+                        // Optional: verbose log if needed, but might spam
+                        // Debug.Log("[DialogManager] AutoAdvance waiting for History to close...");
+                        yield return null;
+                        continue;
+                    }
+
+                    // If video stopped playing (and NOT paused by history), we should probably break
+                    // We check isActiveAndEnabled to ensure we don't read state from a dead player
+                    if (syncVideoPlayer.isActiveAndEnabled && !syncVideoPlayer.isPlaying && !isPausedByHistory)
+                    {
+                        // Give it a tiny buffer (0.1s) in case video is just buffering/seeking
+                        yield return new WaitForSeconds(0.1f);
+                        if (!syncVideoPlayer.isPlaying) break;
+                    }
+
+                    yield return null;
+                }
+            }
+            // CASE B: Standard Timer
+            else
+            {
+                float duration = (nodeForTiming == null || nodeForTiming.displayTime < 0.01f)
+                    ? AutoAdvanceDelay()
+                    : nodeForTiming.displayTime;
+
+                float timer = 0f;
+                while (timer < duration)
+                {
+                    if (!isPausedByHistory)
+                    {
+                        timer += Time.deltaTime;
+                    }
+                    yield return null;
+                }
+            }
+
+            // --- LOGIC: EXECUTE NEXT STEP ---
+
+            // Final safety check to never advance while history is open
+            while (isPausedByHistory) yield return null;
+
             autoAdvanceCoroutine = null;
-
-            if (!isPausedByHistory && !string.IsNullOrEmpty(nextGuid)) GoTo(nextGuid);
+            if (!string.IsNullOrEmpty(nextGuid)) GoTo(nextGuid);
         }
 
         private IEnumerator AutoEndAfterDelay(DialogNode nodeForTiming)
         {
-            float wait = (nodeForTiming == null || nodeForTiming.displayTime < 0.01f)
-                ? AutoAdvanceDelay()
-                : nodeForTiming.displayTime;
+            // Same logic as above, but for Ending the dialog
+            if (nodeForTiming != null && nodeForTiming.videoEndTime > 0 && syncVideoPlayer != null)
+            {
+                while (syncVideoPlayer.time < nodeForTiming.videoEndTime)
+                {
+                    if (isPausedByHistory)
+                    {
+                        yield return null;
+                        continue;
+                    }
 
-            yield return new WaitForSeconds(wait);
+                    if (syncVideoPlayer.isActiveAndEnabled && !syncVideoPlayer.isPlaying && !isPausedByHistory) break;
+                    yield return null;
+                }
+            }
+            else
+            {
+                float duration = (nodeForTiming == null || nodeForTiming.displayTime < 0.01f)
+                    ? AutoAdvanceDelay()
+                    : nodeForTiming.displayTime;
+
+                float timer = 0f;
+                while (timer < duration)
+                {
+                    if (!isPausedByHistory)
+                    {
+                        timer += Time.deltaTime;
+                    }
+                    yield return null;
+                }
+            }
+
+            while (isPausedByHistory) yield return null;
+
             autoAdvanceCoroutine = null;
-
-            if (!isPausedByHistory) EndDialog();
+            EndDialog();
         }
         #endregion
 
@@ -871,8 +949,19 @@ namespace DialogSystem.Runtime.Core
         #region ---------------- History ----------------
         public void PauseForHistory()
         {
-            isPausedByHistory = true;
+            if (isPausedByHistory) return; // Already paused
 
+            isPausedByHistory = true;
+            Debug.Log($"[DialogManager] <color=yellow>PAUSED</color> for History. (Time: {Time.time})");
+
+            // 1. Pause Video if active and playing
+            if (syncVideoPlayer != null && syncVideoPlayer.isActiveAndEnabled && syncVideoPlayer.isPlaying)
+            {
+                syncVideoPlayer.Pause();
+                Debug.Log("[DialogManager] Video Paused.");
+            }
+
+            // 2. Handle Typing
             if (isTyping && typingCoroutine != null)
             {
                 StopCoroutine(typingCoroutine);
@@ -885,14 +974,31 @@ namespace DialogSystem.Runtime.Core
                         : currentChoice != null ? currentChoice.text
                         : string.Empty;
                 }
-
                 isTyping = false;
             }
-
-            CancelAutoAdvance();
         }
 
-        public void ResumeAfterHistory() => isPausedByHistory = false;
+        public void ResumeAfterHistory()
+        {
+            if (!isPausedByHistory) return;
+
+            isPausedByHistory = false;
+            Debug.Log($"[DialogManager] RESUMED after History. (Time: {Time.time})");
+
+            if (syncVideoPlayer != null)
+            {
+                // If the video player object is disabled, we cannot play it.
+                if (!syncVideoPlayer.isActiveAndEnabled)
+                {
+                    Debug.LogWarning("[DialogManager] Could not resume video because the VideoPlayer GameObject is disabled/inactive.");
+                }
+                else if (!syncVideoPlayer.isPlaying && conversationActive)
+                {
+                    syncVideoPlayer.Play();
+                    Debug.Log("[DialogManager] Video Resumed.");
+                }
+            }
+        }
 
         public string GetCurrentLineText()
         {
@@ -1069,5 +1175,38 @@ namespace DialogSystem.Runtime.Core
             if (doDebug) Debug.LogWarning("[DialogManager] No DialogActionRunner assigned. Action calls will be ignored.");
         }
         #endregion
+
+        /// <summary>
+        /// Waits based on Node settings (Video Time > Duration > Input).
+        /// </summary>
+        private IEnumerator WaitForNodeLogic(DialogNode node)
+        {
+            // CASE 1: Video Synchronization
+            // If the node has a specific video timestamp target (e.g., wait until video is at 10.5s)
+            if (node.videoEndTime > 0 && syncVideoPlayer != null && syncVideoPlayer.isPlaying)
+            {
+                // Wait until the video reaches the target time
+                while (syncVideoPlayer.time < node.videoEndTime)
+                {
+                    yield return null; // Wait one frame and check again
+                }
+            }
+            // CASE 2: Specific Duration (Auto Advance)
+            // If the node has a duration set (e.g., 3 seconds)
+            else if (node.displayTime > 0)
+            {
+                yield return new WaitForSeconds(node.displayTime);
+            }
+            // CASE 3: Wait for Click (Default)
+            // If no time is set, wait for user input
+            else
+            {
+                // Wait until player clicks (assuming you have an input check like this)
+                while (!Input.GetMouseButtonDown(0) && !Input.GetKeyDown(KeyCode.Space))
+                {
+                    yield return null;
+                }
+            }
+        }
     }
 }

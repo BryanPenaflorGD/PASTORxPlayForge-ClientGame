@@ -98,7 +98,7 @@ MonoBehaviour:
   italicForChoices: 1
   choiceFontScale: 0.95
   hideIconForChoices: 0
-  fallbackIcon: {fileID: 21300000, guid: e9dc3450bdfbddb449dccce7f6141484, type: 3}
+  fallbackIcon: {fileID: 21300000, guid: 4ee67a034cc14b84a9933ed47fdc45b1, type: 3}
   choiceIcon: {fileID: 21300000, guid: 9ca44a77f31533346bb41a22097d87fe, type: 3}
 --- !u!114 &1907958707432667983
 MonoBehaviour:
@@ -187,15 +187,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Arjan Beka:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e12caac0921f8e4f8503555111b1698, type: 2}
-  m_sharedMaterial: {fileID: -289811167827711690, guid: 2e12caac0921f8e4f8503555111b1698, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 01fa6ac9483daca4b95d2a3bef6b577a, type: 2}
+  m_sharedMaterial: {fileID: 4652030263235718703, guid: 01fa6ac9483daca4b95d2a3bef6b577a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -212,12 +212,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.6
+  m_fontSize: 20.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
-  m_fontSizeMax: 40
+  m_fontSizeMax: 70
   m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -321,15 +321,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: hi how are u
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e12caac0921f8e4f8503555111b1698, type: 2}
-  m_sharedMaterial: {fileID: -289811167827711690, guid: 2e12caac0921f8e4f8503555111b1698, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7f18103e0927cd947a594c48bda82b49, type: 2}
+  m_sharedMaterial: {fileID: -2679822299201796025, guid: 7f18103e0927cd947a594c48bda82b49, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -346,12 +346,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 30
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
-  m_fontSizeMax: 20
+  m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512

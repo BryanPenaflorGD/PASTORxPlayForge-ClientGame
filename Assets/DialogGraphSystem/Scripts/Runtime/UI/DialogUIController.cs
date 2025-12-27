@@ -20,7 +20,9 @@ namespace DialogSystem.Runtime.UI
         public GameObject panelRoot;
         public TextMeshProUGUI speakerName;
         public TextMeshProUGUI dialogText;
+        public Image panelBackground;
         public Image portraitImage;
+
 
         // -------- ADD THIS SECTION --------
         [Header("VN Character Positions")]
@@ -46,7 +48,47 @@ namespace DialogSystem.Runtime.UI
         public Button autoPlayButton;
         public GameObject pauseIcon;
         public GameObject playIcon;
+
+        [Header("Panel Themes")]
+        public List<SpeakerTheme> speakerThemes = new List<SpeakerTheme>();
+
+        [System.Serializable]
+        public struct SpeakerTheme
+        {
+            public string speakerId; // e.g. "Player"
+            public Sprite backgroundSprite; // The Blue or Red box image
+        }
+
+        private Sprite defaultBackgroundSprite;
+
+        public void SetTheme(string name)
+        {
+            if (panelBackground == null) return;
+
+            // 1. Find a matching theme for this speaker
+            // (This looks through the list you made in the Inspector)
+            var theme = speakerThemes.Find(x => x.speakerId == name);
+
+            // 2. If we found a custom sprite, use it. Otherwise, use default.
+            if (theme.backgroundSprite != null)
+            {
+                panelBackground.sprite = theme.backgroundSprite;
+            }
+            else
+            {
+                panelBackground.sprite = defaultBackgroundSprite;
+            }
+        }
         #endregion
+
+        private void Awake()
+        {
+            // Save whatever sprite is currently on the panel as the "Default"
+            if (panelBackground != null)
+            {
+                defaultBackgroundSprite = panelBackground.sprite;
+            }
+        }
 
         #region ---------------- Public API ----------------
         public void UpdateAutoPlayIcon(bool isAutoPlay)
@@ -200,7 +242,6 @@ namespace DialogSystem.Runtime.UI
             SetChoicesVisible(false);
         }
         #endregion
-
         private static void Safe(GameObject go, bool v) { if (go) go.SetActive(v); }
     }
 }
