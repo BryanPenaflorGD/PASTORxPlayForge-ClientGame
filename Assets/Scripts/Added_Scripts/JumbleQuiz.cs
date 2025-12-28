@@ -73,7 +73,19 @@ public class JumbleQuiz : MonoBehaviour
     {
         //IGDI MAGLAAG SOUND PAGSALA 
 
+        // Change text color to red
+        foreach (var txt in letterTextAnswer)
+        {
+            txt.color = Color.red;
+        }
+
         yield return new WaitForSeconds(1f);
+
+        // Change text color to red
+        foreach (var txt in letterTextAnswer)
+        {
+            txt.color = Color.black;
+        }
 
         //Enable All BTN
         foreach (var btn in buttons)
@@ -92,7 +104,17 @@ public class JumbleQuiz : MonoBehaviour
     {
         //IGDI MAGLAAG NING SOUND PAGTAMA ANG SIMBAG
 
+        foreach (var txt in letterTextAnswer)
+        {
+            txt.color = Color.green;
+        }
+
         yield return new WaitForSeconds(1f);
+
+        foreach (var txt in letterTextAnswer)
+        {
+            txt.color = Color.black;
+        }
 
         questions[currentQuestionIndex].SetActive(false);
 
@@ -113,6 +135,7 @@ public class JumbleQuiz : MonoBehaviour
     }
     void ShuffleLetters(List<char> letters)
     {
+
         for (int i = 0; i < letters.Count; i++)
         {
             int randomIndex = Random.Range(i, letters.Count);
