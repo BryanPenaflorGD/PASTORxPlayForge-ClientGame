@@ -44,29 +44,86 @@ namespace DialogSystem.Runtime.Core
 
             var payload = node.payloadJson ?? string.Empty;
 
+            // 1. Wait (Delay) before starting any actions
             if (node.waitSeconds > 0f)
                 yield return new WaitForSeconds(Mathf.Max(0f, node.waitSeconds));
 
+            // 2. SPLIT Action IDs (e.g. "FadeOut, PlaySound")
+            string[] actionList = node.actionId.Split(',');
+
             var convSet = FindSet(dialogID);
 
-            // 1) Fire-and-forget UnityEvent binding(s)
-            var invoked = false;
-            if (convSet != null) invoked |= TryInvokeBinding(convSet, node.actionId, payload);
-            if (!invoked && useGlobalFallback && global != null)
-                invoked |= TryInvokeBinding(global, node.actionId, payload);
-
-            // 2) Optional waitable handler
-            if (node.waitForCompletion)
+            foreach (var rawId in actionList)
             {
-                if (convSet != null && TryHandleAsync(convSet, node.actionId, payload, out var coConv) && coConv != null)
+                string currentID = rawId.Trim(); // Remove spaces around commas
+                if (string.IsNullOrEmpty(currentID)) continue;
+
+                // --- COMBINED ACTION (Fixed for Video Transitions) ---
+                if (currentID == "SceneTransition")
                 {
-                    yield return coConv;
-                    yield break;
+                    if (DialogManager.Instance != null && DialogManager.Instance.uiPanel != null)
+                    {
+                        var ui = DialogManager.Instance.uiPanel;
+
+                        // 1. Fade OUT (We wait for this to finish)
+                        yield return ui.FadeToBlack(1.0f);
+
+                        // 2. Schedule Fade IN to happen LATER (in parallel)
+                        // We give it 0.5s delay to ensure the next Video Node has time to load/start.
+                        ui.StartCoroutine(ui.FadeFromBlackDelayed(0.5f, 5f));
+                    }
+
+                    // 3. Stop the Action Node HERE. 
+                    // This forces DialogManager to advance to the next node (The Video)
+                    // while the screen is still black.
+                    continue;
                 }
 
-                if (useGlobalFallback && global != null && TryHandleAsync(global, node.actionId, payload, out var coGlobal) && coGlobal != null)
+                // --- A. HARDCODED SYSTEM ACTIONS ---
+                if (currentID == "FadeOut")
                 {
-                    yield return coGlobal;
+                    if (DialogManager.Instance != null && DialogManager.Instance.uiPanel != null)
+                        yield return DialogManager.Instance.uiPanel.FadeToBlack(1.0f);
+                    continue; // Done with this ID, move to next
+                }
+
+                if (currentID == "FadeIn")
+                {
+                    if (DialogManager.Instance != null && DialogManager.Instance.uiPanel != null)
+                        yield return DialogManager.Instance.uiPanel.FadeFromBlack(1.0f);
+                    continue; // Done with this ID, move to next
+                }
+
+                // --- B. STANDARD BINDINGS (UnityEvents) ---
+                bool invoked = false;
+                if (convSet != null)
+                    invoked |= TryInvokeBinding(convSet, currentID, payload);
+
+                if (!invoked && useGlobalFallback && global != null)
+                    invoked |= TryInvokeBinding(global, currentID, payload);
+
+                // --- C. ASYNC HANDLERS (Scripts) ---
+                // We use your existing TryHandleAsync method here
+                IEnumerator asyncRoutine = null;
+                bool handledAsync = false;
+
+                // Try Conversation Set first
+                if (convSet != null)
+                {
+                    if (TryHandleAsync(convSet, currentID, payload, out asyncRoutine))
+                    {
+                        handledAsync = true;
+                        if (asyncRoutine != null) yield return asyncRoutine;
+                    }
+                }
+
+                // Try Global Set fallback if not handled yet
+                if (!handledAsync && useGlobalFallback && global != null)
+                {
+                    if (TryHandleAsync(global, currentID, payload, out asyncRoutine))
+                    {
+                        if (asyncRoutine != null) yield return asyncRoutine;
+                    }
                 }
             }
         }

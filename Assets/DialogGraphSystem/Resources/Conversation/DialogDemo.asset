@@ -21,6 +21,7 @@ MonoBehaviour:
     of missing/contradictory fields.'
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-7536886236073269182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,6 +43,7 @@ MonoBehaviour:
     summarizer service \u2192 Slack webhook + dashboard card."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-6677260115840261961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +64,7 @@ MonoBehaviour:
   questionText: QA here. Want to know how we test the summaries?
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-5567576701886059063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +86,7 @@ MonoBehaviour:
     or blockers?"
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-5427877738719646496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +107,7 @@ MonoBehaviour:
   questionText: "Ping me before big refactors\u2014I\u2019ll queue regression runs."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-4269376139196015863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +129,7 @@ MonoBehaviour:
     labeling. Also, stakeholders may change scope mid-week.'
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-4194633182891567407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +150,7 @@ MonoBehaviour:
   questionText: "That should get you unblocked. I\u2019ll keep an eye on access requests."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-4078786205218617179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +172,7 @@ MonoBehaviour:
     final taxonomy for tags.'
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-3903736172537337075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +194,7 @@ MonoBehaviour:
     ETL in /pipelines."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-3361782300082781632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +244,7 @@ MonoBehaviour:
     or something specific?"
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-2708278575162731279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +266,7 @@ MonoBehaviour:
     access steps. You\u2019ve got enough to proceed."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-2411593705546969152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +288,7 @@ MonoBehaviour:
     with redactions; never test PII locally."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-1430974768748478630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +344,7 @@ MonoBehaviour:
     fast.'
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-1152654573811889979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +365,7 @@ MonoBehaviour:
   questionText: 
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-1127756483941408641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +421,7 @@ MonoBehaviour:
     and \u2018Data Contracts\u2019."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,6 +654,7 @@ MonoBehaviour:
     to first?
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &672943869735901811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,6 +716,7 @@ MonoBehaviour:
     you can see drift fast."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &1056207454770742471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,6 +765,7 @@ MonoBehaviour:
   questionText: Cool? If you hit parser weirdness, DM me a sample row.
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &2542898257043826661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,6 +786,7 @@ MonoBehaviour:
   questionText: IT ops. Need access, environments, or where docs live?
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &2776229053317242945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +808,7 @@ MonoBehaviour:
     sign-off on dashboard card."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &4251068213554194688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +830,7 @@ MonoBehaviour:
     input sample + actual vs expected summary."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &4536253943188028252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,6 +852,7 @@ MonoBehaviour:
     blocked, tag me in #help-it."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &4903014279570537381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,6 +903,7 @@ MonoBehaviour:
     brief.'
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &5352611894762734925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,6 +925,7 @@ MonoBehaviour:
     good. Marketing wants a demo slide deck by Wednesday.'
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &5504378594080001988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,6 +947,7 @@ MonoBehaviour:
     lock it down."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &5652480024289754077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -944,6 +969,7 @@ MonoBehaviour:
     they\u2019re friendly if you show them quick wins."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
 --- !u!114 &6546917278238154246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,3 +1087,4 @@ MonoBehaviour:
     resources nightly."
   dialogAudio: {fileID: 0}
   displayTime: 0
+  videoEndTime: 0
