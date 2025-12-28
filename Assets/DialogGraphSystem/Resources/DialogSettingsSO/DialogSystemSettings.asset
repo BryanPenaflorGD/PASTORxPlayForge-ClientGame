@@ -106,13 +106,13 @@ MonoBehaviour:
   m_Name: TextSettings
   m_EditorClassIdentifier: 
   typewriterEffect: 2
-  charsPerSecond: 43.1
+  charsPerSecond: 79.23
   allowSkipAll: 0
   allowSkipCurrentLine: 0
   allowFastForwardHold: 0
   fastForwardMultiplier: 2.006
   autoAdvance: 1
-  autoAdvanceDelay: 0.296
+  autoAdvanceDelay: 0.287
   commaPause: 0.1096
   periodPause: 0.1301
   questionPause: 0.1885

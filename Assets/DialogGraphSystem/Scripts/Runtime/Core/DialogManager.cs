@@ -46,6 +46,7 @@ namespace DialogSystem.Runtime.Core
 
         [Header("Video Synchronization")]
         public VideoPlayer syncVideoPlayer;
+
         #endregion
 
         #region ---------------- Inspector: Local Overrides (Optional) ----------------
@@ -322,8 +323,10 @@ namespace DialogSystem.Runtime.Core
         {
             if (currentDialog == null && currentChoice == null) { EndDialog(); return; }
 
+
             if (uiPanel != null)
             {
+                uiPanel.ShowPanel();
                 if (currentDialog != null)
                 {
                     uiPanel.SetTheme(currentDialog.speakerName);
@@ -397,44 +400,41 @@ namespace DialogSystem.Runtime.Core
         {
             if (isPausedByHistory) return;
 
-            if (currentChoice != null) 
-            { 
-                ShowChoices(currentChoice); 
-                return; 
+            // 1. If the current node itself is a choice (unlikely via this flow, but safety check)
+            if (currentChoice != null)
+            {
+                ShowChoices(currentChoice);
+                return;
             }
 
+            // 2. If it is a Dialog Node, we need to decide what to do next
             if (currentDialog != null)
             {
-                var nextDirect = GetNextFromDialog(currentDialog.GetGuid());
+                // Get the GUID of the very next node immediately connected to this one
+                var immediateNextGuid = GetNextFromDialog(currentDialog.GetGuid());
 
-                StartCoroutine(ResolveNextAfterActions(nextDirect, resolvedNext =>
+                // Check if the IMMEDIATE next node is a CHOICE.
+                // Standard VN behavior: Choices appear immediately after typing.
+                // Actions and Next Dialogs wait for user input.
+                var nextIsChoice = FindChoiceByGuid(immediateNextGuid);
+
+                if (nextIsChoice != null)
                 {
-                    if (string.IsNullOrEmpty(resolvedNext))
-                    {
-                        if (autoPlayState)
-                        {
-                            CancelAutoAdvance();
-                            autoAdvanceCoroutine = StartCoroutine(AutoEndAfterDelay(currentDialog));
-                        }
-                        return;
-                    }
+                    // It is a choice, so we transition immediately without waiting for click
+                    pendingChoiceFromDialog = nextIsChoice;
+                    ShowChoices(nextIsChoice);
+                    return;
+                }
 
-                    var choice = FindChoiceByGuid(resolvedNext);
-                    if (choice != null)
-                    {
-                        pendingChoiceFromDialog = choice;
-                        ShowChoices(choice);
-                        return;
-                    }
+                // If the next node is an ACTION or a DIALOG, we DO NOT execute it yet.
+                // We wait for the user to click (OnDialogAreaClick) OR for AutoPlay.
 
-                    pendingNextGuidAfterDialog = resolvedNext;
-
-                    if (autoPlayState)
-                    {
-                        CancelAutoAdvance();
-                        autoAdvanceCoroutine = StartCoroutine(AutoAdvanceAfterDelay(pendingNextGuidAfterDialog, currentDialog));
-                    }
-                }));
+                if (autoPlayState)
+                {
+                    CancelAutoAdvance();
+                    // We don't resolve the target yet, we wait first.
+                    autoAdvanceCoroutine = StartCoroutine(AutoAdvanceLogic(currentDialog));
+                }
             }
         }
 
@@ -529,7 +529,7 @@ namespace DialogSystem.Runtime.Core
 
             for (int i = 0; i < _choiceViews.Count; i++)
             {
-                if(_choiceViews[i] != null)
+                if (_choiceViews[i] != null)
                     _choiceViews[i].ApplySelected(i == _selectedChoiceIndex, hint);
             }
         }
@@ -580,17 +580,17 @@ namespace DialogSystem.Runtime.Core
         {
             if (!conversationActive || isPausedByHistory) return;
 
-            // block any input while actions are resolving
+            // Block any input while actions are resolving
             if (_isWaitingForActions) return;
 
-            // When choices visible, rely on buttons/navigation (avoid accidental skip)
+            // When choices visible, rely on buttons/navigation
             if (IsChoiceOverlayActive()) return;
 
             if (isTyping)
             {
                 if (!CanSkipCurrentLine()) return;
 
-                SafeStopTyping(); // snaps to full text via CompleteImmediately()
+                SafeStopTyping();
                 var full = currentDialog != null ? currentDialog.questionText : currentChoice?.text ?? string.Empty;
                 if (uiPanel?.dialogText != null) uiPanel.dialogText.text = full;
 
@@ -601,27 +601,31 @@ namespace DialogSystem.Runtime.Core
                 return;
             }
 
-
+            // --- CHANGED LOGIC START ---
             if (currentDialog != null)
             {
-                if (!string.IsNullOrEmpty(pendingNextGuidAfterDialog))
-                {
-                    var next = pendingNextGuidAfterDialog;
-                    pendingNextGuidAfterDialog = null;
-                    GoTo(next);
-                    return;
-                }
+                // We no longer check 'pendingNextGuidAfterDialog' because we didn't pre-calculate it.
+                // We calculate it NOW, at the moment of the click.
 
                 var nextGuid = GetNextFromDialog(currentDialog.GetGuid());
-                if (!string.IsNullOrEmpty(nextGuid)) { GoTo(nextGuid); return; }
+
+                if (!string.IsNullOrEmpty(nextGuid))
+                {
+                    // GoTo handles Action chains automatically. 
+                    // Since we call it now, the video plays now (after the click).
+                    GoTo(nextGuid);
+                    return;
+                }
             }
+            // --- CHANGED LOGIC END ---
 
             EndDialog();
         }
         #endregion
 
         #region ---------------- Auto-Advance ----------------
-        private IEnumerator AutoAdvanceAfterDelay(string nextGuid, DialogNode nodeForTiming)
+        // Renamed from AutoAdvanceAfterDelay to match the change in HandleAfterTyping
+        private IEnumerator AutoAdvanceLogic(DialogNode nodeForTiming)
         {
             // --- LOGIC: WAIT ---
 
@@ -630,24 +634,17 @@ namespace DialogSystem.Runtime.Core
             {
                 while (syncVideoPlayer.time < nodeForTiming.videoEndTime)
                 {
-                    // If paused by history, just wait here forever until unpaused
                     if (isPausedByHistory)
                     {
-                        // Optional: verbose log if needed, but might spam
-                        // Debug.Log("[DialogManager] AutoAdvance waiting for History to close...");
                         yield return null;
                         continue;
                     }
 
-                    // If video stopped playing (and NOT paused by history), we should probably break
-                    // We check isActiveAndEnabled to ensure we don't read state from a dead player
                     if (syncVideoPlayer.isActiveAndEnabled && !syncVideoPlayer.isPlaying && !isPausedByHistory)
                     {
-                        // Give it a tiny buffer (0.1s) in case video is just buffering/seeking
                         yield return new WaitForSeconds(0.1f);
                         if (!syncVideoPlayer.isPlaying) break;
                     }
-
                     yield return null;
                 }
             }
@@ -661,21 +658,28 @@ namespace DialogSystem.Runtime.Core
                 float timer = 0f;
                 while (timer < duration)
                 {
-                    if (!isPausedByHistory)
-                    {
-                        timer += Time.deltaTime;
-                    }
+                    if (!isPausedByHistory) timer += Time.deltaTime;
                     yield return null;
                 }
             }
 
             // --- LOGIC: EXECUTE NEXT STEP ---
 
-            // Final safety check to never advance while history is open
             while (isPausedByHistory) yield return null;
 
             autoAdvanceCoroutine = null;
-            if (!string.IsNullOrEmpty(nextGuid)) GoTo(nextGuid);
+
+            // Calculate next node NOW, after the wait is over.
+            var nextGuid = GetNextFromDialog(nodeForTiming.GetGuid());
+
+            if (!string.IsNullOrEmpty(nextGuid))
+            {
+                GoTo(nextGuid);
+            }
+            else
+            {
+                EndDialog();
+            }
         }
 
         private IEnumerator AutoEndAfterDelay(DialogNode nodeForTiming)
@@ -1179,34 +1183,38 @@ namespace DialogSystem.Runtime.Core
         /// <summary>
         /// Waits based on Node settings (Video Time > Duration > Input).
         /// </summary>
-        private IEnumerator WaitForNodeLogic(DialogNode node)
-        {
-            // CASE 1: Video Synchronization
-            // If the node has a specific video timestamp target (e.g., wait until video is at 10.5s)
-            if (node.videoEndTime > 0 && syncVideoPlayer != null && syncVideoPlayer.isPlaying)
-            {
-                // Wait until the video reaches the target time
-                while (syncVideoPlayer.time < node.videoEndTime)
-                {
-                    yield return null; // Wait one frame and check again
-                }
-            }
-            // CASE 2: Specific Duration (Auto Advance)
-            // If the node has a duration set (e.g., 3 seconds)
-            else if (node.displayTime > 0)
-            {
-                yield return new WaitForSeconds(node.displayTime);
-            }
-            // CASE 3: Wait for Click (Default)
-            // If no time is set, wait for user input
-            else
-            {
-                // Wait until player clicks (assuming you have an input check like this)
-                while (!Input.GetMouseButtonDown(0) && !Input.GetKeyDown(KeyCode.Space))
-                {
-                    yield return null;
-                }
-            }
-        }
+        //private IEnumerator WaitForNodeLogic(DialogNode node)
+        //{
+        //    // CASE 1: Video Synchronization
+        //    // If the node has a specific video timestamp target (e.g., wait until video is at 10.5s)
+        //    if (node.videoEndTime > 0 && syncVideoPlayer != null && syncVideoPlayer.isPlaying)
+        //    {
+        //        // Wait until the video reaches the target time
+        //        while (syncVideoPlayer.time < node.videoEndTime)
+        //        {
+        //            yield return null; // Wait one frame and check again
+        //        }
+        //    }
+        //    // CASE 2: Specific Duration (Auto Advance)
+        //    // If the node has a duration set (e.g., 3 seconds)
+        //    else if (node.displayTime > 0)
+        //    {
+        //        yield return new WaitForSeconds(node.displayTime);
+        //    }
+        //    // CASE 3: Wait for Click (Default)
+        //    // If no time is set, wait for user input
+        //    else
+        //    {
+        //        // Wait until player clicks (assuming you have an input check like this)
+        //        while (!Input.GetMouseButtonDown(0) && !Input.GetKeyDown(KeyCode.Space))
+        //        {
+        //            yield return null;
+        //        }
+        //    }
+        //}
+
+
+      
+
     }
 }

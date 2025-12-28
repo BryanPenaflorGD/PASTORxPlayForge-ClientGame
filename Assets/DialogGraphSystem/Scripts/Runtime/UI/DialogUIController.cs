@@ -1,13 +1,15 @@
+using DialogSystem.Runtime.Core;
+using DialogSystem.Runtime.Models; // For VNCharacterEntry
+using DialogSystem.Runtime.Models.Nodes;
+using DialogSystem.Runtime.Settings.Panels;
 using System;
+using System.Collections; // For IEnumerator
+using System.Collections.Generic; // For List
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using DialogSystem.Runtime.Core;
-using DialogSystem.Runtime.Models.Nodes;
-using DialogSystem.Runtime.Settings.Panels;
-using DialogSystem.Runtime.Models; // For VNCharacterEntry
-using System.Collections.Generic; // For List
+
 
 namespace DialogSystem.Runtime.UI
 {   
@@ -18,6 +20,8 @@ namespace DialogSystem.Runtime.UI
         #region ---------------- Inspector ----------------
         [Header("Main UI Elements")]
         public GameObject panelRoot;
+        public GameObject dialogPanel;
+        public GameObject characterStage;
         public TextMeshProUGUI speakerName;
         public TextMeshProUGUI dialogText;
         public Image panelBackground;
@@ -52,6 +56,9 @@ namespace DialogSystem.Runtime.UI
         [Header("Panel Themes")]
         public List<SpeakerTheme> speakerThemes = new List<SpeakerTheme>();
 
+        [Header("Effects")]
+        public CanvasGroup fadeOverlay; // ASSIGN THIS IN INSPECTOR (Black Image)
+
         [System.Serializable]
         public struct SpeakerTheme
         {
@@ -60,6 +67,20 @@ namespace DialogSystem.Runtime.UI
         }
 
         private Sprite defaultBackgroundSprite;
+
+        public void HidePanel()
+        {
+            if (dialogPanel != null) dialogPanel.SetActive(false);
+            if (characterStage != null) characterStage.SetActive(false);
+
+        }
+
+        // 2. Helper to Show the Panel (Connect this to "ShowUI" action)
+        public void ShowPanel()
+        {
+            if (dialogPanel != null) dialogPanel.SetActive(true);
+            if (characterStage != null) characterStage.SetActive(true);
+        }
 
         public void SetTheme(string name)
         {
@@ -151,22 +172,59 @@ namespace DialogSystem.Runtime.UI
                 targetImage.gameObject.SetActive(true);
 
                 // --- ANIMATOR LOGIC ---
-                Animator anim = targetImage.GetComponent<Animator>();
-                if (anim == null) anim = targetImage.gameObject.AddComponent<Animator>();
-
+                // 2. Setup Animator
                 if (entry.animatorController != null)
                 {
-                    if (anim.runtimeAnimatorController != entry.animatorController)
-                        anim.runtimeAnimatorController = entry.animatorController;
+                    var anim = targetImage.GetComponent<Animator>();
+                    if (anim == null) anim = targetImage.gameObject.AddComponent<Animator>();
 
+                    anim.runtimeAnimatorController = entry.animatorController;
+
+                    // 1. Enable it first so we can force it to render the first frame
+                    anim.enabled = true;
+
+                    // 2. If a specific animation is requested, jump to it immediately
                     if (!string.IsNullOrEmpty(entry.animationName))
-                        anim.Play(entry.animationName);
+                    {
+                        anim.Play(entry.animationName, 0, 0f);
+                    }
+
+                    // 3. FORCE UPDATE: This tells the Animator to apply the sprite 
+                    // to the Image component right now.
+                    anim.Update(0f);
+
+                    // 4. Handle State
+                    if (entry.state == VNCharacterState.Dimmed)
+                    {
+                        // Freeze the animation now that the sprite is visible
+                        anim.enabled = false;
+
+                        targetImage.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                        targetImage.preserveAspect = true;
+                    }
+                    else
+                    {
+                        // Keep playing
+                        anim.enabled = true;
+                        targetImage.color = Color.white;
+                        targetImage.preserveAspect = true;
+                    }
                 }
                 else
                 {
-                    anim.runtimeAnimatorController = null;
-                    targetImage.sprite = null;
+                    // Fallback for non-animator characters
+                    var anim = targetImage.GetComponent<Animator>();
+                    if (anim != null) anim.enabled = false;
+
+                    targetImage.color = (entry.state == VNCharacterState.Dimmed)
+                        ? new Color(0.5f, 0.5f, 0.5f, 1f)
+                        : Color.white;
+                    targetImage.preserveAspect = true;
                 }
+
+                // --- DIM LOGIC ---
+                targetImage.color = (entry.state == VNCharacterState.Dimmed) ? new Color(0.5f, 0.5f, 0.5f, 1f) : Color.white;
+                targetImage.preserveAspect = true;
 
                 // --- FLIP LOGIC (Restored!) ---
                 // If flipX is true, scale X becomes -1. Otherwise 1.
@@ -175,9 +233,6 @@ namespace DialogSystem.Runtime.UI
                 else
                     targetImage.rectTransform.localScale = Vector3.one;
 
-                // --- DIM LOGIC ---
-                targetImage.color = (entry.state == VNCharacterState.Dimmed) ? new Color(0.5f, 0.5f, 0.5f, 1f) : Color.white;
-                targetImage.preserveAspect = true;
             }
         }
         private Image GetImageByPosition(VNPosition pos)
@@ -203,6 +258,62 @@ namespace DialogSystem.Runtime.UI
             }
         }
         #endregion
+
+
+
+        public IEnumerator FadeFromBlackDelayed(float delay, float duration)
+        {
+            // Wait for the next node (Video) to initialize
+            yield return new WaitForSeconds(delay);
+
+            // Now Fade In
+            yield return FadeFromBlack(duration);
+        }
+        // Add this to DialogUIController.cs
+
+        public IEnumerator FadeTransition(float duration)
+        {
+            // 1. Fade OUT (to black) - uses half the duration
+            yield return FadeToBlack(duration * 0.5f);
+
+            // 2. Wait a tiny bit while black (optional, feels smoother)
+            yield return new WaitForSeconds(0.2f);
+
+            // 3. Fade IN (to clear) - uses remaining duration
+            yield return FadeFromBlack(duration * 0.5f);
+        }
+
+        public IEnumerator FadeToBlack(float duration)
+        {
+            if (fadeOverlay == null) yield break;
+            fadeOverlay.blocksRaycasts = true; // Block clicks
+            float start = fadeOverlay.alpha;
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                fadeOverlay.alpha = Mathf.Lerp(start, 1f, elapsed / duration);
+                yield return null;
+            }
+            fadeOverlay.alpha = 1f;
+        }
+
+        public IEnumerator FadeFromBlack(float duration)
+        {
+            if (fadeOverlay == null) yield break;
+            float start = fadeOverlay.alpha;
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                fadeOverlay.alpha = Mathf.Lerp(start, 0f, elapsed / duration);
+                yield return null;
+            }
+            fadeOverlay.alpha = 0f;
+            fadeOverlay.blocksRaycasts = false; // Allow clicks
+        }
 
         #region ---------------- Choices (simple build) ----------------
         /// <summary>Destroys existing children and rebuilds one prefab per choice. No pooling.</summary>
