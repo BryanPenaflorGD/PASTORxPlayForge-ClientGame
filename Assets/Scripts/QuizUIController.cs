@@ -24,6 +24,8 @@ public class QuizUIController : MonoBehaviour
     public TMP_Text reviewText;
 
     public TMP_Text timerText;
+
+    public GameObject targetObject;
     private void OnEnable()
     {
         if (QuizManager.Instance == null)
@@ -54,7 +56,7 @@ public class QuizUIController : MonoBehaviour
             }
             else
             {
-                timerText.color = Color.white;
+                timerText.color = Color.black;
             }
         }
     }
@@ -101,6 +103,9 @@ public class QuizUIController : MonoBehaviour
             QuizQuestionSO q = QuizManager.Instance.GetQuestionAt(index);
             reviewText.text += $"- {q.questionText}\n";
         }
+
+        targetObject.SetActive(false);
+
     }
 
     private System.Collections.IEnumerator HandleAnswer(int selectedIndex)
