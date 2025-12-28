@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Xml.Serialization;
 
 public class JumbleQuiz : MonoBehaviour
 {
@@ -69,6 +70,11 @@ public class JumbleQuiz : MonoBehaviour
             }
         }
     }
+    public void RetryBTN()
+    {
+        StartCoroutine(Retry());
+    }
+
     private IEnumerator Retry()
     {
         //IGDI MAGLAAG SOUND PAGSALA 
