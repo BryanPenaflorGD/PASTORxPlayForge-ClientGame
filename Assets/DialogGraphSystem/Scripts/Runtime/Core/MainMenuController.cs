@@ -2,106 +2,112 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using TMPro;
 
 namespace DialogSystem.Runtime.Core
 {
     public class MainMenuController : MonoBehaviour
     {
-        // --- UPDATED STRUCT ---
+        // ... (Your existing Struct code stays the same) ...
         [System.Serializable]
         public class StageUIRow
         {
             [Header("Scene Button Setup")]
             public Button sceneButton;
-            public GameObject sceneLockIcon; // Reference to the Lock Image GameObject
-
+            public GameObject sceneLockIcon;
             [Header("Quiz Button Setup")]
             public Button quizButton;
-            public GameObject quizLockIcon;  // Reference to the Lock Image GameObject
+            public GameObject quizLockIcon;
         }
 
         [Header("UI References")]
         public List<StageUIRow> stageUIRows;
 
+        // --- NEW: Direct Reference to the Player ---
+        public DialogPlayer dialogPlayer;
+
         [Header("State References")]
         public GameFlowConfig config;
 
-        private void OnEnable()
+        private void Start()
         {
             RefreshButtons();
         }
 
+        private void Update()
+        {
+            // Press 'R' on your keyboard to reset everything for testing
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                PlayerPrefs.DeleteAll();
+                PlayerPrefs.Save();
+                Debug.Log("--- DATA WIPED: Game Reset to Level 1 ---");
+
+                // Refresh the buttons immediately to show the locks
+                RefreshButtons();
+            }
+        }
+
         public void RefreshButtons()
         {
+            // (Your existing setup code...)
             int playerCurrentStageIdx = ProgressionManager.Instance.GetCurrentStageIndex();
-            bool isCurrentDialogDone = ProgressionManager.Instance.IsDialogFinishedForCurrentStage();
+            bool isDialogDone = ProgressionManager.Instance.IsDialogFinishedForCurrentStage();
 
             for (int i = 0; i < stageUIRows.Count; i++)
             {
-                StageUIRow uiRow = stageUIRows[i];
-
-                // Safety check
+                // ... (Loop checks) ...
                 if (i >= config.stages.Count) continue;
 
+                StageUIRow uiRow = stageUIRows[i];
                 GameStage stageData = config.stages[i];
                 int stageNumber = i + 1;
 
                 // --- SETUP SCENE BUTTON ---
                 bool isSceneUnlocked = playerCurrentStageIdx >= i;
-                bool isSceneFinished = playerCurrentStageIdx > i || (playerCurrentStageIdx == i && isCurrentDialogDone);
+                bool isSceneFinished = playerCurrentStageIdx > i || (playerCurrentStageIdx == i && isDialogDone);
 
-                // We now pass the lock icon reference to the helper function
                 SetupButtonState(uiRow.sceneButton, uiRow.sceneLockIcon, isSceneUnlocked, isSceneFinished, $"SCENE {stageNumber}", () => {
-                    FindObjectOfType<DialogPlayer>().StartDialog(stageData.dialogID);
+
+                    // --- FIX: Use the direct reference instead of FindObjectOfType ---
+                    if (dialogPlayer != null)
+                    {
+                        dialogPlayer.StartDialog(stageData.dialogID);
+                    }
+                    else
+                    {
+                        Debug.LogError("DialogPlayer is missing! Assign it in the MainMenuController Inspector.");
+                    }
                 });
 
                 // --- SETUP QUIZ BUTTON ---
                 bool isQuizUnlocked = isSceneFinished;
                 bool isQuizFinished = playerCurrentStageIdx > i;
 
-                // We now pass the lock icon reference to the helper function
                 SetupButtonState(uiRow.quizButton, uiRow.quizLockIcon, isQuizUnlocked, isQuizFinished, $"QUIZ {stageNumber}", () => {
                     SceneManager.LoadScene(stageData.quizSceneName);
                 });
             }
         }
 
-        // --- UPDATED HELPER FUNCTION ---
-        // Added GameObject lockIcon parameter
+        // ... (Keep the SetupButtonState function exactly as it was in the fixed version) ...
         private void SetupButtonState(Button btn, GameObject lockIcon, bool unlocked, bool finished, string baseLabel, UnityEngine.Events.UnityAction action)
         {
+            if (btn == null) return;
+
             btn.onClick.RemoveAllListeners();
-            Text textComp = btn.GetComponentInChildren<Text>();
+            btn.interactable = unlocked; // Lock/Unlock physically
 
-            // --- VISUAL LOCK LOGIC ---
-            // If the lock icon exists, turn it ON if locked, OFF if unlocked.
-            if (lockIcon != null)
-            {
-                lockIcon.SetActive(!unlocked);
-            }
-            // -------------------------
+            if (lockIcon != null) lockIcon.SetActive(!unlocked);
 
-            if (!unlocked)
-            {
-                btn.interactable = false;
-                // We don't necessarily need to change text to "LOCKED" anymore if we have visual icon
-                // But let's keep it simple for now or maybe change color.
-                textComp.color = new Color(0.5f, 0.5f, 0.5f, 1f); // Gray out text
-            }
-            else
-            {
-                btn.interactable = true;
-                btn.onClick.AddListener(action);
-                textComp.color = Color.white; // Reset color
+            if (unlocked) btn.onClick.AddListener(action);
 
-                if (finished)
-                {
-                    textComp.text = $"{baseLabel} ✓";
-                }
-                else
-                {
-                    textComp.text = baseLabel;
-                }
+            // Text visual updates...
+            TextMeshProUGUI textComp = btn.GetComponentInChildren<TextMeshProUGUI>();
+            if (textComp != null)
+            {
+                textComp.color = unlocked ? Color.black : new Color(0.5f, 0.5f, 0.5f, 1f);
+                textComp.text = finished ? $"{baseLabel}" : baseLabel;
             }
         }
     }
