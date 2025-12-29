@@ -112,7 +112,7 @@ MonoBehaviour:
   allowFastForwardHold: 0
   fastForwardMultiplier: 2.006
   autoAdvance: 1
-  autoAdvanceDelay: 0.287
+  autoAdvanceDelay: 2.495
   commaPause: 0.1096
   periodPause: 0.1301
   questionPause: 0.1885

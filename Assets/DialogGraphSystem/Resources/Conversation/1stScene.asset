@@ -15,7 +15,7 @@ MonoBehaviour:
   GUID: 37fa24bc44344ec894cae3bc54022729
   nodePosition: {x: 1293, y: 469}
   actionId: PlayCutscene, HidePanel
-  payloadJson: s10
+  payloadJson: s10 to s23
   waitForCompletion: 0
   waitSeconds: 0
 --- !u!114 &-7510626372730138742
@@ -50,13 +50,34 @@ MonoBehaviour:
   - characterName: MrCorin
     position: 3
     animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
-    animationName: MrCorin_Normal
+    animationName: MrCorin_WithUmbrella
     flipX: 0
     state: 1
   questionText: A story? About a typhoon? That sounds cool!
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 0
+--- !u!114 &-7495800282096676163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.22
+  m_EditorClassIdentifier: 
+  GUID: 7c67d76772a545c4a18ebd7059c24c0d
+  nodePosition: {x: 541, y: 1361}
+  speakerName: Mr. Corin
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: "then a stronger one called a tropical storm\u2026"
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 67
 --- !u!114 &-7120373736348803261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,28 +112,6 @@ MonoBehaviour:
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 0
---- !u!114 &-5129791159201800698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
-  m_Name: Node_scene1.15
-  m_EditorClassIdentifier: 
-  GUID: c1301add3eb84b8ca14642a59fe546ee
-  nodePosition: {x: -659, y: 1361}
-  speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
-  sceneCharacters: []
-  questionText: Soon, the air starts to spin and twists, and clouds begin to grow
-    and bigger and darker. That's the birth of typhoon
-  dialogAudio: {fileID: 0}
-  displayTime: 0
-  videoEndTime: 20
 --- !u!114 &-4766639165739112822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +127,49 @@ MonoBehaviour:
   GUID: 224f7a2df62f4636b8d2ae78cc19c561
   nodePosition: {x: -592, y: -26}
   videoName: S1
+--- !u!114 &-4359310467202371373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.18
+  m_EditorClassIdentifier: 
+  GUID: d317aede02314fcbae41e6c4f1ff96ca
+  nodePosition: {x: 1741, y: 1050}
+  speakerName: Mr. Corin
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: "Correct! The warm ocean is like the typhoon\u2019s battery... it
+    gives it power!"
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 48
+--- !u!114 &-4243341780919996124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.14
+  m_EditorClassIdentifier: 
+  GUID: 24fa217747044d68ad9ae664d3a22936
+  nodePosition: {x: 141, y: 1050}
+  speakerName: Aira
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: So warm air goes up, right?
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 21
 --- !u!114 &-4156708383161381330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,13 +202,34 @@ MonoBehaviour:
   - characterName: MrCorin
     position: 3
     animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
-    animationName: MrCorin_Normal
+    animationName: MrCorin_WithUmbrella
     flipX: 0
     state: 1
   questionText: ' Really, Sir? '
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 0
+--- !u!114 &-3949157650679318350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.20
+  m_EditorClassIdentifier: 
+  GUID: a57a6132d8d849b19d3fb0cfa38464ad
+  nodePosition: {x: -259, y: 1361}
+  speakerName: Mr. Corin
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: "Yes! And as the swirl grows bigger\u2026"
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 56
 --- !u!114 &-3380173749851213298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +246,26 @@ MonoBehaviour:
   nodePosition: {x: -611, y: -22}
   actionId: PlayCutscene
   payloadJson: S1
+  waitForCompletion: 0
+  waitSeconds: 0
+--- !u!114 &-3186042689397705168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: 4df54229bff440eabbf27b93f55fef27
+  nodePosition: {x: 141, y: 1982}
+  actionId: PlayCutscene
+  payloadJson: 's28
+
+'
   waitForCompletion: 0
   waitSeconds: 0
 --- !u!114 &-3067259065945869182
@@ -203,6 +286,48 @@ MonoBehaviour:
   payloadJson: s5
   waitForCompletion: 1
   waitSeconds: 2
+--- !u!114 &-2418358417505303782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Untitled
+  m_EditorClassIdentifier: 
+  GUID: ad223db25248451693aa55c02669f6c4
+  nodePosition: {x: 1645, y: 471}
+  speakerName: 
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: '. . . . . . . . '
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 8
+--- !u!114 &-1938932808398244756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.17
+  m_EditorClassIdentifier: 
+  GUID: cc87c924c9cb4b3b8c7ea4abb746dbf8
+  nodePosition: {x: 1341, y: 1050}
+  speakerName: Liam
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: Ohhh, so the ocean gives it power!
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 41
 --- !u!114 &-1880920845834252667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +349,66 @@ MonoBehaviour:
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 3.3
+--- !u!114 &-1033466503723914931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.15
+  m_EditorClassIdentifier: 
+  GUID: f1b2592bacea4648adcc398bdee88e60
+  nodePosition: {x: 541, y: 1050}
+  speakerName: Mr. Corin
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: 'As the hot air rises, cool air rushes in to fill the space. '
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 28
+--- !u!114 &-47075764949880634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.26
+  m_EditorClassIdentifier: 
+  GUID: 8c9c6046ccd244d2ab9aa7f34001d5c3
+  nodePosition: {x: -659, y: 1982}
+  speakerName: Liam
+  speakerPortrait: {fileID: 0}
+  sceneCharacters:
+  - characterName: Aira
+    position: 0
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_Normal
+    flipX: 0
+    state: 1
+  - characterName: Liam
+    position: 1
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_Thinking
+    flipX: 0
+    state: 0
+  - characterName: MrCorin
+    position: 3
+    animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
+    animationName: MrCorin_Normal
+    flipX: 0
+    state: 1
+  questionText: Our classroom? How do we get there from here?
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,35 +461,65 @@ MonoBehaviour:
   - fromGuid: ee4d29fe8d204160bceba26ccbc98276
     toGuid: 37fa24bc44344ec894cae3bc54022729
     fromPortIndex: 0
-  - fromGuid: 758d70c82caa44eeb94a790760541c48
-    toGuid: 3a8b58edebb646a9a404cb14b999ce5e
-    fromPortIndex: 0
   - fromGuid: 37fa24bc44344ec894cae3bc54022729
-    toGuid: 758d70c82caa44eeb94a790760541c48
+    toGuid: ad223db25248451693aa55c02669f6c4
     fromPortIndex: 0
-  - fromGuid: 3a8b58edebb646a9a404cb14b999ce5e
-    toGuid: d6310fda7d6443f6b9d5cf6a26852244
+  - fromGuid: ad223db25248451693aa55c02669f6c4
+    toGuid: 2637afea2c004744be2069a85141f395
     fromPortIndex: 0
-  - fromGuid: d6310fda7d6443f6b9d5cf6a26852244
-    toGuid: 8edd800f0ba44d519f22ee59cd5498f1
+  - fromGuid: 2637afea2c004744be2069a85141f395
+    toGuid: 5064260d222642be98baaae271ccc5c9
     fromPortIndex: 0
-  - fromGuid: 8edd800f0ba44d519f22ee59cd5498f1
-    toGuid: 40b04d3ccd6945e289bc8cafb5b81ddc
+  - fromGuid: 5064260d222642be98baaae271ccc5c9
+    toGuid: 24fa217747044d68ad9ae664d3a22936
     fromPortIndex: 0
-  - fromGuid: 40b04d3ccd6945e289bc8cafb5b81ddc
-    toGuid: cb1585e1959748fea2633e9c2c5d881e
+  - fromGuid: 24fa217747044d68ad9ae664d3a22936
+    toGuid: f1b2592bacea4648adcc398bdee88e60
     fromPortIndex: 0
-  - fromGuid: cb1585e1959748fea2633e9c2c5d881e
-    toGuid: 0136be888c6e4577a240fbcdcbc3b925
+  - fromGuid: f1b2592bacea4648adcc398bdee88e60
+    toGuid: 825f954a73d24a76827a96b52fe21b88
     fromPortIndex: 0
-  - fromGuid: 0136be888c6e4577a240fbcdcbc3b925
-    toGuid: 1a1c1e9849cc4c3aba79bcd446840e8b
+  - fromGuid: 825f954a73d24a76827a96b52fe21b88
+    toGuid: cc87c924c9cb4b3b8c7ea4abb746dbf8
     fromPortIndex: 0
-  - fromGuid: c1301add3eb84b8ca14642a59fe546ee
+  - fromGuid: cc87c924c9cb4b3b8c7ea4abb746dbf8
+    toGuid: d317aede02314fcbae41e6c4f1ff96ca
+    fromPortIndex: 0
+  - fromGuid: d317aede02314fcbae41e6c4f1ff96ca
+    toGuid: 542d34835d04458b8a564b48819cb2b6
+    fromPortIndex: 0
+  - fromGuid: 542d34835d04458b8a564b48819cb2b6
+    toGuid: a57a6132d8d849b19d3fb0cfa38464ad
+    fromPortIndex: 0
+  - fromGuid: a57a6132d8d849b19d3fb0cfa38464ad
+    toGuid: d3f974a2456742089b6421f2e1386070
+    fromPortIndex: 0
+  - fromGuid: d3f974a2456742089b6421f2e1386070
+    toGuid: 7c67d76772a545c4a18ebd7059c24c0d
+    fromPortIndex: 0
+  - fromGuid: 7c67d76772a545c4a18ebd7059c24c0d
+    toGuid: f2b4055ed6ab444181310d40c9f394b0
+    fromPortIndex: 0
+  - fromGuid: f2b4055ed6ab444181310d40c9f394b0
+    toGuid: 80732a623388486989670a9380844907
+    fromPortIndex: 0
+  - fromGuid: 8c9c6046ccd244d2ab9aa7f34001d5c3
+    toGuid: dcc23ddbbcf34cc9a0323f6ecacd3e67
+    fromPortIndex: 0
+  - fromGuid: dcc23ddbbcf34cc9a0323f6ecacd3e67
+    toGuid: 4df54229bff440eabbf27b93f55fef27
+    fromPortIndex: 0
+  - fromGuid: 4df54229bff440eabbf27b93f55fef27
+    toGuid: bcbb9136fea54699aa17ddb5e8ee8ec1
+    fromPortIndex: 0
+  - fromGuid: bcbb9136fea54699aa17ddb5e8ee8ec1
     toGuid: 438da4e25e0749a08d8da66006632564
     fromPortIndex: 0
-  - fromGuid: 1a1c1e9849cc4c3aba79bcd446840e8b
-    toGuid: c1301add3eb84b8ca14642a59fe546ee
+  - fromGuid: 419da39b05b74a2cb60ac6a880a6bfe3
+    toGuid: 8c9c6046ccd244d2ab9aa7f34001d5c3
+    fromPortIndex: 0
+  - fromGuid: 80732a623388486989670a9380844907
+    toGuid: 419da39b05b74a2cb60ac6a880a6bfe3
     fromPortIndex: 0
   nodes:
   - {fileID: 3747633473853875118}
@@ -317,28 +532,38 @@ MonoBehaviour:
   - {fileID: 7802695778090109034}
   - {fileID: -7510626372730138742}
   - {fileID: 7433521791578205971}
-  - {fileID: 3773502055781638297}
-  - {fileID: 6897776208244572788}
-  - {fileID: 1272170238082603159}
-  - {fileID: 2576717927122197481}
-  - {fileID: -5129791159201800698}
+  - {fileID: -2418358417505303782}
+  - {fileID: 4430240113621697255}
+  - {fileID: 1608260529164274790}
+  - {fileID: -4243341780919996124}
+  - {fileID: -1033466503723914931}
+  - {fileID: 339629542728076097}
+  - {fileID: -1938932808398244756}
+  - {fileID: -4359310467202371373}
+  - {fileID: 1441842217058845679}
+  - {fileID: -3949157650679318350}
+  - {fileID: 256655219101528196}
+  - {fileID: -7495800282096676163}
+  - {fileID: 7375931619850723274}
+  - {fileID: 1014660896743507689}
+  - {fileID: -47075764949880634}
+  - {fileID: 6125530150219182565}
+  - {fileID: 4315294539705864722}
+  - {fileID: 4239303189081612541}
   choiceNodes: []
   actionNodes:
   - {fileID: -3380173749851213298}
   - {fileID: -3067259065945869182}
   - {fileID: -8861272451104251188}
-  - {fileID: 5674156149560940300}
   - {fileID: 7039181168605413040}
-  - {fileID: 2520287963141713719}
-  - {fileID: 7236638272779966524}
-  - {fileID: 8528624076077038048}
+  - {fileID: -3186042689397705168}
   startGuid: 4b7121033d85455783d6b8101a9ad5f8
   startPosition: {x: -780, y: -22}
   startInitialized: 1
   endGuid: 438da4e25e0749a08d8da66006632564
   endPosition: {x: 2045, y: 2139}
   endInitialized: 1
---- !u!114 &1272170238082603159
+--- !u!114 &256655219101528196
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -348,56 +573,121 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
-  m_Name: Node_scene1.14
+  m_Name: Node_Scene1.21
   m_EditorClassIdentifier: 
-  GUID: 0136be888c6e4577a240fbcdcbc3b925
-  nodePosition: {x: 1549, y: 1052}
-  speakerName: Aira
-  speakerPortrait: {fileID: 0}
-  sceneCharacters: []
-  questionText: So warm air goes up, right?
-  dialogAudio: {fileID: 0}
-  displayTime: 0
-  videoEndTime: 12
---- !u!114 &2520287963141713719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
-  m_Name: ActionNode
-  m_EditorClassIdentifier: 
-  GUID: 3a8b58edebb646a9a404cb14b999ce5e
-  nodePosition: {x: -307, y: 1050}
-  actionId: SceneTransition
-  payloadJson: 
-  waitForCompletion: 0
-  waitSeconds: 2.5
---- !u!114 &2576717927122197481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
-  m_Name: Node_scene1.15
-  m_EditorClassIdentifier: 
-  GUID: 1a1c1e9849cc4c3aba79bcd446840e8b
-  nodePosition: {x: 1949, y: 1052}
+  GUID: d3f974a2456742089b6421f2e1386070
+  nodePosition: {x: 141, y: 1361}
   speakerName: Mr. Corin
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
-  questionText: As the hot air rises, cool air rushes in to fill the space
+  questionText: "it first becomes a weak storm called a \u201Ctropical depression\u201D\u2026."
   dialogAudio: {fileID: 0}
   displayTime: 0
-  videoEndTime: 15
+  videoEndTime: 62
+--- !u!114 &339629542728076097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.16
+  m_EditorClassIdentifier: 
+  GUID: 825f954a73d24a76827a96b52fe21b88
+  nodePosition: {x: 941, y: 1050}
+  speakerName: Mr. Corin
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: "Soon, the air starts to spin and twist, and clouds begin to grow
+    bigger and darker. That\u2019s the birth of a typhoon"
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 38
+--- !u!114 &1014660896743507689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.24
+  m_EditorClassIdentifier: 
+  GUID: 80732a623388486989670a9380844907
+  nodePosition: {x: 1341, y: 1361}
+  speakerName: Aira
+  speakerPortrait: {fileID: 0}
+  sceneCharacters:
+  - characterName: Aira
+    position: 0
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_Excited
+    flipX: 0
+    state: 0
+  - characterName: Liam
+    position: 1
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_Normal
+    flipX: 0
+    state: 1
+  - characterName: MrCorin
+    position: 3
+    animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
+    animationName: MrCorin_Normal
+    flipX: 0
+    state: 1
+  questionText: "That\u2019s awesome! It\u2019s like the ocean is alive!"
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 0
+--- !u!114 &1441842217058845679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.19
+  m_EditorClassIdentifier: 
+  GUID: 542d34835d04458b8a564b48819cb2b6
+  nodePosition: {x: -659, y: 1361}
+  speakerName: Liam
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: "Wow! The ocean\u2019s charging it up like a phone battery! "
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 53
+--- !u!114 &1608260529164274790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.13
+  m_EditorClassIdentifier: 
+  GUID: 5064260d222642be98baaae271ccc5c9
+  nodePosition: {x: -259, y: 1050}
+  speakerName: Mr. Corin
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: When sunlight heats the water, it turns into vapor that rises into
+    the air.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 17
 --- !u!114 &2992287810593884786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +743,68 @@ MonoBehaviour:
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 5.5
---- !u!114 &3773502055781638297
+--- !u!114 &4239303189081612541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.25
+  m_EditorClassIdentifier: 
+  GUID: 419da39b05b74a2cb60ac6a880a6bfe3
+  nodePosition: {x: 1741, y: 1361}
+  speakerName: Mr. Corin
+  speakerPortrait: {fileID: 0}
+  sceneCharacters:
+  - characterName: Aira
+    position: 0
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_Normal
+    flipX: 0
+    state: 1
+  - characterName: Liam
+    position: 1
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_Normal
+    flipX: 0
+    state: 1
+  - characterName: MrCorin
+    position: 3
+    animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
+    animationName: MrCorin_Normal
+    flipX: 0
+    state: 0
+  questionText: " You\u2019re right, Aira! And to understand it even better, I want
+    to show you something inside our classroom."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 0
+--- !u!114 &4315294539705864722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.28
+  m_EditorClassIdentifier: 
+  GUID: bcbb9136fea54699aa17ddb5e8ee8ec1
+  nodePosition: {x: 493, y: 1984}
+  speakerName: Aira
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: The portal's opening! Let's go!
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 7
+--- !u!114 &4430240113621697255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -465,15 +816,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
   m_Name: Node_Scene1.12
   m_EditorClassIdentifier: 
-  GUID: 8edd800f0ba44d519f22ee59cd5498f1
-  nodePosition: {x: 397, y: 1050}
+  GUID: 2637afea2c004744be2069a85141f395
+  nodePosition: {x: -659, y: 1050}
   speakerName: Mr. Corin
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
-  questionText: ' It''s all begins over the warm ocean'
+  questionText: It all begins over the warm ocean
   dialogAudio: {fileID: 0}
   displayTime: 0
-  videoEndTime: 6.75
+  videoEndTime: 11
 --- !u!114 &4990807746583476366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,25 +858,7 @@ MonoBehaviour:
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 0
---- !u!114 &5674156149560940300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
-  m_Name: ActionNode
-  m_EditorClassIdentifier: 
-  GUID: 758d70c82caa44eeb94a790760541c48
-  nodePosition: {x: -659, y: 1050}
-  actionId: PlayCutscene
-  payloadJson: s11
-  waitForCompletion: 0
-  waitSeconds: 3.8
---- !u!114 &6897776208244572788
+--- !u!114 &6125530150219182565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -535,18 +868,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
-  m_Name: Node_scene1.13
+  m_Name: Node_Scene1.27
   m_EditorClassIdentifier: 
-  GUID: cb1585e1959748fea2633e9c2c5d881e
-  nodePosition: {x: 1149, y: 1052}
+  GUID: dcc23ddbbcf34cc9a0323f6ecacd3e67
+  nodePosition: {x: -259, y: 1982}
   speakerName: Mr. Corin
   speakerPortrait: {fileID: 0}
-  sceneCharacters: []
-  questionText: When sunlight heats the water, it turns into water vapor that rises
-    on the air
+  sceneCharacters:
+  - characterName: Aira
+    position: 0
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_Normal
+    flipX: 0
+    state: 1
+  - characterName: Liam
+    position: 1
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_Thinking
+    flipX: 0
+    state: 1
+  - characterName: MrCorin
+    position: 3
+    animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
+    animationName: MrCorin_Normal
+    flipX: 0
+    state: 0
+  questionText: "Through the learning portal, of course! But before we can open it\u2026
+    you\u2019ll need to answer this following questions first!"
   dialogAudio: {fileID: 0}
   displayTime: 0
-  videoEndTime: 7
+  videoEndTime: 0
 --- !u!114 &7039181168605413040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +916,7 @@ MonoBehaviour:
   payloadJson: 
   waitForCompletion: 0
   waitSeconds: 0
---- !u!114 &7236638272779966524
+--- !u!114 &7375931619850723274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -574,15 +925,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
-  m_Name: ActionNode
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene1.23
   m_EditorClassIdentifier: 
-  GUID: d6310fda7d6443f6b9d5cf6a26852244
-  nodePosition: {x: 45, y: 1050}
-  actionId: PlayCutscene
-  payloadJson: cc12
-  waitForCompletion: 0
-  waitSeconds: 0
+  GUID: f2b4055ed6ab444181310d40c9f394b0
+  nodePosition: {x: 941, y: 1361}
+  speakerName: Mr. Corin
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: "and finally \u2014 a powerful typhoon!"
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 73
 --- !u!114 &7433521791578205971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,7 +969,7 @@ MonoBehaviour:
   - characterName: MrCorin
     position: 3
     animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
-    animationName: MrCorin_Normal
+    animationName: MrCorin_WithUmbrella
     flipX: 0
     state: 0
   questionText: " Hey there, Aira and Liam! Your parents might come a little late
@@ -656,29 +1010,11 @@ MonoBehaviour:
   - characterName: MrCorin
     position: 3
     animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
-    animationName: MrCorin_Normal
+    animationName: MrCorin_WithUmbrella
     flipX: 0
     state: 0
-  questionText: " How about I tell you a story? about how a typhoon is born, grows
-    strong, and what \r\nhappens when it meets land and water?"
+  questionText: ' How about I tell you a story? about how a typhoon is born, grows
+    strong, and what happens when it meets land and water?'
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 0
---- !u!114 &8528624076077038048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
-  m_Name: ActionNode
-  m_EditorClassIdentifier: 
-  GUID: 40b04d3ccd6945e289bc8cafb5b81ddc
-  nodePosition: {x: 797, y: 1050}
-  actionId: PlayCutscene
-  payloadJson: cc13 to cc15
-  waitForCompletion: 0
-  waitSeconds: 0

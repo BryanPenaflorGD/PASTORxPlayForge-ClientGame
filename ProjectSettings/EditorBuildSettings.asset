@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/1stScene.unity
+    path: Assets/Scenes/SelectionScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Quiz.unity
     guid: 4bed18a09a830c344b5329f238e76900
   - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
-    guid: 57f55f16aa1c9c043a382f10842e7b39
+    path: Assets/Scenes/Quiz2.unity
+    guid: 52a9abff3f5478c4f840c390acfa3822
   m_configObjects: {}

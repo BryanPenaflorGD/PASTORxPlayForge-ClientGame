@@ -15,7 +15,7 @@ MonoBehaviour:
   stages:
   - stageName: Chapter 1
     dialogID: 1stScene
-    quizSceneName: 1stQuiz
+    quizSceneName: Quiz
   - stageName: Chaptert 2
     dialogID: 2ndScene
     quizSceneName: 2ndQuiz
