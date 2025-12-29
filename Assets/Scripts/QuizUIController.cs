@@ -26,6 +26,12 @@ public class QuizUIController : MonoBehaviour
     public TMP_Text timerText;
 
     public GameObject targetObject;
+
+    public GameObject BGMusic;
+
+    public GameObject ResultMusic;
+
+
     private void OnEnable()
     {
         if (QuizManager.Instance == null)
@@ -105,6 +111,8 @@ public class QuizUIController : MonoBehaviour
         }
 
         targetObject.SetActive(false);
+        BGMusic.SetActive(false);
+        ResultMusic.SetActive(true);
 
     }
 
@@ -148,9 +156,15 @@ public class QuizUIController : MonoBehaviour
 
     private void ResetButtonColors()
     {
-        foreach (var btn in answerButtons)
-            btn.GetComponent<Image>().color = defaultColor;
+        // Parse the hex string into a Color
+        Color newColor;
+        if (ColorUtility.TryParseHtmlString("#FFF3C6", out newColor))
+        {
+            foreach (var btn in answerButtons)
+                btn.GetComponent<Image>().color = newColor;
+        }
 
         EnableButtons();
     }
+
 }
