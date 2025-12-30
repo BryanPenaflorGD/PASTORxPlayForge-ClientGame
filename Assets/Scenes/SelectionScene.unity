@@ -4194,6 +4194,8 @@ MonoBehaviour:
   dialogGraphs:
   - dialogGraph: {fileID: 11400000, guid: a4967ad65c0bc4641bfcd9d9314b27f6, type: 2}
     dialogID: 1stScene
+  - dialogGraph: {fileID: 11400000, guid: cfe2303918ab7d14ea4d501f72cad16a, type: 2}
+    dialogID: 2ndScene
   uiPanel: {fileID: 4927395532576555342}
   audioSource: {fileID: 0}
   syncVideoPlayer: {fileID: 474979306}

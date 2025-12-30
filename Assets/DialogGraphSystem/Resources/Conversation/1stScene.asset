@@ -31,7 +31,7 @@ MonoBehaviour:
   m_Name: Node_Scene1.9
   m_EditorClassIdentifier: 
   GUID: 4782c29c55c9472f89c931f62a6b2510
-  nodePosition: {x: 541, y: 469}
+  nodePosition: {x: 541, y: 471}
   speakerName: Liam
   speakerPortrait: {fileID: 0}
   sceneCharacters:
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: ActionNode
   m_EditorClassIdentifier: 
   GUID: 4df54229bff440eabbf27b93f55fef27
-  nodePosition: {x: 141, y: 1982}
+  nodePosition: {x: 141, y: 1984}
   actionId: PlayCutscene
   payloadJson: 's28
 
@@ -422,14 +422,14 @@ MonoBehaviour:
   m_Name: 1stScene
   m_EditorClassIdentifier: 
   links:
-  - fromGuid: 9407e2116c1344f18078537f96057299
-    toGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
-    fromPortIndex: 0
-  - fromGuid: 4b7121033d85455783d6b8101a9ad5f8
+  - fromGuid: 16ff812318e5458fabe5c9042fe23718
     toGuid: 875e407fa7fb4642926ae3dcd458765d
     fromPortIndex: 0
   - fromGuid: 875e407fa7fb4642926ae3dcd458765d
     toGuid: 9407e2116c1344f18078537f96057299
+    fromPortIndex: 0
+  - fromGuid: 9407e2116c1344f18078537f96057299
+    toGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
     fromPortIndex: 0
   - fromGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
     toGuid: c09be215a2114ca0838d86d1973c9ceb
@@ -443,14 +443,14 @@ MonoBehaviour:
   - fromGuid: 42a6ad65a6a34feb902459f49e2d9c87
     toGuid: f214358695f548ccac5a0e34a51b1fdf
     fromPortIndex: 0
-  - fromGuid: 73e3f6d020014f8e8c1afda22eaa842a
-    toGuid: a49c91681527444da573dc9f573945f3
-    fromPortIndex: 0
   - fromGuid: f214358695f548ccac5a0e34a51b1fdf
     toGuid: 17988d0c91ba424fb3b06a831cd178ad
     fromPortIndex: 0
   - fromGuid: 17988d0c91ba424fb3b06a831cd178ad
     toGuid: 73e3f6d020014f8e8c1afda22eaa842a
+    fromPortIndex: 0
+  - fromGuid: 73e3f6d020014f8e8c1afda22eaa842a
+    toGuid: a49c91681527444da573dc9f573945f3
     fromPortIndex: 0
   - fromGuid: a49c91681527444da573dc9f573945f3
     toGuid: 4782c29c55c9472f89c931f62a6b2510
@@ -466,6 +466,12 @@ MonoBehaviour:
     fromPortIndex: 0
   - fromGuid: ad223db25248451693aa55c02669f6c4
     toGuid: 2637afea2c004744be2069a85141f395
+    fromPortIndex: 0
+  - fromGuid: d317aede02314fcbae41e6c4f1ff96ca
+    toGuid: 542d34835d04458b8a564b48819cb2b6
+    fromPortIndex: 0
+  - fromGuid: 419da39b05b74a2cb60ac6a880a6bfe3
+    toGuid: 8c9c6046ccd244d2ab9aa7f34001d5c3
     fromPortIndex: 0
   - fromGuid: 2637afea2c004744be2069a85141f395
     toGuid: 5064260d222642be98baaae271ccc5c9
@@ -485,9 +491,6 @@ MonoBehaviour:
   - fromGuid: cc87c924c9cb4b3b8c7ea4abb746dbf8
     toGuid: d317aede02314fcbae41e6c4f1ff96ca
     fromPortIndex: 0
-  - fromGuid: d317aede02314fcbae41e6c4f1ff96ca
-    toGuid: 542d34835d04458b8a564b48819cb2b6
-    fromPortIndex: 0
   - fromGuid: 542d34835d04458b8a564b48819cb2b6
     toGuid: a57a6132d8d849b19d3fb0cfa38464ad
     fromPortIndex: 0
@@ -503,6 +506,9 @@ MonoBehaviour:
   - fromGuid: f2b4055ed6ab444181310d40c9f394b0
     toGuid: 80732a623388486989670a9380844907
     fromPortIndex: 0
+  - fromGuid: 80732a623388486989670a9380844907
+    toGuid: 419da39b05b74a2cb60ac6a880a6bfe3
+    fromPortIndex: 0
   - fromGuid: 8c9c6046ccd244d2ab9aa7f34001d5c3
     toGuid: dcc23ddbbcf34cc9a0323f6ecacd3e67
     fromPortIndex: 0
@@ -513,13 +519,7 @@ MonoBehaviour:
     toGuid: bcbb9136fea54699aa17ddb5e8ee8ec1
     fromPortIndex: 0
   - fromGuid: bcbb9136fea54699aa17ddb5e8ee8ec1
-    toGuid: 438da4e25e0749a08d8da66006632564
-    fromPortIndex: 0
-  - fromGuid: 419da39b05b74a2cb60ac6a880a6bfe3
-    toGuid: 8c9c6046ccd244d2ab9aa7f34001d5c3
-    fromPortIndex: 0
-  - fromGuid: 80732a623388486989670a9380844907
-    toGuid: 419da39b05b74a2cb60ac6a880a6bfe3
+    toGuid: 02e2cdc61a584a01bb88cffc082cc7ed
     fromPortIndex: 0
   nodes:
   - {fileID: 3747633473853875118}
@@ -557,11 +557,11 @@ MonoBehaviour:
   - {fileID: -8861272451104251188}
   - {fileID: 7039181168605413040}
   - {fileID: -3186042689397705168}
-  startGuid: 4b7121033d85455783d6b8101a9ad5f8
-  startPosition: {x: -780, y: -22}
+  startGuid: 16ff812318e5458fabe5c9042fe23718
+  startPosition: {x: -790, y: -22}
   startInitialized: 1
-  endGuid: 438da4e25e0749a08d8da66006632564
-  endPosition: {x: 2045, y: 2139}
+  endGuid: 02e2cdc61a584a01bb88cffc082cc7ed
+  endPosition: {x: 1107, y: 1984}
   endInitialized: 1
 --- !u!114 &256655219101528196
 MonoBehaviour:
@@ -796,7 +796,7 @@ MonoBehaviour:
   m_Name: Node_Scene1.28
   m_EditorClassIdentifier: 
   GUID: bcbb9136fea54699aa17ddb5e8ee8ec1
-  nodePosition: {x: 493, y: 1984}
+  nodePosition: {x: 493, y: 1986}
   speakerName: Aira
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
