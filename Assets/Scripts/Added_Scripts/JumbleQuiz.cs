@@ -17,17 +17,23 @@ public class JumbleQuiz : MonoBehaviour
 
     [Header("-----Word Answer------")]
     private string wordResult = "";
+    private int correctAnswer = 0;
 
     [Header("-----Auto Next------")]
     public int currentQuestionIndex = 0;
+    public GameObject startObject;
 
     void Start()
     {
+        startObject.SetActive(true);
         ShuffleAndAssign();
+        correctAnswer = 0;
     }
 
     public void ShuffleAndAssign()
     {
+        startObject.SetActive(false);
+
         wordResult = ""; // reset result
 
         List<char> letters = new List<char>(word.ToCharArray());
