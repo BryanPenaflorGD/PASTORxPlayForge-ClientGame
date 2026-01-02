@@ -20,13 +20,13 @@ MonoBehaviour:
   - characterName: Aira
     position: 0
     animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
-    animationName: Aira_WithBag
+    animationName: Aira_Normal
     flipX: 0
     state: 1
   - characterName: Liam
     position: 1
     animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
-    animationName: Liam_WithBag
+    animationName: Liam_Normal
     flipX: 0
     state: 1
   - characterName: MrCorin
@@ -39,6 +39,27 @@ MonoBehaviour:
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 0
+--- !u!114 &-8631209898402313187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene3.29
+  m_EditorClassIdentifier: 
+  GUID: 79635bc291724ccaaae8bb2b589db1e7
+  nodePosition: {x: 3584, y: 1331}
+  speakerName: Mr. Corin
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: just like the calm after every typhoon.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 11.3
 --- !u!114 &-8462037051856903238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,21 +98,21 @@ MonoBehaviour:
   - characterName: Aira
     position: 0
     animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
-    animationName: Aira_WithBag
+    animationName: Aira_Normal
     flipX: 0
     state: 1
   - characterName: Liam
     position: 1
     animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
-    animationName: Liam_WithBag
+    animationName: Liam_Normal
     flipX: 0
-    state: 1
+    state: 0
   - characterName: MrCorin
     position: 3
     animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
     animationName: MrCorin_Normal
     flipX: 0
-    state: 0
+    state: 1
   questionText: "So that\u2019s how PAGASA gives storm warnings! "
   dialogAudio: {fileID: 0}
   displayTime: 0
@@ -116,26 +137,47 @@ MonoBehaviour:
   - characterName: Aira
     position: 0
     animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
-    animationName: Aira_WithBag
+    animationName: Aira_Normal
     flipX: 0
     state: 1
   - characterName: Liam
     position: 1
     animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
-    animationName: Liam_WithBag
+    animationName: Liam_Normal
     flipX: 0
-    state: 1
+    state: 0
   - characterName: MrCorin
     position: 3
     animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
     animationName: MrCorin_Normal
     flipX: 0
-    state: 0
+    state: 1
   questionText: "Yeah! And the sky\u2019s clear again \u2014 just like what happens
     after a typhoon!"
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 0
+--- !u!114 &-8117057724376295393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene3.27
+  m_EditorClassIdentifier: 
+  GUID: 6a90e07af96c47568e9ec53c968c9612
+  nodePosition: {x: 2784, y: 1333}
+  speakerName: 
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: (He waves as the kids leave. The door closes softly.)
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 3
 --- !u!114 &-7378192741258620116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +213,7 @@ MonoBehaviour:
   speakerName: 
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
-  questionText: (Car honking)
+  questionText: (A car honk echoes outside the school gate.)
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 3.5
@@ -196,6 +238,24 @@ MonoBehaviour:
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 7.1
+--- !u!114 &-6600236162213581354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: 2a973c1e254a4db2917e45f1608f2f2c
+  nodePosition: {x: 2432, y: 1331}
+  actionId: PlayCutscene
+  payloadJson: Cutscene3/s27 to s29
+  waitForCompletion: 0
+  waitSeconds: 1.5
 --- !u!114 &-6199871504303328049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,13 +298,13 @@ MonoBehaviour:
   - characterName: Aira
     position: 0
     animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
-    animationName: Aira_WithBag
+    animationName: Aira_Normal
     flipX: 0
     state: 1
   - characterName: Liam
     position: 1
     animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
-    animationName: Liam_WithBag
+    animationName: Liam_Normal
     flipX: 0
     state: 1
   - characterName: MrCorin
@@ -276,8 +336,8 @@ MonoBehaviour:
   speakerName: 
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
-  questionText: . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . .
+  questionText: (Light breaks through the windows, illuminating the room in a golden
+    glow.)
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 9.5
@@ -299,6 +359,86 @@ MonoBehaviour:
   payloadJson: Cutscene3/s21
   waitForCompletion: 0
   waitSeconds: 1.5
+--- !u!114 &-3511115798548263570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene3.26
+  m_EditorClassIdentifier: 
+  GUID: 4d088a96b5d54858b539a69b1634a8f1
+  nodePosition: {x: 2032, y: 1331}
+  speakerName: Mr. Corin
+  speakerPortrait: {fileID: 0}
+  sceneCharacters:
+  - characterName: Aira
+    position: 0
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_WithBag
+    flipX: 0
+    state: 1
+  - characterName: Liam
+    position: 1
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_WithBag
+    flipX: 0
+    state: 1
+  - characterName: MrCorin
+    position: 3
+    animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
+    animationName: MrCorin_Normal
+    flipX: 0
+    state: 0
+  questionText: " I\u2019m proud of you both. Remember,  science helps us understand
+    nature, and understanding keeps us safe. "
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 0
+--- !u!114 &-3039447738058994925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene3.24
+  m_EditorClassIdentifier: 
+  GUID: 413ff7cfe1e044be86ace7980cf6ecdc
+  nodePosition: {x: 1232, y: 1333}
+  speakerName: Aira
+  speakerPortrait: {fileID: 0}
+  sceneCharacters:
+  - characterName: Aira
+    position: 0
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_WithBag
+    flipX: 0
+    state: 0
+  - characterName: Liam
+    position: 1
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_WithBag
+    flipX: 0
+    state: 1
+  - characterName: MrCorin
+    position: 3
+    animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
+    animationName: MrCorin_Normal
+    flipX: 0
+    state: 1
+  questionText: 'Thank you, Sir Corin! Now I really understand how typhoons form!
+    and why they lose strength on land!  '
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 0
 --- !u!114 &-1238052521122459265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,13 +459,13 @@ MonoBehaviour:
   - characterName: Aira
     position: 0
     animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
-    animationName: Aira_WithBag
+    animationName: Aira_Normal
     flipX: 0
     state: 1
   - characterName: Liam
     position: 1
     animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
-    animationName: Liam_WithBag
+    animationName: Liam_Normal
     flipX: 0
     state: 1
   - characterName: MrCorin
@@ -448,7 +588,34 @@ MonoBehaviour:
     toGuid: a7da63606356478099276f59ea0f0e91
     fromPortIndex: 0
   - fromGuid: 2597988f488f4929a55024544d27055c
-    toGuid: 4991c00344bf4ca0b55d618fd0302fe9
+    toGuid: 1533b77d572e43f9821a4eb004f8b34c
+    fromPortIndex: 0
+  - fromGuid: 1533b77d572e43f9821a4eb004f8b34c
+    toGuid: 700b7a9ea56048318889deef6ecd5695
+    fromPortIndex: 0
+  - fromGuid: 700b7a9ea56048318889deef6ecd5695
+    toGuid: 413ff7cfe1e044be86ace7980cf6ecdc
+    fromPortIndex: 0
+  - fromGuid: 413ff7cfe1e044be86ace7980cf6ecdc
+    toGuid: 4bb35fc9a76a425195ee9c55d96c5d5b
+    fromPortIndex: 0
+  - fromGuid: 4bb35fc9a76a425195ee9c55d96c5d5b
+    toGuid: 4d088a96b5d54858b539a69b1634a8f1
+    fromPortIndex: 0
+  - fromGuid: 4d088a96b5d54858b539a69b1634a8f1
+    toGuid: 2a973c1e254a4db2917e45f1608f2f2c
+    fromPortIndex: 0
+  - fromGuid: 2a973c1e254a4db2917e45f1608f2f2c
+    toGuid: 6a90e07af96c47568e9ec53c968c9612
+    fromPortIndex: 0
+  - fromGuid: 6a90e07af96c47568e9ec53c968c9612
+    toGuid: 715124a13e32402987daa0be502ae8d3
+    fromPortIndex: 0
+  - fromGuid: 715124a13e32402987daa0be502ae8d3
+    toGuid: 79635bc291724ccaaae8bb2b589db1e7
+    fromPortIndex: 0
+  - fromGuid: 79635bc291724ccaaae8bb2b589db1e7
+    toGuid: 79fe283a704b4383abcc3541318952af
     fromPortIndex: 0
   nodes:
   - {fileID: 3823031533897359144}
@@ -470,14 +637,22 @@ MonoBehaviour:
   - {fileID: 862061134148643571}
   - {fileID: -8307465797327057913}
   - {fileID: -6796041839563916702}
-  - {fileID: 4447217653702323410}
   - {fileID: 7733213648023305667}
+  - {fileID: 4955790751345709262}
+  - {fileID: 8707972820842079932}
+  - {fileID: -3039447738058994925}
+  - {fileID: 3761885743763532314}
+  - {fileID: -3511115798548263570}
+  - {fileID: -8117057724376295393}
+  - {fileID: 8727479587840867903}
+  - {fileID: -8631209898402313187}
   choiceNodes: []
   actionNodes:
   - {fileID: 3341861531058439988}
   - {fileID: -7378192741258620116}
   - {fileID: -8462037051856903238}
   - {fileID: -3745532241590667315}
+  - {fileID: -6600236162213581354}
   startGuid: 9642b73713c44865a7b17f83163964dd
   startPosition: {x: -320, y: 80}
   startInitialized: 1
@@ -504,19 +679,19 @@ MonoBehaviour:
   - characterName: Aira
     position: 0
     animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
-    animationName: Aira_WithBag
+    animationName: Aira_Normal
     flipX: 0
     state: 1
   - characterName: Liam
     position: 1
     animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
-    animationName: Liam_WithBag
+    animationName: Liam_Normal
     flipX: 0
     state: 1
   - characterName: MrCorin
     position: 3
     animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
-    animationName: MrCorin_Normal
+    animationName: MrCorin_HoldingStick
     flipX: 0
     state: 0
   questionText: "Now that we know how typhoons form and weaken, here\u2019s something
@@ -544,13 +719,13 @@ MonoBehaviour:
   - characterName: Aira
     position: 0
     animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
-    animationName: Aira_WithBag
+    animationName: Aira_Normal
     flipX: 0
-    state: 1
+    state: 0
   - characterName: Liam
     position: 1
     animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
-    animationName: Liam_WithBag
+    animationName: Liam_Normal
     flipX: 0
     state: 1
   - characterName: MrCorin
@@ -558,7 +733,7 @@ MonoBehaviour:
     animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
     animationName: MrCorin_Normal
     flipX: 0
-    state: 0
+    state: 1
   questionText: "Hey\u2026 the rain finally stopped!"
   dialogAudio: {fileID: 0}
   displayTime: 0
@@ -583,13 +758,13 @@ MonoBehaviour:
   - characterName: Aira
     position: 0
     animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
-    animationName: Aira_WithBag
+    animationName: Aira_Normal
     flipX: 0
     state: 1
   - characterName: Liam
     position: 1
     animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
-    animationName: Liam_WithBag
+    animationName: Liam_Normal
     flipX: 0
     state: 1
   - characterName: MrCorin
@@ -641,21 +816,21 @@ MonoBehaviour:
   - characterName: Aira
     position: 0
     animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
-    animationName: Aira_WithBag
+    animationName: Aira_Normal
     flipX: 0
     state: 1
   - characterName: Liam
     position: 1
     animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
-    animationName: Liam_WithBag
+    animationName: Liam_Normal
     flipX: 0
-    state: 1
+    state: 0
   - characterName: MrCorin
     position: 3
     animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
     animationName: MrCorin_Normal
     flipX: 0
-    state: 0
+    state: 1
   questionText: "I used to be scared of typhoons\u2026 but now, I\u2019m more amazed
     by how nature works."
   dialogAudio: {fileID: 0}
@@ -681,6 +856,45 @@ MonoBehaviour:
   - characterName: Aira
     position: 0
     animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_Excited
+    flipX: 0
+    state: 0
+  - characterName: Liam
+    position: 1
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_Normal
+    flipX: 0
+    state: 1
+  - characterName: MrCorin
+    position: 3
+    animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
+    animationName: MrCorin_HoldingStick
+    flipX: 0
+    state: 1
+  questionText: Whoa! Like a giant camera in space?
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 0
+--- !u!114 &3761885743763532314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene3.25
+  m_EditorClassIdentifier: 
+  GUID: 4bb35fc9a76a425195ee9c55d96c5d5b
+  nodePosition: {x: 1632, y: 1333}
+  speakerName: Liam
+  speakerPortrait: {fileID: 0}
+  sceneCharacters:
+  - characterName: Aira
+    position: 0
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
     animationName: Aira_WithBag
     flipX: 0
     state: 1
@@ -689,14 +903,15 @@ MonoBehaviour:
     animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
     animationName: Liam_WithBag
     flipX: 0
-    state: 1
+    state: 0
   - characterName: MrCorin
     position: 3
     animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
     animationName: MrCorin_Normal
     flipX: 0
-    state: 0
-  questionText: Whoa! Like a giant camera in space?
+    state: 1
+  questionText: "Yeah, and I\u2019ll remember to always stay safe when there\u2019s
+    a storm. "
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 0
@@ -760,13 +975,13 @@ MonoBehaviour:
   - characterName: Aira
     position: 0
     animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
-    animationName: Aira_WithBag
+    animationName: Aira_Normal
     flipX: 0
-    state: 1
+    state: 0
   - characterName: Liam
     position: 1
     animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
-    animationName: Liam_WithBag
+    animationName: Liam_Normal
     flipX: 0
     state: 1
   - characterName: MrCorin
@@ -774,13 +989,13 @@ MonoBehaviour:
     animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
     animationName: MrCorin_Normal
     flipX: 0
-    state: 0
+    state: 1
   questionText: So the ocean gives the typhoon power, the land slows it down, and
     science helps us get ready!
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 0
---- !u!114 &4447217653702323410
+--- !u!114 &4955790751345709262
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -790,14 +1005,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
-  m_Name: Node_Scene3.13
+  m_Name: Node_Scene3.22
   m_EditorClassIdentifier: 
-  GUID: 4991c00344bf4ca0b55d618fd0302fe9
+  GUID: 1533b77d572e43f9821a4eb004f8b34c
   nodePosition: {x: 432, y: 1333}
-  speakerName: 
+  speakerName: Aira
   speakerPortrait: {fileID: 0}
-  sceneCharacters: []
-  questionText: 
+  sceneCharacters:
+  - characterName: Aira
+    position: 0
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_Normal
+    flipX: 0
+    state: 0
+  - characterName: Liam
+    position: 1
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_Normal
+    flipX: 0
+    state: 1
+  - characterName: MrCorin
+    position: 3
+    animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
+    animationName: MrCorin_Normal
+    flipX: 0
+    state: 1
+  questionText: Oh, That must be our parents!
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 0
@@ -854,14 +1087,92 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
-  m_Name: Node_Scene3.7.1
+  m_Name: Node_Scene3.7
   m_EditorClassIdentifier: 
   GUID: d1e9a831a1124a3984737db7548f919a
   nodePosition: {x: 2834, y: 171}
-  speakerName: 
+  speakerName: Mr. Corin
   speakerPortrait: {fileID: 0}
-  sceneCharacters: []
+  sceneCharacters:
+  - characterName: Aira
+    position: 0
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_Normal
+    flipX: 0
+    state: 1
+  - characterName: Liam
+    position: 1
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_Normal
+    flipX: 0
+    state: 1
+  - characterName: MrCorin
+    position: 3
+    animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
+    animationName: MrCorin_Normal
+    flipX: 0
+    state: 0
   questionText: "Let\u2019s remember what we\u2019ve learned\n"
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 0
+--- !u!114 &8707972820842079932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene3.23
+  m_EditorClassIdentifier: 
+  GUID: 700b7a9ea56048318889deef6ecd5695
+  nodePosition: {x: 832, y: 1333}
+  speakerName: 
+  speakerPortrait: {fileID: 0}
+  sceneCharacters:
+  - characterName: Aira
+    position: 0
+    animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+    animationName: Aira_Normal
+    flipX: 0
+    state: 2
+  - characterName: Liam
+    position: 1
+    animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+    animationName: Liam_Normal
+    flipX: 0
+    state: 2
+  - characterName: MrCorin
+    position: 3
+    animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
+    animationName: MrCorin_Normal
+    flipX: 0
+    state: 0
+  questionText: (Both kids grab their bags and turn to Mr. Corin.)
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 0
+--- !u!114 &8727479587840867903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Scene3.28
+  m_EditorClassIdentifier: 
+  GUID: 715124a13e32402987daa0be502ae8d3
+  nodePosition: {x: 3184, y: 1333}
+  speakerName: Mr. Corin
+  speakerPortrait: {fileID: 0}
+  sceneCharacters: []
+  questionText: 'The storm may pass, but the knowledge stays '
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+  videoEndTime: 7.3
