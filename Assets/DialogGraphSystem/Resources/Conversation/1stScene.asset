@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: ActionNode
   m_EditorClassIdentifier: 
   GUID: 4df54229bff440eabbf27b93f55fef27
-  nodePosition: {x: 141, y: 1984}
+  nodePosition: {x: 141, y: 1982}
   actionId: PlayCutscene
   payloadJson: 's28
 
@@ -422,44 +422,59 @@ MonoBehaviour:
   m_Name: 1stScene
   m_EditorClassIdentifier: 
   links:
-  - fromGuid: 16ff812318e5458fabe5c9042fe23718
-    toGuid: 875e407fa7fb4642926ae3dcd458765d
+  - fromGuid: bcbb9136fea54699aa17ddb5e8ee8ec1
+    toGuid: 79fe283a704b4383abcc3541318952af
     fromPortIndex: 0
-  - fromGuid: 875e407fa7fb4642926ae3dcd458765d
-    toGuid: 9407e2116c1344f18078537f96057299
+  - fromGuid: 4df54229bff440eabbf27b93f55fef27
+    toGuid: bcbb9136fea54699aa17ddb5e8ee8ec1
     fromPortIndex: 0
-  - fromGuid: 9407e2116c1344f18078537f96057299
-    toGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
+  - fromGuid: dcc23ddbbcf34cc9a0323f6ecacd3e67
+    toGuid: 4df54229bff440eabbf27b93f55fef27
     fromPortIndex: 0
-  - fromGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
-    toGuid: c09be215a2114ca0838d86d1973c9ceb
+  - fromGuid: 8c9c6046ccd244d2ab9aa7f34001d5c3
+    toGuid: dcc23ddbbcf34cc9a0323f6ecacd3e67
     fromPortIndex: 0
-  - fromGuid: c09be215a2114ca0838d86d1973c9ceb
-    toGuid: d519ff9995b74e1486f96e5de47f0fcf
+  - fromGuid: 419da39b05b74a2cb60ac6a880a6bfe3
+    toGuid: 8c9c6046ccd244d2ab9aa7f34001d5c3
     fromPortIndex: 0
-  - fromGuid: d519ff9995b74e1486f96e5de47f0fcf
-    toGuid: 42a6ad65a6a34feb902459f49e2d9c87
+  - fromGuid: 80732a623388486989670a9380844907
+    toGuid: 419da39b05b74a2cb60ac6a880a6bfe3
     fromPortIndex: 0
-  - fromGuid: 42a6ad65a6a34feb902459f49e2d9c87
-    toGuid: f214358695f548ccac5a0e34a51b1fdf
+  - fromGuid: f2b4055ed6ab444181310d40c9f394b0
+    toGuid: 80732a623388486989670a9380844907
     fromPortIndex: 0
-  - fromGuid: f214358695f548ccac5a0e34a51b1fdf
-    toGuid: 17988d0c91ba424fb3b06a831cd178ad
+  - fromGuid: 7c67d76772a545c4a18ebd7059c24c0d
+    toGuid: f2b4055ed6ab444181310d40c9f394b0
     fromPortIndex: 0
-  - fromGuid: 17988d0c91ba424fb3b06a831cd178ad
-    toGuid: 73e3f6d020014f8e8c1afda22eaa842a
+  - fromGuid: d3f974a2456742089b6421f2e1386070
+    toGuid: 7c67d76772a545c4a18ebd7059c24c0d
     fromPortIndex: 0
-  - fromGuid: 73e3f6d020014f8e8c1afda22eaa842a
-    toGuid: a49c91681527444da573dc9f573945f3
+  - fromGuid: a57a6132d8d849b19d3fb0cfa38464ad
+    toGuid: d3f974a2456742089b6421f2e1386070
     fromPortIndex: 0
-  - fromGuid: a49c91681527444da573dc9f573945f3
-    toGuid: 4782c29c55c9472f89c931f62a6b2510
+  - fromGuid: 542d34835d04458b8a564b48819cb2b6
+    toGuid: a57a6132d8d849b19d3fb0cfa38464ad
     fromPortIndex: 0
-  - fromGuid: 4782c29c55c9472f89c931f62a6b2510
-    toGuid: ee4d29fe8d204160bceba26ccbc98276
+  - fromGuid: d317aede02314fcbae41e6c4f1ff96ca
+    toGuid: 542d34835d04458b8a564b48819cb2b6
     fromPortIndex: 0
-  - fromGuid: ee4d29fe8d204160bceba26ccbc98276
-    toGuid: 37fa24bc44344ec894cae3bc54022729
+  - fromGuid: cc87c924c9cb4b3b8c7ea4abb746dbf8
+    toGuid: d317aede02314fcbae41e6c4f1ff96ca
+    fromPortIndex: 0
+  - fromGuid: 825f954a73d24a76827a96b52fe21b88
+    toGuid: cc87c924c9cb4b3b8c7ea4abb746dbf8
+    fromPortIndex: 0
+  - fromGuid: f1b2592bacea4648adcc398bdee88e60
+    toGuid: 825f954a73d24a76827a96b52fe21b88
+    fromPortIndex: 0
+  - fromGuid: 24fa217747044d68ad9ae664d3a22936
+    toGuid: f1b2592bacea4648adcc398bdee88e60
+    fromPortIndex: 0
+  - fromGuid: 5064260d222642be98baaae271ccc5c9
+    toGuid: 24fa217747044d68ad9ae664d3a22936
+    fromPortIndex: 0
+  - fromGuid: 2637afea2c004744be2069a85141f395
+    toGuid: 5064260d222642be98baaae271ccc5c9
     fromPortIndex: 0
   - fromGuid: 37fa24bc44344ec894cae3bc54022729
     toGuid: ad223db25248451693aa55c02669f6c4
@@ -467,59 +482,44 @@ MonoBehaviour:
   - fromGuid: ad223db25248451693aa55c02669f6c4
     toGuid: 2637afea2c004744be2069a85141f395
     fromPortIndex: 0
-  - fromGuid: d317aede02314fcbae41e6c4f1ff96ca
-    toGuid: 542d34835d04458b8a564b48819cb2b6
+  - fromGuid: ee4d29fe8d204160bceba26ccbc98276
+    toGuid: 37fa24bc44344ec894cae3bc54022729
     fromPortIndex: 0
-  - fromGuid: 419da39b05b74a2cb60ac6a880a6bfe3
-    toGuid: 8c9c6046ccd244d2ab9aa7f34001d5c3
+  - fromGuid: 4782c29c55c9472f89c931f62a6b2510
+    toGuid: ee4d29fe8d204160bceba26ccbc98276
     fromPortIndex: 0
-  - fromGuid: 2637afea2c004744be2069a85141f395
-    toGuid: 5064260d222642be98baaae271ccc5c9
+  - fromGuid: a49c91681527444da573dc9f573945f3
+    toGuid: 4782c29c55c9472f89c931f62a6b2510
     fromPortIndex: 0
-  - fromGuid: 5064260d222642be98baaae271ccc5c9
-    toGuid: 24fa217747044d68ad9ae664d3a22936
+  - fromGuid: 73e3f6d020014f8e8c1afda22eaa842a
+    toGuid: a49c91681527444da573dc9f573945f3
     fromPortIndex: 0
-  - fromGuid: 24fa217747044d68ad9ae664d3a22936
-    toGuid: f1b2592bacea4648adcc398bdee88e60
+  - fromGuid: 17988d0c91ba424fb3b06a831cd178ad
+    toGuid: 73e3f6d020014f8e8c1afda22eaa842a
     fromPortIndex: 0
-  - fromGuid: f1b2592bacea4648adcc398bdee88e60
-    toGuid: 825f954a73d24a76827a96b52fe21b88
+  - fromGuid: f214358695f548ccac5a0e34a51b1fdf
+    toGuid: 17988d0c91ba424fb3b06a831cd178ad
     fromPortIndex: 0
-  - fromGuid: 825f954a73d24a76827a96b52fe21b88
-    toGuid: cc87c924c9cb4b3b8c7ea4abb746dbf8
+  - fromGuid: 42a6ad65a6a34feb902459f49e2d9c87
+    toGuid: f214358695f548ccac5a0e34a51b1fdf
     fromPortIndex: 0
-  - fromGuid: cc87c924c9cb4b3b8c7ea4abb746dbf8
-    toGuid: d317aede02314fcbae41e6c4f1ff96ca
+  - fromGuid: d519ff9995b74e1486f96e5de47f0fcf
+    toGuid: 42a6ad65a6a34feb902459f49e2d9c87
     fromPortIndex: 0
-  - fromGuid: 542d34835d04458b8a564b48819cb2b6
-    toGuid: a57a6132d8d849b19d3fb0cfa38464ad
+  - fromGuid: c09be215a2114ca0838d86d1973c9ceb
+    toGuid: d519ff9995b74e1486f96e5de47f0fcf
     fromPortIndex: 0
-  - fromGuid: a57a6132d8d849b19d3fb0cfa38464ad
-    toGuid: d3f974a2456742089b6421f2e1386070
+  - fromGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
+    toGuid: c09be215a2114ca0838d86d1973c9ceb
     fromPortIndex: 0
-  - fromGuid: d3f974a2456742089b6421f2e1386070
-    toGuid: 7c67d76772a545c4a18ebd7059c24c0d
+  - fromGuid: 9407e2116c1344f18078537f96057299
+    toGuid: 8cf8632a5d9349c8ba7eeefc9e85d413
     fromPortIndex: 0
-  - fromGuid: 7c67d76772a545c4a18ebd7059c24c0d
-    toGuid: f2b4055ed6ab444181310d40c9f394b0
+  - fromGuid: 875e407fa7fb4642926ae3dcd458765d
+    toGuid: 9407e2116c1344f18078537f96057299
     fromPortIndex: 0
-  - fromGuid: f2b4055ed6ab444181310d40c9f394b0
-    toGuid: 80732a623388486989670a9380844907
-    fromPortIndex: 0
-  - fromGuid: 80732a623388486989670a9380844907
-    toGuid: 419da39b05b74a2cb60ac6a880a6bfe3
-    fromPortIndex: 0
-  - fromGuid: 8c9c6046ccd244d2ab9aa7f34001d5c3
-    toGuid: dcc23ddbbcf34cc9a0323f6ecacd3e67
-    fromPortIndex: 0
-  - fromGuid: dcc23ddbbcf34cc9a0323f6ecacd3e67
-    toGuid: 4df54229bff440eabbf27b93f55fef27
-    fromPortIndex: 0
-  - fromGuid: 4df54229bff440eabbf27b93f55fef27
-    toGuid: bcbb9136fea54699aa17ddb5e8ee8ec1
-    fromPortIndex: 0
-  - fromGuid: bcbb9136fea54699aa17ddb5e8ee8ec1
-    toGuid: 02e2cdc61a584a01bb88cffc082cc7ed
+  - fromGuid: 9642b73713c44865a7b17f83163964dd
+    toGuid: 875e407fa7fb4642926ae3dcd458765d
     fromPortIndex: 0
   nodes:
   - {fileID: 3747633473853875118}
@@ -557,11 +557,11 @@ MonoBehaviour:
   - {fileID: -8861272451104251188}
   - {fileID: 7039181168605413040}
   - {fileID: -3186042689397705168}
-  startGuid: 16ff812318e5458fabe5c9042fe23718
+  startGuid: 9642b73713c44865a7b17f83163964dd
   startPosition: {x: -790, y: -22}
   startInitialized: 1
-  endGuid: 02e2cdc61a584a01bb88cffc082cc7ed
-  endPosition: {x: 1107, y: 1984}
+  endGuid: 79fe283a704b4383abcc3541318952af
+  endPosition: {x: 1010, y: 1986}
   endInitialized: 1
 --- !u!114 &256655219101528196
 MonoBehaviour:
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Name: Node_Scene1.24
   m_EditorClassIdentifier: 
   GUID: 80732a623388486989670a9380844907
-  nodePosition: {x: 1341, y: 1361}
+  nodePosition: {x: 1341, y: 1352}
   speakerName: Aira
   speakerPortrait: {fileID: 0}
   sceneCharacters:

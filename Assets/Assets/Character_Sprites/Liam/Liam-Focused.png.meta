@@ -115,10 +115,10 @@ TextureImporter:
         serializedVersion: 2
         x: 126
         y: 31
-        width: 425
+        width: 445
         height: 936
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -131,36 +131,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Liam-Focused_1
-      rect:
-        serializedVersion: 2
-        x: 526
-        y: 674
-        width: 50
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f2a7b93b6b6f30449b4aca2ba91193e1
-      internalID: -1750781486
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Liam-Focused_2
       rect:
         serializedVersion: 2
         x: 826
         y: 31
-        width: 425
+        width: 445
         height: 936
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,36 +152,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Liam-Focused_3
-      rect:
-        serializedVersion: 2
-        x: 1226
-        y: 674
-        width: 50
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1af75310b590e448adebe09aea4e162
-      internalID: -54809792
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Liam-Focused_4
       rect:
         serializedVersion: 2
         x: 1526
         y: 31
-        width: 425
+        width: 445
         height: 936
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,27 +168,6 @@ TextureImporter:
       bones: []
       spriteID: fe5c7f60be480a04993e3e0b01afc1c0
       internalID: 466479853
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Liam-Focused_5
-      rect:
-        serializedVersion: 2
-        x: 1926
-        y: 674
-        width: 50
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 004b6faf3312ebb47bf66e93d5b43d24
-      internalID: 347185277
       vertices: []
       indices: 
       edges: []
