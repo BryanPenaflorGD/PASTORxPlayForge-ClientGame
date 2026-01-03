@@ -34,6 +34,15 @@ namespace DialogSystem.Runtime.Core
             RefreshButtons();
         }
 
+        private void OnDestroy()
+        {
+            // --- FIX 2: Always unsubscribe events to prevent errors ---
+            if (ProgressionManager.Instance != null)
+            {
+                ProgressionManager.Instance.OnStageUnlocked -= RefreshButtons;
+            }
+        }
+
         private void Update()
         {
             // Press 'R' on your keyboard to reset everything for testing
@@ -50,6 +59,7 @@ namespace DialogSystem.Runtime.Core
 
         public void RefreshButtons()
         {
+
             // (Your existing setup code...)
             int playerCurrentStageIdx = ProgressionManager.Instance.GetCurrentStageIndex();
             bool isDialogDone = ProgressionManager.Instance.IsDialogFinishedForCurrentStage();
@@ -89,6 +99,8 @@ namespace DialogSystem.Runtime.Core
                 });
             }
         }
+
+
 
         // ... (Keep the SetupButtonState function exactly as it was in the fixed version) ...
         private void SetupButtonState(Button btn, GameObject lockIcon, bool unlocked, bool finished, string baseLabel, UnityEngine.Events.UnityAction action)

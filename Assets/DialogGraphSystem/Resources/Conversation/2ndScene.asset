@@ -36,7 +36,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: Challenge accepted! Let's do this!
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 046f5e1531f516747858679bab0f9aa8, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-8268374349914870210
@@ -140,7 +140,7 @@ MonoBehaviour:
     state: 0
   questionText: "You know what, class? I\u2019ve got one last trivia for you \u2014
     and it\u2019s a really interesting one!"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 91adf8b04b941ff4d9c20c5388f94c61, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-7173810548574157503
@@ -201,7 +201,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: "Now I get it \u2014 it\u2019s not just scary, it\u2019s amazing!"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: f4ada66a03bb9104a9c84dbef32e8a43, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-5286782513867152280
@@ -261,7 +261,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: "Wow! It\u2019s spinning!"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 22288d9743d4eea4083d6f40f49c194c, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-2770153466705131815
@@ -366,7 +366,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: "Then I\u2019m Aira the Typhoon!"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: a85881ed295b92541ae968d312f822a1, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &11400000
@@ -523,7 +523,7 @@ MonoBehaviour:
   speakerName: 
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
-  questionText: . . . . . . . . . . . . .
+  questionText: '. . . . . . . . '
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 21
@@ -564,7 +564,7 @@ MonoBehaviour:
     state: 1
   questionText: "Ohhh, so that\u2019s why the storms on TV always look like they\u2019re
     turning in circles!"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 681f9e0cb4efd034187942a147c8b403, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &1838980183984749947
@@ -623,7 +623,7 @@ MonoBehaviour:
   questionText: "That\u2019s right! The Earth\u2019s rotation makes the air spin.
     That\u2019s called the \u201CCoriolis Effect\u201D \u2014 it\u2019s what makes
     real typhoons swirl like a spiral."
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 6d3f058a29e5f6b4fa64f45ae0a19e21, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &2570770070489481843
@@ -662,7 +662,7 @@ MonoBehaviour:
     flipX: 0
     state: 0
   questionText: Only if you can blow at 200 kilometers per hour!
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: d90a777e81bd3c6459f7bfa57a1d866b, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &2699331774294931118
@@ -702,7 +702,7 @@ MonoBehaviour:
     state: 0
   questionText: "You\u2019ll find out soon! But first\u2026 you need to pass this
     quick mini quiz!"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: d8abcdf395cfacc4e9ba3fc46fb9307a, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &3414865862296980257
@@ -742,7 +742,7 @@ MonoBehaviour:
     state: 1
   questionText: "So that\u2019s how it works! From the ocean to the sky, and then
     it fades when it reaches land."
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 277ed75d6b2afd44a92ac46dcc59c098, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &3949101521993477162
@@ -762,11 +762,10 @@ MonoBehaviour:
   speakerName: 
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
-  questionText: '. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-    . . . . . . . . . . . . . . . . '
+  questionText: . . . . . . . . . .
   dialogAudio: {fileID: 0}
   displayTime: 0
-  videoEndTime: 4.9
+  videoEndTime: 4.5
 --- !u!114 &5049854751195938047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,7 +803,7 @@ MonoBehaviour:
     state: 0
   questionText: "Now that we know how a typhoon spins, let\u2019s find out what happens
     when it reaches land."
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 10d6d923f9e9eec49a75730f147017b5, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &5273533725912795797
@@ -844,7 +843,7 @@ MonoBehaviour:
     state: 0
   questionText: "That\u2019s the spirit! When we understand how nature works, we
     can face it wisely and bravely. "
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 9c105d12f6de38942bcad7b52c610155, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &5744551200950999555
@@ -886,7 +885,7 @@ MonoBehaviour:
     ocean, the ice is cool air, and this fan is the wind. "
   dialogAudio: {fileID: 0}
   displayTime: 0
-  videoEndTime: 29
+  videoEndTime: 28
 --- !u!114 &6211423487057698105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,7 +922,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: Ooh! What is it, Sir? Tell us!
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 7d0573227b77a944fa8d6f20632c3dc5, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &6358084306927419803
@@ -981,6 +980,6 @@ MonoBehaviour:
     state: 1
   questionText: "Great job! You just powered up the typhoon. But\u2026 what makes
     it spin like that? Let\u2019s head back to our classroom and find out!"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: f37218840a1d49b4d88bd4eb6a0e4522, type: 3}
   displayTime: 0
   videoEndTime: 0

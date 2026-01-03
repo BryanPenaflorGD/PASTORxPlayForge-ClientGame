@@ -83,8 +83,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f26f04c76286340a83ee861f33db84, type: 3}
   m_Name: AudioSettings
   m_EditorClassIdentifier: 
-  voiceVolume: 0.7219
-  sfxVolume: 0.7351
+  voiceVolume: 1
+  sfxVolume: 1
   enableUiSfx: 1
   sfxNavigate: {fileID: 0}
   sfxConfirm: {fileID: 0}
@@ -105,14 +105,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674546f30cf3b134e8d07f6d561cd9fe, type: 3}
   m_Name: TextSettings
   m_EditorClassIdentifier: 
-  typewriterEffect: 2
-  charsPerSecond: 79.23
+  typewriterEffect: 1
+  charsPerSecond: 20.07
   allowSkipAll: 0
   allowSkipCurrentLine: 0
   allowFastForwardHold: 0
   fastForwardMultiplier: 2.006
   autoAdvance: 1
-  autoAdvanceDelay: 2.495
+  autoAdvanceDelay: 3
   commaPause: 0.1096
   periodPause: 0.1301
   questionPause: 0.1885

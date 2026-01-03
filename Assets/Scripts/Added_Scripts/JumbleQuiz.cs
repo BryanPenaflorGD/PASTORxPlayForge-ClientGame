@@ -135,13 +135,15 @@ public class JumbleQuiz : MonoBehaviour
         if (currentQuestionIndex < questions.Count)
         {
             questions[currentQuestionIndex].SetActive(true);
+           
         }
         else
         {
             //IGDI ANG PAGLIPAT NING SCENE
 
             //SceneManager.LoadSceneAsync();
-            Debug.LogError("Change Scene hyp ka");
+            DialogSystem.Runtime.Core.ProgressionManager.Instance.CompleteCurrentQuiz();
+            SceneManager.LoadScene("SelectionScene");
         }
 
     }

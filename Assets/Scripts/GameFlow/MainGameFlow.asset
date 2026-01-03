@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stages:
   - stageName: Chapter 1
-    dialogID: 3rdScene
+    dialogID: 1stScene
     quizSceneName: Quiz
   - stageName: Chaptert 2
     dialogID: 2ndScene
-    quizSceneName: 2ndQuiz
+    quizSceneName: Quiz2
   - stageName: Chapter 3
     dialogID: 3rdScene
     quizSceneName: 

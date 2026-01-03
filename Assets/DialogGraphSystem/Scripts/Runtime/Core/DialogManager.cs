@@ -124,7 +124,7 @@ namespace DialogSystem.Runtime.Core
                 uiPanel.UpdateAutoPlayIcon(autoPlayState);
             }
 
-            if (audioSource && dialogAudioSettings != null) audioSource.volume = dialogAudioSettings.sfxVolume;
+            if (audioSource && dialogAudioSettings != null) audioSource.volume = dialogAudioSettings.voiceVolume;
 
             doDebug = doDebug ? true : DialogSettingsRuntime.DoDebug();
 
@@ -916,7 +916,7 @@ namespace DialogSystem.Runtime.Core
             {
                 audioSource.Stop();
                 audioSource.clip = null;
-                if (dialogAudioSettings != null) audioSource.volume = dialogAudioSettings.sfxVolume;
+                if (dialogAudioSettings != null) audioSource.volume = dialogAudioSettings.voiceVolume;
             }
         }
 

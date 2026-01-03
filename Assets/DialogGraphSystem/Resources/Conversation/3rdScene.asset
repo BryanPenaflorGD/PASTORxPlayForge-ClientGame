@@ -36,7 +36,7 @@ MonoBehaviour:
     flipX: 0
     state: 0
   questionText: Perfect summary, Aira!
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 3f52cd61de9e9964daf3a8bd4fcfa90a, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-8631209898402313187
@@ -114,7 +114,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: "So that\u2019s how PAGASA gives storm warnings! "
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: a37f2d60b12592945b2e4f9b4505e9a4, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-8307465797327057913
@@ -154,7 +154,7 @@ MonoBehaviour:
     state: 1
   questionText: "Yeah! And the sky\u2019s clear again \u2014 just like what happens
     after a typhoon!"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 521607a317c965f4998636467cd15b6a, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-8117057724376295393
@@ -316,7 +316,7 @@ MonoBehaviour:
   questionText: "Yes! They study how the typhoon moves over warm oceans and landmasses
     to predict its strength and direction. That\u2019s how science helps keep everyone
     safe."
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 5b07163fdd8cd2143ae82b419ede215b, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-4094259320583177454
@@ -396,7 +396,7 @@ MonoBehaviour:
     state: 0
   questionText: " I\u2019m proud of you both. Remember,  science helps us understand
     nature, and understanding keeps us safe. "
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 09f8e53248a2d084b96fc6ba556705fc, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-3039447738058994925
@@ -477,7 +477,7 @@ MonoBehaviour:
   questionText: Exactly! Satellites take pictures of the clouds and winds above the
     ocean. From those images, experts can tell when a storm is starting and where
     it might go.
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 2898bf9a1f714f3498349c98eaa62902, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-11226556536576581
@@ -696,7 +696,7 @@ MonoBehaviour:
     state: 0
   questionText: "Now that we know how typhoons form and weaken, here\u2019s something
     incredible \u2014 scientists can track them even before they reach land. "
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: a5b22acc359af1248a6f5576c4bf12d9, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &862061134148643571
@@ -735,7 +735,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: "Hey\u2026 the rain finally stopped!"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 5976c864f41a80a46a71600a1e1501fa, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &977040933960966454
@@ -775,7 +775,7 @@ MonoBehaviour:
     state: 0
   questionText: "That\u2019s the goal!  not just to understand, but to respect nature.
     Because when we understand how it works, we learn how to live safely with it. "
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: dc5f29e7e68d6184080cd26f691eecd7, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &3341861531058439988
@@ -833,7 +833,7 @@ MonoBehaviour:
     state: 1
   questionText: "I used to be scared of typhoons\u2026 but now, I\u2019m more amazed
     by how nature works."
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 20970ef353bdbe84193ef7e46c68ccfa, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &3652871331675203849
@@ -872,7 +872,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: Whoa! Like a giant camera in space?
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 7d23927b747d4a14ca6a93ca2e4daa18, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &3761885743763532314
@@ -912,7 +912,7 @@ MonoBehaviour:
     state: 1
   questionText: "Yeah, and I\u2019ll remember to always stay safe when there\u2019s
     a storm. "
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: c7c8449eb029af545923de3e742a92c9, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &3823031533897359144
@@ -952,7 +952,7 @@ MonoBehaviour:
     state: 0
   questionText: "Well done, Weather Warriors! You\u2019ve just learned how a typhoon
     gains strength over warm seas \u2014 and weakens when it reaches land. "
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: c49857c62159e72488b159dead55652a, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &3938719097424938576
@@ -992,7 +992,7 @@ MonoBehaviour:
     state: 1
   questionText: So the ocean gives the typhoon power, the land slows it down, and
     science helps us get ready!
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 9618877ad6a519e449a476814b9a58dd, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &4955790751345709262
@@ -1031,7 +1031,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: Oh, That must be our parents!
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 37806a9c9a08a0946b6e6d509027feb5, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &7441956843100315374
@@ -1113,7 +1113,7 @@ MonoBehaviour:
     flipX: 0
     state: 0
   questionText: "Let\u2019s remember what we\u2019ve learned\n"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: b8331ee7e580fdd4197073a2d1d5b1e8, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &8707972820842079932

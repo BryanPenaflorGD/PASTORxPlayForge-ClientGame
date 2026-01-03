@@ -6,6 +6,7 @@ namespace DialogSystem.Runtime.Core
     {
         public static ProgressionManager Instance;
         public GameFlowConfig gameConfig;
+        public event System.Action OnStageUnlocked;
 
         private const string PREF_STAGE_INDEX = "CurrentStageIndex";
         private const string PREF_DIALOG_DONE = "IsDialogDone";
@@ -46,6 +47,8 @@ namespace DialogSystem.Runtime.Core
             PlayerPrefs.SetInt(PREF_DIALOG_DONE, 1);
             PlayerPrefs.Save();
             Debug.Log("Dialog Completed. Quiz Button Unlocked.");
+
+            OnStageUnlocked?.Invoke();
         }
 
         // Call this when Quiz Ends (Correctly)
@@ -53,12 +56,14 @@ namespace DialogSystem.Runtime.Core
         {
             int currentIndex = GetCurrentStageIndex();
 
-            // Move to next stage, and reset dialog progress for the new stage
             PlayerPrefs.SetInt(PREF_STAGE_INDEX, currentIndex + 1);
             PlayerPrefs.SetInt(PREF_DIALOG_DONE, 0);
             PlayerPrefs.Save();
 
             Debug.Log("Quiz Completed. Next Dialog Unlocked.");
+
+            // Notify the UI listeners!
+            OnStageUnlocked?.Invoke();
         }
     }
 }

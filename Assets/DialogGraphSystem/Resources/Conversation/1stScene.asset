@@ -15,7 +15,7 @@ MonoBehaviour:
   GUID: 37fa24bc44344ec894cae3bc54022729
   nodePosition: {x: 1293, y: 469}
   actionId: PlayCutscene, HidePanel
-  payloadJson: s10 to s23
+  payloadJson: Cutscene1/s10 to s23
   waitForCompletion: 0
   waitSeconds: 0
 --- !u!114 &-7510626372730138742
@@ -54,7 +54,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: A story? About a typhoon? That sounds cool!
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 9e2736a7f5987814098acca5ab3fb0e3, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-7495800282096676163
@@ -109,7 +109,7 @@ MonoBehaviour:
     state: 0
   questionText: " Yeah\u2026 My dad said it might turn into a super typhoon. The
     streets are already flooding!"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 9468bc9dc4cc05a4080ebdfa290de456, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-4766639165739112822
@@ -206,7 +206,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: ' Really, Sir? '
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: daf0e9b48a241d846948643cf030a66c, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &-3949157650679318350
@@ -244,8 +244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GUID: 875e407fa7fb4642926ae3dcd458765d
   nodePosition: {x: -611, y: -22}
-  actionId: PlayCutscene
-  payloadJson: S1
+  actionId: 'PlayCutscene, '
+  payloadJson: Cutscene1/S1
   waitForCompletion: 0
   waitSeconds: 0
 --- !u!114 &-3186042689397705168
@@ -283,7 +283,7 @@ MonoBehaviour:
   GUID: 42a6ad65a6a34feb902459f49e2d9c87
   nodePosition: {x: 1341, y: -22}
   actionId: PlayCutscene
-  payloadJson: s5
+  payloadJson: Cutscene1/s5
   waitForCompletion: 1
   waitSeconds: 2
 --- !u!114 &-2418358417505303782
@@ -307,6 +307,26 @@ MonoBehaviour:
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 8
+--- !u!114 &-2263549116138486713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: 3d982f57250a4b828c05a1267e54f07f
+  nodePosition: {x: -963, y: -22}
+  actionId: PlayBGM
+  payloadJson: 'SFX/TYPHOON SFX2
+
+'
+  waitForCompletion: 0
+  waitSeconds: 0
 --- !u!114 &-1938932808398244756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,7 +426,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: Our classroom? How do we get there from here?
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 6ec9d2d30740e11498dc49722979d9d8, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &11400000
@@ -519,6 +539,9 @@ MonoBehaviour:
     toGuid: 9407e2116c1344f18078537f96057299
     fromPortIndex: 0
   - fromGuid: 9642b73713c44865a7b17f83163964dd
+    toGuid: 3d982f57250a4b828c05a1267e54f07f
+    fromPortIndex: 0
+  - fromGuid: 3d982f57250a4b828c05a1267e54f07f
     toGuid: 875e407fa7fb4642926ae3dcd458765d
     fromPortIndex: 0
   nodes:
@@ -557,8 +580,9 @@ MonoBehaviour:
   - {fileID: -8861272451104251188}
   - {fileID: 7039181168605413040}
   - {fileID: -3186042689397705168}
+  - {fileID: -2263549116138486713}
   startGuid: 9642b73713c44865a7b17f83163964dd
-  startPosition: {x: -790, y: -22}
+  startPosition: {x: -1127, y: -24}
   startInitialized: 1
   endGuid: 79fe283a704b4383abcc3541318952af
   endPosition: {x: 1010, y: 1986}
@@ -642,7 +666,7 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: "That\u2019s awesome! It\u2019s like the ocean is alive!"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 76a00cf0e0ae5634fbfc35b45ee6e694, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &1441842217058845679
@@ -719,7 +743,7 @@ MonoBehaviour:
     state: 1
   questionText: it's still raining! The wind is so strong... I hope the typhoon doesn't
     get worse
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 6c7389c340f10e940803f395c7ab89f1, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &3747633473853875118
@@ -780,7 +804,7 @@ MonoBehaviour:
     state: 0
   questionText: " You\u2019re right, Aira! And to understand it even better, I want
     to show you something inside our classroom."
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: fc8ff409cc914ba44b49d45daa31c801, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &4315294539705864722
@@ -801,7 +825,7 @@ MonoBehaviour:
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
   questionText: The portal's opening! Let's go!
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 3e17ada032df168428aaa8f3d8bd799b, type: 3}
   displayTime: 0
   videoEndTime: 7
 --- !u!114 &4430240113621697255
@@ -855,7 +879,7 @@ MonoBehaviour:
     flipX: 1
     state: 1
   questionText: "I don\u2019t like typhoons. They\u2019re scary."
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 0bef71f22f38798438d0d97c9bec1627, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &6125530150219182565
@@ -895,7 +919,7 @@ MonoBehaviour:
     state: 0
   questionText: "Through the learning portal, of course! But before we can open it\u2026
     you\u2019ll need to answer this following questions first!"
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: a55dfbb61e88c0e4584f141d5552655a, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &7039181168605413040
@@ -975,7 +999,7 @@ MonoBehaviour:
   questionText: " Hey there, Aira and Liam! Your parents might come a little late
     to pick you up but don\u2019t worry, once you understand how typhoons work, they
     won\u2019t seem so scary anymore. "
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: c1269468e583d844c90a6d48a6e46443, type: 3}
   displayTime: 0
   videoEndTime: 0
 --- !u!114 &7802695778090109034
@@ -1015,6 +1039,6 @@ MonoBehaviour:
     state: 0
   questionText: ' How about I tell you a story? about how a typhoon is born, grows
     strong, and what happens when it meets land and water?'
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: 02c95ab04ca08af4db7813206dd02af5, type: 3}
   displayTime: 0
   videoEndTime: 0
