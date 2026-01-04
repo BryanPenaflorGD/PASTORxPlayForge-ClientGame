@@ -33,7 +33,7 @@ MonoBehaviour:
   GUID: 4782c29c55c9472f89c931f62a6b2510
   nodePosition: {x: 541, y: 471}
   speakerName: Liam
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 349362889, guid: c86d5f3b46435e64f930664488138f7c, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   GUID: 7c67d76772a545c4a18ebd7059c24c0d
   nodePosition: {x: 541, y: 1361}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: "then a stronger one called a tropical storm\u2026"
   dialogAudio: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   GUID: c09be215a2114ca0838d86d1973c9ceb
   nodePosition: {x: 541, y: -22}
   speakerName: Liam
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 349362889, guid: c86d5f3b46435e64f930664488138f7c, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 1
@@ -142,7 +142,7 @@ MonoBehaviour:
   GUID: d317aede02314fcbae41e6c4f1ff96ca
   nodePosition: {x: 1741, y: 1050}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: "Correct! The warm ocean is like the typhoon\u2019s battery... it
     gives it power!"
@@ -164,7 +164,7 @@ MonoBehaviour:
   GUID: 24fa217747044d68ad9ae664d3a22936
   nodePosition: {x: 141, y: 1050}
   speakerName: Aira
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
   sceneCharacters: []
   questionText: So warm air goes up, right?
   dialogAudio: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   GUID: 73e3f6d020014f8e8c1afda22eaa842a
   nodePosition: {x: -259, y: 469}
   speakerName: Aira
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
   GUID: a57a6132d8d849b19d3fb0cfa38464ad
   nodePosition: {x: -259, y: 1361}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: "Yes! And as the swirl grows bigger\u2026"
   dialogAudio: {fileID: 0}
@@ -360,7 +360,7 @@ MonoBehaviour:
   GUID: cc87c924c9cb4b3b8c7ea4abb746dbf8
   nodePosition: {x: 1341, y: 1050}
   speakerName: Liam
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 349362889, guid: c86d5f3b46435e64f930664488138f7c, type: 3}
   sceneCharacters: []
   questionText: Ohhh, so the ocean gives it power!
   dialogAudio: {fileID: 0}
@@ -402,7 +402,7 @@ MonoBehaviour:
   GUID: f1b2592bacea4648adcc398bdee88e60
   nodePosition: {x: 541, y: 1050}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: 'As the hot air rises, cool air rushes in to fill the space. '
   dialogAudio: {fileID: 0}
@@ -423,7 +423,7 @@ MonoBehaviour:
   GUID: 8c9c6046ccd244d2ab9aa7f34001d5c3
   nodePosition: {x: -659, y: 1982}
   speakerName: Liam
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 349362889, guid: c86d5f3b46435e64f930664488138f7c, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -628,7 +628,7 @@ MonoBehaviour:
   GUID: d3f974a2456742089b6421f2e1386070
   nodePosition: {x: 141, y: 1361}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: "it first becomes a weak storm called a \u201Ctropical depression\u201D\u2026."
   dialogAudio: {fileID: 0}
@@ -649,7 +649,7 @@ MonoBehaviour:
   GUID: 825f954a73d24a76827a96b52fe21b88
   nodePosition: {x: 941, y: 1050}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: "Soon, the air starts to spin and twist, and clouds begin to grow
     bigger and darker. That\u2019s the birth of a typhoon"
@@ -671,7 +671,7 @@ MonoBehaviour:
   GUID: 80732a623388486989670a9380844907
   nodePosition: {x: 1341, y: 1352}
   speakerName: Aira
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -710,7 +710,7 @@ MonoBehaviour:
   GUID: 542d34835d04458b8a564b48819cb2b6
   nodePosition: {x: -659, y: 1361}
   speakerName: Liam
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 349362889, guid: c86d5f3b46435e64f930664488138f7c, type: 3}
   sceneCharacters: []
   questionText: "Wow! The ocean\u2019s charging it up like a phone battery! "
   dialogAudio: {fileID: 0}
@@ -731,7 +731,7 @@ MonoBehaviour:
   GUID: 5064260d222642be98baaae271ccc5c9
   nodePosition: {x: -259, y: 1050}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: When sunlight heats the water, it turns into vapor that rises into
     the air.
@@ -771,7 +771,7 @@ MonoBehaviour:
   GUID: 8cf8632a5d9349c8ba7eeefc9e85d413
   nodePosition: {x: 141, y: -22}
   speakerName: Aira
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 1
@@ -826,7 +826,7 @@ MonoBehaviour:
   GUID: 419da39b05b74a2cb60ac6a880a6bfe3
   nodePosition: {x: 1741, y: 1361}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -866,7 +866,7 @@ MonoBehaviour:
   GUID: bcbb9136fea54699aa17ddb5e8ee8ec1
   nodePosition: {x: 493, y: 1986}
   speakerName: Aira
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
   sceneCharacters: []
   questionText: The portal's opening! Let's go!
   dialogAudio: {fileID: 8300000, guid: 3e17ada032df168428aaa8f3d8bd799b, type: 3}
@@ -887,7 +887,7 @@ MonoBehaviour:
   GUID: 2637afea2c004744be2069a85141f395
   nodePosition: {x: -659, y: 1050}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: It all begins over the warm ocean
   dialogAudio: {fileID: 0}
@@ -908,7 +908,7 @@ MonoBehaviour:
   GUID: d519ff9995b74e1486f96e5de47f0fcf
   nodePosition: {x: 941, y: -22}
   speakerName: Aira
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 1
@@ -941,7 +941,7 @@ MonoBehaviour:
   GUID: dcc23ddbbcf34cc9a0323f6ecacd3e67
   nodePosition: {x: -259, y: 1982}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -999,7 +999,7 @@ MonoBehaviour:
   GUID: f2b4055ed6ab444181310d40c9f394b0
   nodePosition: {x: 941, y: 1361}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: "and finally \u2014 a powerful typhoon!"
   dialogAudio: {fileID: 0}
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   GUID: 17988d0c91ba424fb3b06a831cd178ad
   nodePosition: {x: -659, y: 469}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   GUID: a49c91681527444da573dc9f573945f3
   nodePosition: {x: 141, y: 469}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0

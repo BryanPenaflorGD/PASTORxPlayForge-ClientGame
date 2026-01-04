@@ -15,7 +15,7 @@ MonoBehaviour:
   GUID: e59c9e358cc44bc2a3ea2edba164d949
   nodePosition: {x: 880, y: 750}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
   GUID: 79635bc291724ccaaae8bb2b589db1e7
   nodePosition: {x: 3584, y: 1331}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: just like the calm after every typhoon.
   dialogAudio: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   GUID: 435a1cd65bf64cac9b08066df1d37e52
   nodePosition: {x: 2034, y: 169}
   speakerName: Liam
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 349362889, guid: c86d5f3b46435e64f930664488138f7c, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   GUID: 16596b80a7f24a18b3f772283a970538
   nodePosition: {x: 3234, y: 750}
   speakerName: Liam
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 349362889, guid: c86d5f3b46435e64f930664488138f7c, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
   GUID: 59d42eac792f4fadb206249ea8093b7b
   nodePosition: {x: 3586, y: 171}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: Typhoons form over warn oceans
   dialogAudio: {fileID: 0}
@@ -293,7 +293,7 @@ MonoBehaviour:
   GUID: 86d52488d85c4fcd80d32acfbeb177c9
   nodePosition: {x: 2434, y: 169}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -374,7 +374,7 @@ MonoBehaviour:
   GUID: 4d088a96b5d54858b539a69b1634a8f1
   nodePosition: {x: 2032, y: 1331}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -414,7 +414,7 @@ MonoBehaviour:
   GUID: 413ff7cfe1e044be86ace7980cf6ecdc
   nodePosition: {x: 1232, y: 1333}
   speakerName: Aira
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
   GUID: 99e0b8e3943d44818f28ac5924a3bbda
   nodePosition: {x: -320, y: 750}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: 'They weaken when they move over land and mountains, losing that
     energy. '
@@ -704,7 +704,7 @@ MonoBehaviour:
   GUID: cbad840775464be59dc2e1d3b28ebd3c
   nodePosition: {x: 834, y: 169}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -745,7 +745,7 @@ MonoBehaviour:
   GUID: c2c801084d9b4f1491cb90b9938c86c6
   nodePosition: {x: 2834, y: 752}
   speakerName: Aira
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -784,7 +784,7 @@ MonoBehaviour:
   GUID: 8436d0426b0c4fa0961500eeb8d9be9e
   nodePosition: {x: 1682, y: 750}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -843,7 +843,7 @@ MonoBehaviour:
   GUID: 3438e279dcc14f2686e4476b164c4449
   nodePosition: {x: 1280, y: 750}
   speakerName: Liam
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 349362889, guid: c86d5f3b46435e64f930664488138f7c, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -883,7 +883,7 @@ MonoBehaviour:
   GUID: 509efe416c3b44f7a2e3f7cef077aad5
   nodePosition: {x: 1234, y: 169}
   speakerName: Aira
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -922,7 +922,7 @@ MonoBehaviour:
   GUID: 4bb35fc9a76a425195ee9c55d96c5d5b
   nodePosition: {x: 1632, y: 1333}
   speakerName: Liam
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 349362889, guid: c86d5f3b46435e64f930664488138f7c, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -962,7 +962,7 @@ MonoBehaviour:
   GUID: 5e84126cea94470985379f5c52917c63
   nodePosition: {x: -320, y: 169}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   GUID: f810498579ee45018d4cff04e25f01c7
   nodePosition: {x: 480, y: 750}
   speakerName: Aira
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -1060,7 +1060,7 @@ MonoBehaviour:
   GUID: 1533b77d572e43f9821a4eb004f8b34c
   nodePosition: {x: 432, y: 1333}
   speakerName: Aira
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -1117,7 +1117,7 @@ MonoBehaviour:
   GUID: 4d482ef6f404458b95fe41f79daf146c
   nodePosition: {x: 3986, y: 169}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: where they gain energy.
   dialogAudio: {fileID: 0}
@@ -1138,7 +1138,7 @@ MonoBehaviour:
   GUID: 04306c6556cb4c78a14d0ccc9edae005
   nodePosition: {x: 80, y: 750}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: And through science and technology, we can track them to stay safe
     and prepared.
@@ -1160,7 +1160,7 @@ MonoBehaviour:
   GUID: d1e9a831a1124a3984737db7548f919a
   nodePosition: {x: 2834, y: 171}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters:
   - characterName: Aira
     position: 0
@@ -1238,7 +1238,7 @@ MonoBehaviour:
   GUID: 715124a13e32402987daa0be502ae8d3
   nodePosition: {x: 3184, y: 1333}
   speakerName: Mr. Corin
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 919688915, guid: 5c4bfa5a167e3064f91fac50ed70f7d4, type: 3}
   sceneCharacters: []
   questionText: 'The storm may pass, but the knowledge stays '
   dialogAudio: {fileID: 0}
