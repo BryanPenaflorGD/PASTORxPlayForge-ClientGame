@@ -7,11 +7,17 @@ public class QuizSFX : MonoBehaviour
 {
     private void Start()
     {
-        AudioActionHandler.Instance.PlayBGM("Music/BGM_Happy");
+        if (AudioActionHandler.Instance != null)
+        {
+            AudioActionHandler.Instance.PlayBGM("Music/BGM_Happy");
+        } 
     }
 
     public void ClickButton()
     {
-        AudioActionHandler.Instance.PlaySFX("SFX/POP");
+        if (AudioActionHandler.Instance != null)
+        {
+            AudioActionHandler.Instance.PlaySFX("SFX/POP");
+        } 
     }
 }

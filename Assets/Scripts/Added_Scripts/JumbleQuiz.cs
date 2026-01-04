@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Xml.Serialization;
+using DialogSystem.Runtime.Core;
 
 public class JumbleQuiz : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class JumbleQuiz : MonoBehaviour
 
     [Header("-----Word Answer------")]
     private string wordResult = "";
-    private int correctAnswer = 0;
 
     [Header("-----Auto Next------")]
     public int currentQuestionIndex = 0;
@@ -25,9 +25,9 @@ public class JumbleQuiz : MonoBehaviour
 
     void Start()
     {
+        
         startObject.SetActive(true);
         ShuffleAndAssign();
-        correctAnswer = 0;
     }
 
     public void ShuffleAndAssign()
@@ -140,8 +140,6 @@ public class JumbleQuiz : MonoBehaviour
         else
         {
             //IGDI ANG PAGLIPAT NING SCENE
-
-            //SceneManager.LoadSceneAsync();
             DialogSystem.Runtime.Core.ProgressionManager.Instance.CompleteCurrentQuiz();
             SceneManager.LoadScene("SelectionScene");
         }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DialogSystem.Runtime.Core;
 
 public class LetterButton : MonoBehaviour
 {
