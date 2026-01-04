@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using DialogSystem.Runtime.Core;
 
 public class QuizUIController : MonoBehaviour
 {
@@ -111,8 +112,8 @@ public class QuizUIController : MonoBehaviour
         }
 
         targetObject.SetActive(false);
-        BGMusic.SetActive(false);
-        ResultMusic.SetActive(true);
+        AudioActionHandler.Instance.musicSource.Stop();
+        AudioActionHandler.Instance.PlayBGM("Music/BGM_Result");
 
     }
 

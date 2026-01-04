@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartQuiz : MonoBehaviour
+public class QuizSFX : MonoBehaviour
 {
-    public QuizSetSO quizSet;
-
-    public void StartQuizzes()
+    private void Start()
     {
-        QuizManager.Instance.StartQuiz(quizSet);
-        AudioActionHandler.Instance.PlaySFX("SFX/POP");
+        AudioActionHandler.Instance.PlayBGM("Music/BGM_Happy");
+    }
 
-        //Resources/SFX/POP
+    public void ClickButton()
+    {
+        AudioActionHandler.Instance.PlaySFX("SFX/POP");
     }
 }
