@@ -382,9 +382,6 @@ MonoBehaviour:
   m_Name: 2ndScene
   m_EditorClassIdentifier: 
   links:
-  - fromGuid: 16ff812318e5458fabe5c9042fe23718
-    toGuid: 62a4b9c9c1d8418cb6fa7cee1ad64fb3
-    fromPortIndex: 0
   - fromGuid: 62a4b9c9c1d8418cb6fa7cee1ad64fb3
     toGuid: 5eac4e28d09245bebfe64db80c2031d5
     fromPortIndex: 0
@@ -469,6 +466,12 @@ MonoBehaviour:
   - fromGuid: 5533a5875fa8456088f007746bd7978f
     toGuid: 02e2cdc61a584a01bb88cffc082cc7ed
     fromPortIndex: 0
+  - fromGuid: 16ff812318e5458fabe5c9042fe23718
+    toGuid: f84b23933cf4405ca8e7a96f7f949989
+    fromPortIndex: 0
+  - fromGuid: f84b23933cf4405ca8e7a96f7f949989
+    toGuid: 62a4b9c9c1d8418cb6fa7cee1ad64fb3
+    fromPortIndex: 0
   nodes:
   - {fileID: 6577354332868879738}
   - {fileID: -8268374349914870210}
@@ -500,8 +503,9 @@ MonoBehaviour:
   - {fileID: 1838980183984749947}
   - {fileID: 6358084306927419803}
   - {fileID: 5744551200950999555}
+  - {fileID: 2442182718198895002}
   startGuid: 16ff812318e5458fabe5c9042fe23718
-  startPosition: {x: -633, y: 80}
+  startPosition: {x: -1015, y: 82}
   startInitialized: 1
   endGuid: 02e2cdc61a584a01bb88cffc082cc7ed
   endPosition: {x: 3567, y: 1700}
@@ -626,6 +630,24 @@ MonoBehaviour:
   dialogAudio: {fileID: 8300000, guid: 6d3f058a29e5f6b4fa64f45ae0a19e21, type: 3}
   displayTime: 0
   videoEndTime: 0
+--- !u!114 &2442182718198895002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: f84b23933cf4405ca8e7a96f7f949989
+  nodePosition: {x: -814, y: 80}
+  actionId: PlayBGM
+  payloadJson: SFX/TYPHOON SFX2
+  waitForCompletion: 0
+  waitSeconds: 0
 --- !u!114 &2570770070489481843
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ namespace DialogSystem.Runtime.Core
             // Assuming DialogManager takes a callback for completion
             DialogManager.Instance.PlayDialogByID(dialogID, OnDialogEnded);
             mainMenu.SetActive(false);
+            AudioActionHandler.Instance.musicSource.Play();
         }
 
         public void OnDialogEnded()
@@ -33,6 +34,8 @@ namespace DialogSystem.Runtime.Core
             // Optional: Force the menu to refresh its button states immediately
             MainMenuController menuController = mainMenu.GetComponent<MainMenuController>();
             if (menuController != null) menuController.RefreshButtons();
+
+            AudioActionHandler.Instance.musicSource.Stop();
         }
 
         public void QuitGame(string payloadJson)

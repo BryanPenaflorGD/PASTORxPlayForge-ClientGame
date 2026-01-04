@@ -1,18 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic; // Needed for Lists/Arrays
 using DialogSystem.Runtime.Core;
 using DialogSystem.Runtime.Settings.Panels;
 
 public class AudioSettingsMenu : MonoBehaviour
 {
-    [Header("UI Sliders")]
-    public Slider masterSlider;
-    public Slider voSlider;     // Voice Over
-    public Slider bgmSlider;    // Background Music
-    public Slider sfxSlider;    // SFX
+    [Header("UI Slider Arrays")]
+    // Changed from single variables to Arrays []
+    public Slider[] masterSliders;
+    public Slider[] voSliders;
+    public Slider[] bgmSliders;
+    public Slider[] sfxSliders;
 
     [Header("References")]
-    // Drag your 'DialogAudioSettings' asset here
     public DialogAudioSettings dialogSettings;
 
     // Constants
@@ -34,28 +35,11 @@ public class AudioSettingsMenu : MonoBehaviour
         float bgmVol = PlayerPrefs.GetFloat(PREF_BGM, 1f);
         float sfxVol = PlayerPrefs.GetFloat(PREF_SFX, 1f);
 
-        // 2. Setup Sliders
-        // SetValueWithoutNotify prevents the slider from triggering the 'Save' logic during startup
-        if (masterSlider)
-        {
-            masterSlider.SetValueWithoutNotify(masterVol);
-            masterSlider.onValueChanged.AddListener(SetMasterVolume);
-        }
-        if (voSlider)
-        {
-            voSlider.SetValueWithoutNotify(voVol);
-            voSlider.onValueChanged.AddListener(SetVOVolume);
-        }
-        if (bgmSlider)
-        {
-            bgmSlider.SetValueWithoutNotify(bgmVol);
-            bgmSlider.onValueChanged.AddListener(SetBGMVolume);
-        }
-        if (sfxSlider)
-        {
-            sfxSlider.SetValueWithoutNotify(sfxVol);
-            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
-        }
+        // 2. Setup All Sliders (Using a helper function to keep code clean)
+        SetupSliderArray(masterSliders, masterVol, SetMasterVolume);
+        SetupSliderArray(voSliders, voVol, SetVOVolume);
+        SetupSliderArray(bgmSliders, bgmVol, SetBGMVolume);
+        SetupSliderArray(sfxSliders, sfxVol, SetSFXVolume);
 
         // 3. Apply Volumes Immediately
         UpdateMasterLogic(masterVol);
@@ -64,12 +48,47 @@ public class AudioSettingsMenu : MonoBehaviour
         UpdateSFXLogic(sfxVol);
     }
 
+    // --- HELPER TO SETUP ARRAYS ---
+    private void SetupSliderArray(Slider[] sliders, float value, UnityEngine.Events.UnityAction<float> action)
+    {
+        if (sliders == null) return;
+
+        foreach (Slider s in sliders)
+        {
+            if (s != null)
+            {
+                // Set visual position without triggering code
+                s.SetValueWithoutNotify(value);
+                // Add the listener
+                s.onValueChanged.AddListener(action);
+            }
+        }
+    }
+
+    // --- HELPER TO SYNC VISUALS ---
+    // This makes sure if you move Slider A, Slider B moves too.
+    private void SyncVisuals(Slider[] sliders, float value)
+    {
+        if (sliders == null) return;
+
+        foreach (Slider s in sliders)
+        {
+            if (s != null)
+            {
+                // Update the visual knob, but DO NOT run the 'onValueChanged' event again
+                s.SetValueWithoutNotify(value);
+            }
+        }
+    }
+
     // --- SLIDER EVENTS ---
 
     public void SetMasterVolume(float value)
     {
         PlayerPrefs.SetFloat(PREF_MASTER, value);
         PlayerPrefs.Save();
+
+        SyncVisuals(masterSliders, value); // <--- Sync other sliders
         UpdateMasterLogic(value);
     }
 
@@ -77,6 +96,8 @@ public class AudioSettingsMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat(PREF_VO, value);
         PlayerPrefs.Save();
+
+        SyncVisuals(voSliders, value); // <--- Sync other sliders
         UpdateVOLogic(value);
     }
 
@@ -84,6 +105,8 @@ public class AudioSettingsMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat(PREF_BGM, value);
         PlayerPrefs.Save();
+
+        SyncVisuals(bgmSliders, value); // <--- Sync other sliders
         UpdateBGMLogic(value);
     }
 
@@ -91,21 +114,22 @@ public class AudioSettingsMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat(PREF_SFX, value);
         PlayerPrefs.Save();
+
+        SyncVisuals(sfxSliders, value); // <--- Sync other sliders
         UpdateSFXLogic(value);
     }
 
-    // --- UPDATE LOGIC ---
+    // --- UPDATE LOGIC (Same as before) ---
 
     private void UpdateMasterLogic(float value)
     {
-        AudioListener.volume = value; // Controls EVERYTHING (including Video)
+        AudioListener.volume = value;
     }
 
     private void UpdateVOLogic(float value)
     {
         if (dialogSettings != null) dialogSettings.voiceVolume = value;
 
-        // Force update active speaker
         if (DialogSystem.Runtime.Core.DialogManager.Instance != null &&
             DialogSystem.Runtime.Core.DialogManager.Instance.audioSource != null)
         {
@@ -115,7 +139,6 @@ public class AudioSettingsMenu : MonoBehaviour
 
     private void UpdateBGMLogic(float value)
     {
-        // Update the Singleton Handler if it exists in the scene
         if (AudioActionHandler.Instance != null && AudioActionHandler.Instance.musicSource != null)
         {
             AudioActionHandler.Instance.musicSource.volume = value;
@@ -124,7 +147,6 @@ public class AudioSettingsMenu : MonoBehaviour
 
     private void UpdateSFXLogic(float value)
     {
-        // Update the Singleton Handler if it exists
         if (AudioActionHandler.Instance != null && AudioActionHandler.Instance.sfxSource != null)
         {
             AudioActionHandler.Instance.sfxSource.volume = value;

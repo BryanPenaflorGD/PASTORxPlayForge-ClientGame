@@ -248,6 +248,24 @@ MonoBehaviour:
   payloadJson: Cutscene1/S1
   waitForCompletion: 0
   waitSeconds: 0
+--- !u!114 &-3240560828430964577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: 40872127201f491390c67bc907709e59
+  nodePosition: {x: 1693, y: -22}
+  actionId: PlaySFX
+  payloadJson: SFX/DOOR SFX
+  waitForCompletion: 0
+  waitSeconds: 0
 --- !u!114 &-3186042689397705168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +379,7 @@ MonoBehaviour:
   m_Name: Node_Scene1.5
   m_EditorClassIdentifier: 
   GUID: f214358695f548ccac5a0e34a51b1fdf
-  nodePosition: {x: 1693, y: -22}
+  nodePosition: {x: 2045, y: -22}
   speakerName: 
   speakerPortrait: {fileID: 0}
   sceneCharacters: []
@@ -520,9 +538,6 @@ MonoBehaviour:
   - fromGuid: f214358695f548ccac5a0e34a51b1fdf
     toGuid: 17988d0c91ba424fb3b06a831cd178ad
     fromPortIndex: 0
-  - fromGuid: 42a6ad65a6a34feb902459f49e2d9c87
-    toGuid: f214358695f548ccac5a0e34a51b1fdf
-    fromPortIndex: 0
   - fromGuid: d519ff9995b74e1486f96e5de47f0fcf
     toGuid: 42a6ad65a6a34feb902459f49e2d9c87
     fromPortIndex: 0
@@ -543,6 +558,12 @@ MonoBehaviour:
     fromPortIndex: 0
   - fromGuid: 3d982f57250a4b828c05a1267e54f07f
     toGuid: 875e407fa7fb4642926ae3dcd458765d
+    fromPortIndex: 0
+  - fromGuid: 42a6ad65a6a34feb902459f49e2d9c87
+    toGuid: 40872127201f491390c67bc907709e59
+    fromPortIndex: 0
+  - fromGuid: 40872127201f491390c67bc907709e59
+    toGuid: f214358695f548ccac5a0e34a51b1fdf
     fromPortIndex: 0
   nodes:
   - {fileID: 3747633473853875118}
@@ -581,6 +602,7 @@ MonoBehaviour:
   - {fileID: 7039181168605413040}
   - {fileID: -3186042689397705168}
   - {fileID: -2263549116138486713}
+  - {fileID: -3240560828430964577}
   startGuid: 9642b73713c44865a7b17f83163964dd
   startPosition: {x: -1127, y: -24}
   startInitialized: 1
