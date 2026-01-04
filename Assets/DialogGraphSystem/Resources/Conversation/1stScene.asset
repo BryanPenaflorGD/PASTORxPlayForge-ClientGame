@@ -281,7 +281,7 @@ MonoBehaviour:
   GUID: 4df54229bff440eabbf27b93f55fef27
   nodePosition: {x: 141, y: 1982}
   actionId: PlayCutscene
-  payloadJson: 's28
+  payloadJson: 'Cutscene1/s28
 
 '
   waitForCompletion: 0
@@ -463,9 +463,6 @@ MonoBehaviour:
   - fromGuid: bcbb9136fea54699aa17ddb5e8ee8ec1
     toGuid: 79fe283a704b4383abcc3541318952af
     fromPortIndex: 0
-  - fromGuid: 4df54229bff440eabbf27b93f55fef27
-    toGuid: bcbb9136fea54699aa17ddb5e8ee8ec1
-    fromPortIndex: 0
   - fromGuid: dcc23ddbbcf34cc9a0323f6ecacd3e67
     toGuid: 4df54229bff440eabbf27b93f55fef27
     fromPortIndex: 0
@@ -565,6 +562,12 @@ MonoBehaviour:
   - fromGuid: 40872127201f491390c67bc907709e59
     toGuid: f214358695f548ccac5a0e34a51b1fdf
     fromPortIndex: 0
+  - fromGuid: 4df54229bff440eabbf27b93f55fef27
+    toGuid: 7ee2479bb78a482680a94c1a5157ba1c
+    fromPortIndex: 0
+  - fromGuid: 7ee2479bb78a482680a94c1a5157ba1c
+    toGuid: bcbb9136fea54699aa17ddb5e8ee8ec1
+    fromPortIndex: 0
   nodes:
   - {fileID: 3747633473853875118}
   - {fileID: 2992287810593884786}
@@ -603,6 +606,7 @@ MonoBehaviour:
   - {fileID: -3186042689397705168}
   - {fileID: -2263549116138486713}
   - {fileID: -3240560828430964577}
+  - {fileID: 2395537151511030659}
   startGuid: 9642b73713c44865a7b17f83163964dd
   startPosition: {x: -1127, y: -24}
   startInitialized: 1
@@ -734,6 +738,24 @@ MonoBehaviour:
   dialogAudio: {fileID: 0}
   displayTime: 0
   videoEndTime: 17
+--- !u!114 &2395537151511030659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: 7ee2479bb78a482680a94c1a5157ba1c
+  nodePosition: {x: 317, y: 2295}
+  actionId: PlaySFX
+  payloadJson: SFX/WATER PORTAL SFX
+  waitForCompletion: 0
+  waitSeconds: 0
 --- !u!114 &2992287810593884786
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -315,7 +315,7 @@ MonoBehaviour:
     state: 0
   questionText: "Yes! They study how the typhoon moves over warm oceans and landmasses
     to predict its strength and direction. That\u2019s how science helps keep everyone
-    safe."
+    safe. . . . . . . . . . . . . . . . . . . ."
   dialogAudio: {fileID: 8300000, guid: 5b07163fdd8cd2143ae82b419ede215b, type: 3}
   displayTime: 0
   videoEndTime: 0
@@ -436,9 +436,27 @@ MonoBehaviour:
     state: 1
   questionText: 'Thank you, Sir Corin! Now I really understand how typhoons form!
     and why they lose strength on land!  '
-  dialogAudio: {fileID: 0}
+  dialogAudio: {fileID: 8300000, guid: e3882f85c36a98b45a7c4dac0d231673, type: 3}
   displayTime: 0
   videoEndTime: 0
+--- !u!114 &-2931302489174602074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: 9a902cece89143b288ade384a1020d28
+  nodePosition: {x: -133, y: 1644}
+  actionId: PlaySFX
+  payloadJson: SFX/CAR_HONK
+  waitForCompletion: 0
+  waitSeconds: 0
 --- !u!114 &-1238052521122459265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,7 +494,7 @@ MonoBehaviour:
     state: 0
   questionText: Exactly! Satellites take pictures of the clouds and winds above the
     ocean. From those images, experts can tell when a storm is starting and where
-    it might go.
+    it might go. . . . . . . . . . . . . . . . . . . . . . .
   dialogAudio: {fileID: 8300000, guid: 2898bf9a1f714f3498349c98eaa62902, type: 3}
   displayTime: 0
   videoEndTime: 0
@@ -515,9 +533,6 @@ MonoBehaviour:
   m_Name: 3rdScene
   m_EditorClassIdentifier: 
   links:
-  - fromGuid: 9642b73713c44865a7b17f83163964dd
-    toGuid: 5e84126cea94470985379f5c52917c63
-    fromPortIndex: 0
   - fromGuid: 5e84126cea94470985379f5c52917c63
     toGuid: fac393e2a3c44cc881d320f6e4ed6c1f
     fromPortIndex: 0
@@ -566,9 +581,6 @@ MonoBehaviour:
   - fromGuid: 8436d0426b0c4fa0961500eeb8d9be9e
     toGuid: fe4607412bff4229a0593dd61e33e912
     fromPortIndex: 0
-  - fromGuid: fe4607412bff4229a0593dd61e33e912
-    toGuid: 9382d93041ec4962a3c3732c673206cb
-    fromPortIndex: 0
   - fromGuid: 9382d93041ec4962a3c3732c673206cb
     toGuid: c2c801084d9b4f1491cb90b9938c86c6
     fromPortIndex: 0
@@ -577,9 +589,6 @@ MonoBehaviour:
     fromPortIndex: 0
   - fromGuid: 16596b80a7f24a18b3f772283a970538
     toGuid: e3bd16e9135346068e30aa481ae0a88d
-    fromPortIndex: 0
-  - fromGuid: e3bd16e9135346068e30aa481ae0a88d
-    toGuid: 2597988f488f4929a55024544d27055c
     fromPortIndex: 0
   - fromGuid: 86d52488d85c4fcd80d32acfbeb177c9
     toGuid: d1e9a831a1124a3984737db7548f919a
@@ -617,6 +626,24 @@ MonoBehaviour:
   - fromGuid: 79635bc291724ccaaae8bb2b589db1e7
     toGuid: 79fe283a704b4383abcc3541318952af
     fromPortIndex: 0
+  - fromGuid: e3bd16e9135346068e30aa481ae0a88d
+    toGuid: 9a902cece89143b288ade384a1020d28
+    fromPortIndex: 0
+  - fromGuid: 9a902cece89143b288ade384a1020d28
+    toGuid: 2597988f488f4929a55024544d27055c
+    fromPortIndex: 0
+  - fromGuid: 9642b73713c44865a7b17f83163964dd
+    toGuid: a8c0dbbf73274d0391076b0e81303175
+    fromPortIndex: 0
+  - fromGuid: a8c0dbbf73274d0391076b0e81303175
+    toGuid: 5e84126cea94470985379f5c52917c63
+    fromPortIndex: 0
+  - fromGuid: fe4607412bff4229a0593dd61e33e912
+    toGuid: 2726a5fb8af1477ca7e1a782d7b92cc5
+    fromPortIndex: 0
+  - fromGuid: 2726a5fb8af1477ca7e1a782d7b92cc5
+    toGuid: 9382d93041ec4962a3c3732c673206cb
+    fromPortIndex: 0
   nodes:
   - {fileID: 3823031533897359144}
   - {fileID: -6199871504303328049}
@@ -653,8 +680,11 @@ MonoBehaviour:
   - {fileID: -8462037051856903238}
   - {fileID: -3745532241590667315}
   - {fileID: -6600236162213581354}
+  - {fileID: -2931302489174602074}
+  - {fileID: 5158178811707673245}
+  - {fileID: 4800932239538209004}
   startGuid: 9642b73713c44865a7b17f83163964dd
-  startPosition: {x: -320, y: 80}
+  startPosition: {x: -857, y: 195}
   startInitialized: 1
   endGuid: 79fe283a704b4383abcc3541318952af
   endPosition: {x: 4469, y: 1362}
@@ -695,7 +725,8 @@ MonoBehaviour:
     flipX: 0
     state: 0
   questionText: "Now that we know how typhoons form and weaken, here\u2019s something
-    incredible \u2014 scientists can track them even before they reach land. "
+    incredible \u2014 scientists can track them even before they reach land.  . .
+    . . . . . . . . . . . . . . . "
   dialogAudio: {fileID: 8300000, guid: a5b22acc359af1248a6f5576c4bf12d9, type: 3}
   displayTime: 0
   videoEndTime: 0
@@ -774,7 +805,8 @@ MonoBehaviour:
     flipX: 0
     state: 0
   questionText: "That\u2019s the goal!  not just to understand, but to respect nature.
-    Because when we understand how it works, we learn how to live safely with it. "
+    Because when we understand how it works, we learn how to live safely with it.
+    . . . . . . . . . . ."
   dialogAudio: {fileID: 8300000, guid: dc5f29e7e68d6184080cd26f691eecd7, type: 3}
   displayTime: 0
   videoEndTime: 0
@@ -991,10 +1023,28 @@ MonoBehaviour:
     flipX: 0
     state: 1
   questionText: So the ocean gives the typhoon power, the land slows it down, and
-    science helps us get ready!
+    science helps us get ready!. . . . . .
   dialogAudio: {fileID: 8300000, guid: 9618877ad6a519e449a476814b9a58dd, type: 3}
   displayTime: 0
   videoEndTime: 0
+--- !u!114 &4800932239538209004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: 2726a5fb8af1477ca7e1a782d7b92cc5
+  nodePosition: {x: 2258, y: 1063}
+  actionId: PlayBGM
+  payloadJson: SFX/SUNNY SFX
+  waitForCompletion: 0
+  waitSeconds: 0
 --- !u!114 &4955790751345709262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,6 +1084,24 @@ MonoBehaviour:
   dialogAudio: {fileID: 8300000, guid: 37806a9c9a08a0946b6e6d509027feb5, type: 3}
   displayTime: 0
   videoEndTime: 0
+--- !u!114 &5158178811707673245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: a8c0dbbf73274d0391076b0e81303175
+  nodePosition: {x: -690, y: 169}
+  actionId: PlayBGM
+  payloadJson: SFX/TYPHOON SFX2
+  waitForCompletion: 0
+  waitSeconds: 0
 --- !u!114 &7441956843100315374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,7 +1218,7 @@ MonoBehaviour:
     animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
     animationName: MrCorin_Normal
     flipX: 0
-    state: 0
+    state: 1
   questionText: (Both kids grab their bags and turn to Mr. Corin.)
   dialogAudio: {fileID: 0}
   displayTime: 0
