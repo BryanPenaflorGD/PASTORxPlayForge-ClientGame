@@ -15,4 +15,8 @@ public class MusicSFX : MonoBehaviour
     {
         AudioActionHandler.Instance.PlaySFX("SFX/POP");
     }
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
