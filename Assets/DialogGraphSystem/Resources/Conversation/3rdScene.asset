@@ -434,8 +434,8 @@ MonoBehaviour:
     animationName: MrCorin_Normal
     flipX: 0
     state: 1
-  questionText: 'Thank you, Sir Corin! Now I really understand how typhoons form!
-    and why they lose strength on land!  '
+  questionText: Thank you, Sir Corin! Now I really understand how typhoons form!
+    and why they lose strength on land! . . . . . . ..
   dialogAudio: {fileID: 8300000, guid: e3882f85c36a98b45a7c4dac0d231673, type: 3}
   displayTime: 0
   videoEndTime: 0
