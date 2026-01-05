@@ -983,7 +983,8 @@ MonoBehaviour:
     flipX: 0
     state: 0
   questionText: "Well done, Weather Warriors! You\u2019ve just learned how a typhoon
-    gains strength over warm seas \u2014 and weakens when it reaches land. "
+    gains strength over warm seas \u2014 and weakens when it reaches land. . . .
+    . "
   dialogAudio: {fileID: 8300000, guid: c49857c62159e72488b159dead55652a, type: 3}
   displayTime: 0
   videoEndTime: 0
