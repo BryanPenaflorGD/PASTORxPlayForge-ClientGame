@@ -50,6 +50,11 @@ namespace DialogSystem.Runtime.Core
         // =========================================================
         public void PlayBGM(string audioFileName)
         {
+            if (musicSource.isPlaying)
+            {
+                // Stop current music before starting new one
+                musicSource.Stop();
+            }
             string cleanName = audioFileName?.Trim();
             AudioClip clip = Resources.Load<AudioClip>(cleanName);
 
