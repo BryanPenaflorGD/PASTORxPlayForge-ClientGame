@@ -21,6 +21,70 @@ MonoBehaviour:
     voiceLine: {fileID: 0}
     fadeOutAfterLine: 1
     cutsceneVideo: {fileID: 32900000, guid: 8efa76fa7d34e2c498258b9d33c0948a, type: 3}
+    cinematicSubtitles:
+    - showAtTime: 8
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: It all begins over the warm ocean
+      voiceLine: {fileID: 0}
+    - showAtTime: 11
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: When sunlight heats the water, it turns into vapor that rises
+        into the air.
+      voiceLine: {fileID: 0}
+    - showAtTime: 17
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: 1c90d2f4fdae2a4408b42269ea4573b3, type: 2}
+      dialogueText: So warm air goes up, right?
+      voiceLine: {fileID: 0}
+    - showAtTime: 22
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: 'As the hot air rises, cool air rushes in to fill the space. '
+      voiceLine: {fileID: 0}
+    - showAtTime: 28
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: "Soon, the air starts to spin and twist, and clouds begin to
+        grow bigger and darker. That\u2019s the birth of a typhoon"
+      voiceLine: {fileID: 0}
+    - showAtTime: 38
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: afee438a6a0a92a4085cf9806948403f, type: 2}
+      dialogueText: Ohhh, so the ocean gives it power!
+      voiceLine: {fileID: 0}
+    - showAtTime: 41
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: "Correct! The warm ocean is like the typhoon\u2019s battery...
+        it gives it power!"
+      voiceLine: {fileID: 0}
+    - showAtTime: 48
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: afee438a6a0a92a4085cf9806948403f, type: 2}
+      dialogueText: "Wow! The ocean\u2019s charging it up like a phone battery! "
+      voiceLine: {fileID: 0}
+    - showAtTime: 52
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: "Yes! And as the swirl grows bigger\u2026"
+      voiceLine: {fileID: 0}
+    - showAtTime: 56
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: "it first becomes a weak storm called a \u201Ctropical depression\u201D\u2026."
+      voiceLine: {fileID: 0}
+    - showAtTime: 62
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: "then a stronger one called a tropical storm\u2026"
+      voiceLine: {fileID: 0}
+    - showAtTime: 67
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: "and finally \u2014 a powerful typhoon!"
+      voiceLine: {fileID: 0}
     onLineTriggered:
       m_PersistentCalls:
         m_Calls: []

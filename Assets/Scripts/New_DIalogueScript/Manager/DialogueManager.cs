@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ public class DialogueManager : MonoBehaviour
 {
     [Header("UI Elements")]
     public GameObject dialoguePanel;
-    public Image dialogueBoxBackground;
+    public Image characterNameBackground;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
 
@@ -40,10 +41,14 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping = false;
     private bool isWaitingForEvent = false;
     private Coroutine typingCoroutine;
+    private Coroutine cinematicSubtitleRoutine;
 
     void Start()
     {
+        // GHOST UI FIX 1: Ensure everything is hidden and empty at the very start
+        ClearUI();
         foreach (Animator slot in characterSlots) { slot.gameObject.SetActive(false); }
+
         if (currentChapter != null) StartChapter(currentChapter);
     }
 
@@ -117,27 +122,20 @@ public class DialogueManager : MonoBehaviour
         return currentChapter.storyBeats[currentBeatIndex].lines[currentLineIndex];
     }
 
-    // --- NEW: THE LOOKAHEAD SYSTEM ---
     void PreloadNextVideo()
     {
         int searchLineIndex = currentLineIndex + 1;
         int searchBeatIndex = currentBeatIndex;
 
-        // Scan the upcoming lines in the background
         while (searchBeatIndex < currentChapter.storyBeats.Length)
         {
             while (searchLineIndex < currentChapter.storyBeats[searchBeatIndex].lines.Length)
             {
                 DialogueLine nextLine = currentChapter.storyBeats[searchBeatIndex].lines[searchLineIndex];
-
-                // The moment we spot an upcoming video, tell the VideoPlayer to prepare it instantly!
-                if (nextLine.lineType == LineType.VideoCutscene)
+                if (nextLine.lineType == LineType.VideoCutscene && nextLine.cutsceneVideo != null)
                 {
-                    if (nextLine.cutsceneVideo != null)
-                    {
-                        videoHandler.PrepareVideo(nextLine.cutsceneVideo);
-                    }
-                    return; // Stop searching once we find the next video
+                    videoHandler.PrepareVideo(nextLine.cutsceneVideo);
+                    return;
                 }
                 searchLineIndex++;
             }
@@ -154,10 +152,7 @@ public class DialogueManager : MonoBehaviour
         switch (line.lineType)
         {
             case LineType.DialogueAndCharacters:
-
-                // Tell the VideoPlayer to pre-load upcoming videos while the player reads!
                 PreloadNextVideo();
-
                 line.onLineTriggered?.Invoke();
                 if (line.voiceLine != null) audioHandler.PlayVoiceLine(line.voiceLine);
 
@@ -168,7 +163,7 @@ public class DialogueManager : MonoBehaviour
                     nameText.text = line.speaker.characterName;
                     nameText.color = line.speaker.nameTextColor;
                     if (line.speaker.customDialogueBox != null)
-                        dialogueBoxBackground.sprite = line.speaker.customDialogueBox;
+                        characterNameBackground.sprite = line.speaker.customDialogueBox;
                 }
                 else
                 {
@@ -180,23 +175,31 @@ public class DialogueManager : MonoBehaviour
                 break;
 
             case LineType.VideoCutscene:
+                // GHOST UI FIX 2: Clear UI immediately before the video transition logic even starts
+                ClearUI();
                 foreach (Animator slot in characterSlots)
                 {
                     slot.gameObject.SetActive(false);
                     slot.runtimeAnimatorController = null;
                 }
-                dialoguePanel.SetActive(false);
 
-                PlayVideoWithTransitions(line.cutsceneVideo, NextLine);
+                PlayVideoWithTransitions(line, NextLine);
                 break;
 
             case LineType.LogicHookOnly:
-                // Preload here too just in case!
                 PreloadNextVideo();
                 line.onLineTriggered?.Invoke();
                 NextLine();
                 break;
         }
+    }
+
+    // Helper to completely clear and hide the Dialogue UI
+    void ClearUI()
+    {
+        dialoguePanel.SetActive(false);
+        nameText.text = "";
+        dialogueText.text = "";
     }
 
     void HandlePostLineLogic()
@@ -208,10 +211,8 @@ public class DialogueManager : MonoBehaviour
         {
             isWaitingForEvent = true;
             transitionHandler.FadeToBlack(() => {
-
                 NextLine();
                 DialogueLine nextLine = GetCurrentLine();
-
                 if (nextLine != null && nextLine.lineType != LineType.VideoCutscene)
                 {
                     transitionHandler.FadeToClear(() => {
@@ -226,20 +227,27 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void PlayVideoWithTransitions(VideoClip clip, System.Action onVideoComplete)
+    void PlayVideoWithTransitions(DialogueLine line, System.Action onVideoComplete)
     {
         isWaitingForEvent = true;
 
-        transitionHandler.FadeToBlack(() => {
-            dialoguePanel.SetActive(false);
+        // GHOST UI FIX 3: Clear UI BEFORE starting the fade to black
+        ClearUI();
 
-            // Tell the Video Handler to play, but provide an "OnStart" callback
-            // so we don't start our timers until the video has successfully buffered!
-            videoHandler.PlayVideo(clip,
+        transitionHandler.FadeToBlack(() => {
+            // Re-confirm hidden state just in case
+            ClearUI();
+
+            videoHandler.PlayVideo(line.cutsceneVideo,
                 onStart: () =>
                 {
-                    // Video has officially started playing! Now we can fade in.
-                    float timeToWait = (float)clip.length - videoFadeHeadstart;
+                    if (line.cinematicSubtitles != null && line.cinematicSubtitles.Length > 0)
+                    {
+                        if (cinematicSubtitleRoutine != null) StopCoroutine(cinematicSubtitleRoutine);
+                        cinematicSubtitleRoutine = StartCoroutine(TrackVideoSubtitles(line.cinematicSubtitles));
+                    }
+
+                    float timeToWait = (float)line.cutsceneVideo.length - videoFadeHeadstart;
                     if (timeToWait < 0) timeToWait = 0;
 
                     StartCoroutine(WaitAndFadeOutVideo(timeToWait, onVideoComplete));
@@ -250,11 +258,74 @@ public class DialogueManager : MonoBehaviour
         });
     }
 
+    IEnumerator TrackVideoSubtitles(TimedSubtitle[] subtitles)
+    {
+        List<TimedSubtitle> sortedSubtitles = new List<TimedSubtitle>(subtitles);
+        sortedSubtitles.Sort((a, b) => a.showAtTime.CompareTo(b.showAtTime));
+
+        int currentIndex = 0;
+        Coroutine showSubRoutine = null;
+
+        // GHOST UI FIX 4: Ensure panel is off before we start the video playback loop
+        dialoguePanel.SetActive(false);
+
+        while (videoHandler.videoPlayer.isPlaying || videoHandler.videoPlayer.isPrepared)
+        {
+            double videoTime = videoHandler.videoPlayer.time;
+
+            if (currentIndex < sortedSubtitles.Count && videoTime >= sortedSubtitles[currentIndex].showAtTime)
+            {
+                if (showSubRoutine != null) StopCoroutine(showSubRoutine);
+                showSubRoutine = StartCoroutine(ShowCinematicSubtitle(sortedSubtitles[currentIndex]));
+                currentIndex++;
+            }
+            yield return null;
+        }
+
+        dialoguePanel.SetActive(false);
+    }
+
+    IEnumerator ShowCinematicSubtitle(TimedSubtitle sub)
+    {
+        dialoguePanel.SetActive(true);
+        nameText.text = sub.speaker != null ? sub.speaker.characterName : "";
+        if (sub.speaker != null) nameText.color = sub.speaker.nameTextColor;
+
+        if (sub.speaker != null && sub.speaker.customDialogueBox != null)
+            characterNameBackground.sprite = sub.speaker.customDialogueBox;
+
+        if (sub.voiceLine != null) audioHandler.PlayVoiceLine(sub.voiceLine);
+
+        dialogueText.text = "";
+        int charCount = 0;
+
+        foreach (char letter in sub.dialogueText.ToCharArray())
+        {
+            dialogueText.text += letter;
+            if (letter != ' ' && charCount % blipFrequency == 0)
+            {
+                if (sub.speaker != null && sub.speaker.defaultBlipSound != null)
+                    audioHandler.PlayBlip(sub.speaker.defaultBlipSound);
+            }
+            charCount++;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        if (sub.hideAfterSeconds > 0)
+        {
+            yield return new WaitForSeconds(sub.hideAfterSeconds);
+            dialoguePanel.SetActive(false);
+            dialogueText.text = "";
+        }
+    }
+
     IEnumerator WaitAndFadeOutVideo(float waitTime, System.Action onVideoComplete)
     {
         yield return new WaitForSeconds(waitTime);
 
         transitionHandler.FadeToBlack(() => {
+            if (cinematicSubtitleRoutine != null) StopCoroutine(cinematicSubtitleRoutine);
+            ClearUI();
             videoHandler.StopAndClearVideo();
             onVideoComplete?.Invoke();
 
@@ -297,7 +368,7 @@ public class DialogueManager : MonoBehaviour
             isWaitingForEvent = true;
             transitionHandler.FadeToBlack(() => {
                 Debug.Log("Chapter Complete!");
-                dialoguePanel.SetActive(false);
+                ClearUI();
             });
         }
     }
@@ -353,15 +424,11 @@ public class DialogueManager : MonoBehaviour
             foreach (char letter in line.dialogueText.ToCharArray())
             {
                 dialogueText.text += letter;
-
                 if (letter != ' ' && charCount % blipFrequency == 0)
                 {
                     if (line.speaker != null && line.speaker.defaultBlipSound != null)
-                    {
                         audioHandler.PlayBlip(line.speaker.defaultBlipSound);
-                    }
                 }
-
                 charCount++;
                 yield return new WaitForSeconds(typingSpeed);
             }
@@ -382,12 +449,10 @@ public class DialogueManager : MonoBehaviour
     IEnumerator AutoPlayWait()
     {
         yield return new WaitForSeconds(autoPlayDelay);
-
         while (audioHandler != null && audioHandler.IsVoicePlaying())
         {
             yield return null;
         }
-
         HandlePostLineLogic();
     }
 }

@@ -2,10 +2,27 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.Events;
 using NaughtyAttributes;
-using System.Collections.Generic; // Required for Lists
+using System.Collections.Generic;
 
 public enum CharacterPosition { FarLeft, Left, Center, Right, FarRight }
 public enum LineType { DialogueAndCharacters, VideoCutscene, LogicHookOnly }
+
+// --- NEW: The Cinematic Subtitle Structure ---
+[System.Serializable]
+public class TimedSubtitle
+{
+    [Tooltip("Exact second in the video to show this dialogue (e.g., 4.5)")]
+    public float showAtTime;
+
+    [Tooltip("How many seconds the text stays on screen. Set to 0 to keep it visible until the next subtitle appears.")]
+    public float hideAfterSeconds = 3f;
+
+    public CharacterProfile speaker;
+    [TextArea(2, 4)] public string dialogueText;
+
+    [Tooltip("Optional Voice Over for this specific cinematic line")]
+    public AudioClip voiceLine;
+}
 
 [System.Serializable]
 public class StageCharacterSetup
@@ -17,8 +34,6 @@ public class StageCharacterSetup
     [Tooltip("Select the character's expression.")]
     public string expression;
 
-    // --- NAUGHTY ATTRIBUTES MAGIC ---
-    // This dynamically generates the dropdown based on the Character Profile assigned above!
     private List<string> GetExpressionList()
     {
         if (character != null && character.expressionStates != null && character.expressionStates.Count > 0)
@@ -69,6 +84,10 @@ public class DialogueLine
 
     [ShowIf("lineType", LineType.VideoCutscene)]
     public VideoClip cutsceneVideo;
+
+    [ShowIf("lineType", LineType.VideoCutscene)]
+    [Tooltip("Add precise subtitles that play over the video!")]
+    public TimedSubtitle[] cinematicSubtitles;
 
     // ==========================================
     // 3. GLOBAL LOGIC FIELDS

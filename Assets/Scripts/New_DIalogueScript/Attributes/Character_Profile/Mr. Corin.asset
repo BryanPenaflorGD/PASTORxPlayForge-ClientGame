@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Mr. Corin
   nameTextColor: {r: 1, g: 1, b: 1, a: 1}
-  customDialogueBox: {fileID: 21300000, guid: a884dfa8fa35c0a46bb60c20e9261e38, type: 3}
+  customDialogueBox: {fileID: 2012606667, guid: a884dfa8fa35c0a46bb60c20e9261e38, type: 3}
   animatorController: {fileID: 9100000, guid: 500224b059c14934dad0d5ecc141c553, type: 2}
   expressionStates:
   - MrCorin_HoldingStick
