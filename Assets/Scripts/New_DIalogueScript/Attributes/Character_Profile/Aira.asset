@@ -15,4 +15,11 @@ MonoBehaviour:
   characterName: Aira
   nameTextColor: {r: 1, g: 1, b: 1, a: 1}
   customDialogueBox: {fileID: 21300000, guid: 4f40fc083575c7d43975306709d1ef87, type: 3}
+  animatorController: {fileID: 9100000, guid: b36fc704b09cc3842940822fc46aac70, type: 2}
+  expressionStates:
+  - Aira_Excited
+  - Aira_HoldingBag
+  - Aira_Normal
+  - Aira_Playful
+  - Aira_WithBag
   defaultBlipSound: {fileID: 0}

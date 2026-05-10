@@ -10,27 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37dc810ecb7bae24b9fd1f2f31345551, type: 3}
-  m_Name: Scene1.2
+  m_Name: Scene1.4
   m_EditorClassIdentifier: 
-  beatGUID: a8ad046c-f9a7-4f8e-9df1-71463fdc2e8f
+  beatGUID: 1e3b2abb-b7b3-42d3-adc3-7595d478f462
   lines:
   - lineType: 0
     speaker: {fileID: 11400000, guid: 1c90d2f4fdae2a4408b42269ea4573b3, type: 2}
-    dialogueText: it's still raining! The wind is so strong... I hope the typhoon
-      doesn't get worse
+    dialogueText: "I don\u2019t like typhoons. They\u2019re scary."
     stageCharacters:
     - character: {fileID: 11400000, guid: 1c90d2f4fdae2a4408b42269ea4573b3, type: 2}
-      expression: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
+      expression: Aira_HoldingBag
       position: 1
       isTalking: 1
       flipX: 0
     - character: {fileID: 11400000, guid: afee438a6a0a92a4085cf9806948403f, type: 2}
-      expression: {fileID: 349362889, guid: c86d5f3b46435e64f930664488138f7c, type: 3}
+      expression: Liam_Normal
       position: 3
       isTalking: 0
       flipX: 1
-    voiceLine: {fileID: 8300000, guid: 6c7389c340f10e940803f395c7ab89f1, type: 3}
-    fadeOutAfterLine: 0
+    voiceLine: {fileID: 8300000, guid: 0bef71f22f38798438d0d97c9bec1627, type: 3}
+    fadeOutAfterLine: 1
     cutsceneVideo: {fileID: 0}
     onLineTriggered:
       m_PersistentCalls:

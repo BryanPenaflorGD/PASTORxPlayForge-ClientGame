@@ -15,4 +15,12 @@ MonoBehaviour:
   characterName: Liam
   nameTextColor: {r: 1, g: 1, b: 1, a: 1}
   customDialogueBox: {fileID: 21300000, guid: 72cad7f9449e97445af5c865b5c574d4, type: 3}
+  animatorController: {fileID: 9100000, guid: 30d117394d8fab54e8dd9c8c2f0ce4ee, type: 2}
+  expressionStates:
+  - Liam_Amazed
+  - Liam_Focused
+  - Liam_Nervous
+  - Liam_Normal
+  - Liam_Thinking
+  - Liam_WithBag
   defaultBlipSound: {fileID: 0}

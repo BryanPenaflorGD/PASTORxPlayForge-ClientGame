@@ -11,7 +11,9 @@ public class DialogueManager : MonoBehaviour
     public Image dialogueBoxBackground;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
-    public Image[] characterSlots;
+
+    [Tooltip("Assign the 5 UI slots here. They MUST have an Animator component attached!")]
+    public Animator[] characterSlots;
 
     [Header("Settings")]
     public float typingSpeed = 0.03f;
@@ -41,7 +43,7 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        foreach (Image slot in characterSlots) { slot.gameObject.SetActive(false); }
+        foreach (Animator slot in characterSlots) { slot.gameObject.SetActive(false); }
         if (currentChapter != null) StartChapter(currentChapter);
     }
 
@@ -53,8 +55,7 @@ public class DialogueManager : MonoBehaviour
 
         DialogueLine firstLine = GetCurrentLine();
 
-        // If the scene starts with a video, we skip the initial fade-in and let the video do it
-        if (firstLine.lineType == LineType.VideoCutscene)
+        if (firstLine != null && firstLine.lineType == LineType.VideoCutscene)
         {
             StartBeat();
         }
@@ -80,8 +81,8 @@ public class DialogueManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !isWaitingForEvent)
         {
             DialogueLine line = GetCurrentLine();
+            if (line == null) return;
 
-            // Only allow clicking to skip/advance if we are on a Dialogue line!
             if (line.lineType != LineType.DialogueAndCharacters) return;
 
             if (isTyping)
@@ -109,16 +110,54 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    DialogueLine GetCurrentLine() => currentChapter.storyBeats[currentBeatIndex].lines[currentLineIndex];
+    DialogueLine GetCurrentLine()
+    {
+        if (currentChapter == null || currentBeatIndex >= currentChapter.storyBeats.Length) return null;
+        if (currentLineIndex >= currentChapter.storyBeats[currentBeatIndex].lines.Length) return null;
+        return currentChapter.storyBeats[currentBeatIndex].lines[currentLineIndex];
+    }
+
+    // --- NEW: THE LOOKAHEAD SYSTEM ---
+    void PreloadNextVideo()
+    {
+        int searchLineIndex = currentLineIndex + 1;
+        int searchBeatIndex = currentBeatIndex;
+
+        // Scan the upcoming lines in the background
+        while (searchBeatIndex < currentChapter.storyBeats.Length)
+        {
+            while (searchLineIndex < currentChapter.storyBeats[searchBeatIndex].lines.Length)
+            {
+                DialogueLine nextLine = currentChapter.storyBeats[searchBeatIndex].lines[searchLineIndex];
+
+                // The moment we spot an upcoming video, tell the VideoPlayer to prepare it instantly!
+                if (nextLine.lineType == LineType.VideoCutscene)
+                {
+                    if (nextLine.cutsceneVideo != null)
+                    {
+                        videoHandler.PrepareVideo(nextLine.cutsceneVideo);
+                    }
+                    return; // Stop searching once we find the next video
+                }
+                searchLineIndex++;
+            }
+            searchBeatIndex++;
+            searchLineIndex = 0;
+        }
+    }
 
     void DisplayLine()
     {
         DialogueLine line = GetCurrentLine();
+        if (line == null) return;
 
-        // 1. EVALUATE LINE TYPE
         switch (line.lineType)
         {
             case LineType.DialogueAndCharacters:
+
+                // Tell the VideoPlayer to pre-load upcoming videos while the player reads!
+                PreloadNextVideo();
+
                 line.onLineTriggered?.Invoke();
                 if (line.voiceLine != null) audioHandler.PlayVoiceLine(line.voiceLine);
 
@@ -141,15 +180,19 @@ public class DialogueManager : MonoBehaviour
                 break;
 
             case LineType.VideoCutscene:
-                // Clear the stage and hide UI for the video
-                foreach (Image slot in characterSlots) { slot.gameObject.SetActive(false); slot.sprite = null; }
+                foreach (Animator slot in characterSlots)
+                {
+                    slot.gameObject.SetActive(false);
+                    slot.runtimeAnimatorController = null;
+                }
                 dialoguePanel.SetActive(false);
 
                 PlayVideoWithTransitions(line.cutsceneVideo, NextLine);
                 break;
 
             case LineType.LogicHookOnly:
-                // Fire the logic and immediately proceed to the next line in the background!
+                // Preload here too just in case!
+                PreloadNextVideo();
                 line.onLineTriggered?.Invoke();
                 NextLine();
                 break;
@@ -159,15 +202,22 @@ public class DialogueManager : MonoBehaviour
     void HandlePostLineLogic()
     {
         DialogueLine line = GetCurrentLine();
+        if (line == null) return;
 
         if (line.lineType == LineType.DialogueAndCharacters && line.fadeOutAfterLine)
         {
             isWaitingForEvent = true;
             transitionHandler.FadeToBlack(() => {
+
                 NextLine();
-                transitionHandler.FadeToClear(() => {
-                    isWaitingForEvent = false;
-                });
+                DialogueLine nextLine = GetCurrentLine();
+
+                if (nextLine != null && nextLine.lineType != LineType.VideoCutscene)
+                {
+                    transitionHandler.FadeToClear(() => {
+                        isWaitingForEvent = false;
+                    });
+                }
             });
         }
         else
@@ -183,14 +233,20 @@ public class DialogueManager : MonoBehaviour
         transitionHandler.FadeToBlack(() => {
             dialoguePanel.SetActive(false);
 
-            videoHandler.PlayVideo(clip, null);
+            // Tell the Video Handler to play, but provide an "OnStart" callback
+            // so we don't start our timers until the video has successfully buffered!
+            videoHandler.PlayVideo(clip,
+                onStart: () =>
+                {
+                    // Video has officially started playing! Now we can fade in.
+                    float timeToWait = (float)clip.length - videoFadeHeadstart;
+                    if (timeToWait < 0) timeToWait = 0;
 
-            float timeToWait = (float)clip.length - videoFadeHeadstart;
-            if (timeToWait < 0) timeToWait = 0;
-
-            StartCoroutine(WaitAndFadeOutVideo(timeToWait, onVideoComplete));
-
-            transitionHandler.FadeToClear();
+                    StartCoroutine(WaitAndFadeOutVideo(timeToWait, onVideoComplete));
+                    transitionHandler.FadeToClear();
+                },
+                onComplete: null
+            );
         });
     }
 
@@ -200,9 +256,19 @@ public class DialogueManager : MonoBehaviour
 
         transitionHandler.FadeToBlack(() => {
             videoHandler.StopAndClearVideo();
-            isWaitingForEvent = false;
             onVideoComplete?.Invoke();
-            transitionHandler.FadeToClear();
+
+            DialogueLine nextLine = GetCurrentLine();
+            if (nextLine != null && nextLine.lineType != LineType.VideoCutscene)
+            {
+                transitionHandler.FadeToClear(() => {
+                    isWaitingForEvent = false;
+                });
+            }
+            else
+            {
+                isWaitingForEvent = false;
+            }
         });
     }
 
@@ -238,22 +304,41 @@ public class DialogueManager : MonoBehaviour
 
     void UpdateCharacterSprites(DialogueLine line)
     {
-        foreach (Image slot in characterSlots) { slot.gameObject.SetActive(false); slot.sprite = null; }
+        foreach (Animator slot in characterSlots)
+        {
+            slot.gameObject.SetActive(false);
+            slot.runtimeAnimatorController = null;
+        }
 
         foreach (StageCharacterSetup setup in line.stageCharacters)
         {
-            if (setup.expression == null) continue;
+            if (setup.character == null || setup.character.animatorController == null) continue;
+
             int slotIndex = (int)setup.position;
-            Image slot = characterSlots[slotIndex];
+            Animator slot = characterSlots[slotIndex];
 
-            slot.sprite = setup.expression;
             slot.gameObject.SetActive(true);
+            slot.runtimeAnimatorController = setup.character.animatorController;
+            slot.Update(0f);
 
-            Vector3 currentScale = slot.rectTransform.localScale;
+            if (!string.IsNullOrEmpty(setup.expression))
+            {
+                slot.Play(setup.expression, 0, 0f);
+            }
+
+            slot.speed = setup.isTalking ? 1f : 0f;
+
+            RectTransform rect = slot.GetComponent<RectTransform>();
+            Vector3 currentScale = rect.localScale;
             currentScale.x = setup.flipX ? -1 : 1;
-            slot.rectTransform.localScale = currentScale;
+            rect.localScale = currentScale;
 
-            slot.color = setup.isTalking ? Color.white : dimmedColor;
+            Image img = slot.GetComponent<Image>();
+            if (img != null)
+            {
+                img.color = setup.isTalking ? Color.white : dimmedColor;
+                img.preserveAspect = true;
+            }
         }
     }
 
@@ -297,6 +382,12 @@ public class DialogueManager : MonoBehaviour
     IEnumerator AutoPlayWait()
     {
         yield return new WaitForSeconds(autoPlayDelay);
+
+        while (audioHandler != null && audioHandler.IsVoicePlaying())
+        {
+            yield return null;
+        }
+
         HandlePostLineLogic();
     }
 }

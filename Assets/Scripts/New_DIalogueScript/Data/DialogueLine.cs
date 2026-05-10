@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.Events;
-using NaughtyAttributes; // Required for the [ShowIf] clean inspector
+using NaughtyAttributes;
+using System.Collections.Generic; // Required for Lists
 
 public enum CharacterPosition { FarLeft, Left, Center, Right, FarRight }
 public enum LineType { DialogueAndCharacters, VideoCutscene, LogicHookOnly }
@@ -9,8 +10,25 @@ public enum LineType { DialogueAndCharacters, VideoCutscene, LogicHookOnly }
 [System.Serializable]
 public class StageCharacterSetup
 {
+    [Tooltip("Drag the Character Profile here first to populate the expression dropdown!")]
     public CharacterProfile character;
-    public Sprite expression;
+
+    [Dropdown("GetExpressionList")]
+    [Tooltip("Select the character's expression.")]
+    public string expression;
+
+    // --- NAUGHTY ATTRIBUTES MAGIC ---
+    // This dynamically generates the dropdown based on the Character Profile assigned above!
+    private List<string> GetExpressionList()
+    {
+        if (character != null && character.expressionStates != null && character.expressionStates.Count > 0)
+        {
+            return character.expressionStates;
+        }
+        return new List<string> { "No Character Selected" };
+    }
+
+    [Space(10)]
     public CharacterPosition position;
 
     [Tooltip("Uncheck to dim the character (e.g., when they aren't speaking)")]

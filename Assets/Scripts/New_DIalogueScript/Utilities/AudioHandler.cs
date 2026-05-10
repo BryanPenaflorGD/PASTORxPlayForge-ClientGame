@@ -30,4 +30,11 @@ public class AudioHandler : MonoBehaviour
         // We lower the volume slightly so the blips don't overpower the music
         sfxSource.PlayOneShot(clip, 0.5f);
     }
+
+    // --- NEW: Allows the DialogueManager to check if the voice is still talking! ---
+    public bool IsVoicePlaying()
+    {
+        if (voiceSource == null) return false;
+        return voiceSource.isPlaying;
+    }
 }

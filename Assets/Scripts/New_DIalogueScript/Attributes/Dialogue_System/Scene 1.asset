@@ -17,3 +17,11 @@ MonoBehaviour:
   storyBeats:
   - {fileID: 11400000, guid: 128a08d7f1780d142982c3cde818b3ac, type: 2}
   - {fileID: 11400000, guid: 11609217a45e2384d991ec82809fb3a2, type: 2}
+  - {fileID: 11400000, guid: 0354b4af8f8fdbb43be9843c6618e6b3, type: 2}
+  - {fileID: 11400000, guid: 3fbede7ec31ba3c46b716e896988d7ed, type: 2}
+  - {fileID: 11400000, guid: f617249c48c07b545865082c62545215, type: 2}
+  - {fileID: 11400000, guid: 979e32660899b414aa3ad58c9ad11fcd, type: 2}
+  - {fileID: 11400000, guid: 4061311df14c9c149aa104df3e0b84c3, type: 2}
+  - {fileID: 11400000, guid: ed0bc37762ddca448a980bb86d46863e, type: 2}
+  - {fileID: 11400000, guid: 35c5c4537c95b0346a8d06b72e7e5ef5, type: 2}
+  - {fileID: 11400000, guid: 66d1e111269905b44803980279af2008, type: 2}

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37dc810ecb7bae24b9fd1f2f31345551, type: 3}
+  m_Name: Scene1.10
+  m_EditorClassIdentifier: 
+  beatGUID: 0bfb2533-455c-4eea-bea5-e3271b9aaa4b
+  lines:
+  - lineType: 1
+    speaker: {fileID: 0}
+    dialogueText: 
+    stageCharacters: []
+    voiceLine: {fileID: 0}
+    fadeOutAfterLine: 1
+    cutsceneVideo: {fileID: 32900000, guid: 8efa76fa7d34e2c498258b9d33c0948a, type: 3}
+    onLineTriggered:
+      m_PersistentCalls:
+        m_Calls: []
