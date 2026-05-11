@@ -40,16 +40,32 @@ public class DialogueManager : MonoBehaviour
     private int currentLineIndex = 0;
     private bool isTyping = false;
     private bool isWaitingForEvent = false;
+    private bool isPaused = false; // --- PAUSE TRACKER ---
     private Coroutine typingCoroutine;
     private Coroutine cinematicSubtitleRoutine;
 
     void Start()
     {
-        // GHOST UI FIX 1: Ensure everything is hidden and empty at the very start
         ClearUI();
         foreach (Animator slot in characterSlots) { slot.gameObject.SetActive(false); }
-
         if (currentChapter != null) StartChapter(currentChapter);
+    }
+
+    // --- PAUSE TOGGLE METHOD ---
+    public void TogglePause(bool pauseState)
+    {
+        isPaused = pauseState;
+
+        if (isPaused)
+        {
+            videoHandler.PauseVideo();
+            audioHandler.PauseAudio();
+        }
+        else
+        {
+            videoHandler.ResumeVideo();
+            audioHandler.ResumeAudio();
+        }
     }
 
     public void StartChapter(StoryChapter chapter)
@@ -83,6 +99,9 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
+        // 1. Block clicks if paused
+        if (isPaused) return;
+
         if (Input.GetMouseButtonDown(0) && !isWaitingForEvent)
         {
             DialogueLine line = GetCurrentLine();
@@ -175,7 +194,6 @@ public class DialogueManager : MonoBehaviour
                 break;
 
             case LineType.VideoCutscene:
-                // GHOST UI FIX 2: Clear UI immediately before the video transition logic even starts
                 ClearUI();
                 foreach (Animator slot in characterSlots)
                 {
@@ -194,7 +212,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // Helper to completely clear and hide the Dialogue UI
     void ClearUI()
     {
         dialoguePanel.SetActive(false);
@@ -230,12 +247,9 @@ public class DialogueManager : MonoBehaviour
     void PlayVideoWithTransitions(DialogueLine line, System.Action onVideoComplete)
     {
         isWaitingForEvent = true;
-
-        // GHOST UI FIX 3: Clear UI BEFORE starting the fade to black
         ClearUI();
 
         transitionHandler.FadeToBlack(() => {
-            // Re-confirm hidden state just in case
             ClearUI();
 
             videoHandler.PlayVideo(line.cutsceneVideo,
@@ -266,11 +280,13 @@ public class DialogueManager : MonoBehaviour
         int currentIndex = 0;
         Coroutine showSubRoutine = null;
 
-        // GHOST UI FIX 4: Ensure panel is off before we start the video playback loop
         dialoguePanel.SetActive(false);
 
-        while (videoHandler.videoPlayer.isPlaying || videoHandler.videoPlayer.isPrepared)
+        while (videoHandler.videoPlayer.isPlaying || isPaused)
         {
+            // --- PAUSE GATE ---
+            while (isPaused) yield return null;
+
             double videoTime = videoHandler.videoPlayer.time;
 
             if (currentIndex < sortedSubtitles.Count && videoTime >= sortedSubtitles[currentIndex].showAtTime)
@@ -301,6 +317,9 @@ public class DialogueManager : MonoBehaviour
 
         foreach (char letter in sub.dialogueText.ToCharArray())
         {
+            // --- PAUSE GATE ---
+            while (isPaused) yield return null;
+
             dialogueText.text += letter;
             if (letter != ' ' && charCount % blipFrequency == 0)
             {
@@ -313,7 +332,13 @@ public class DialogueManager : MonoBehaviour
 
         if (sub.hideAfterSeconds > 0)
         {
-            yield return new WaitForSeconds(sub.hideAfterSeconds);
+            float timer = 0;
+            while (timer < sub.hideAfterSeconds)
+            {
+                while (isPaused) yield return null;
+                timer += Time.deltaTime;
+                yield return null;
+            }
             dialoguePanel.SetActive(false);
             dialogueText.text = "";
         }
@@ -321,7 +346,13 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator WaitAndFadeOutVideo(float waitTime, System.Action onVideoComplete)
     {
-        yield return new WaitForSeconds(waitTime);
+        float elapsed = 0;
+        while (elapsed < waitTime)
+        {
+            while (isPaused) yield return null;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
 
         transitionHandler.FadeToBlack(() => {
             if (cinematicSubtitleRoutine != null) StopCoroutine(cinematicSubtitleRoutine);
@@ -423,6 +454,9 @@ public class DialogueManager : MonoBehaviour
         {
             foreach (char letter in line.dialogueText.ToCharArray())
             {
+                // --- PAUSE GATE ---
+                while (isPaused) yield return null;
+
                 dialogueText.text += letter;
                 if (letter != ' ' && charCount % blipFrequency == 0)
                 {
@@ -448,8 +482,15 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator AutoPlayWait()
     {
-        yield return new WaitForSeconds(autoPlayDelay);
-        while (audioHandler != null && audioHandler.IsVoicePlaying())
+        float elapsed = 0;
+        while (elapsed < autoPlayDelay)
+        {
+            while (isPaused) yield return null;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        while (audioHandler != null && audioHandler.IsVoicePlaying() || isPaused)
         {
             yield return null;
         }

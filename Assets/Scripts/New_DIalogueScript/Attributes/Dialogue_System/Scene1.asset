@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Scene 1
-  m_EditorClassIdentifier: Assembly-CSharp::StoryChapter
-  chapterTitle: Scene 1
-  chapterGUID: 43f643c3-5bad-4472-9886-5a348abdb4d0
+  m_Script: {fileID: 11500000, guid: 423fb342f257b334581b2630b5569527, type: 3}
+  m_Name: Scene1
+  m_EditorClassIdentifier: 
+  chapterTitle: Scene1
+  chapterGUID: ec80ad3e-d9c8-45ae-858a-974ffd8901d8
   storyBeats:
   - {fileID: 11400000, guid: 128a08d7f1780d142982c3cde818b3ac, type: 2}
   - {fileID: 11400000, guid: 11609217a45e2384d991ec82809fb3a2, type: 2}

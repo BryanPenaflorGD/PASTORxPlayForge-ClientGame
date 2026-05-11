@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 37dc810ecb7bae24b9fd1f2f31345551, type: 3}
   m_Name: Scene1.1
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueBeat
-  beatGUID: c446022a-b074-4697-8859-5f58d795d22f
+  m_EditorClassIdentifier: 
+  beatGUID: 40271d4d-afd9-454e-b357-fff7bf7db26f
   lines:
   - lineType: 1
     speaker: {fileID: 0}
@@ -21,6 +21,7 @@ MonoBehaviour:
     voiceLine: {fileID: 0}
     fadeOutAfterLine: 1
     cutsceneVideo: {fileID: 32900000, guid: 14e6f013516dc3247b97036f2a7eeb60, type: 3}
+    cinematicSubtitles: []
     onLineTriggered:
       m_PersistentCalls:
         m_Calls: []
