@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37dc810ecb7bae24b9fd1f2f31345551, type: 3}
   m_Name: Scene1.3
   m_EditorClassIdentifier: 
-  beatGUID: 5c5ed91e-7eb1-4a23-8d5b-8ac80b5378fa
+  beatGUID: 5c5ed91e-7eb1-4a23-8d5b-8ac80b5378faa
   lines:
   - lineType: 0
     speaker: {fileID: 11400000, guid: afee438a6a0a92a4085cf9806948403f, type: 2}
@@ -20,18 +20,19 @@ MonoBehaviour:
       streets are already flooding!"
     stageCharacters:
     - character: {fileID: 11400000, guid: 1c90d2f4fdae2a4408b42269ea4573b3, type: 2}
-      expression: {fileID: -497643973, guid: 6035908106eab124db2ca64d905d3ec9, type: 3}
+      expression: Aira_HoldingBag
       position: 1
       isTalking: 0
       flipX: 0
     - character: {fileID: 11400000, guid: afee438a6a0a92a4085cf9806948403f, type: 2}
-      expression: {fileID: 349362889, guid: c86d5f3b46435e64f930664488138f7c, type: 3}
+      expression: Liam_Normal
       position: 3
       isTalking: 1
       flipX: 1
     voiceLine: {fileID: 8300000, guid: 9468bc9dc4cc05a4080ebdfa290de456, type: 3}
     fadeOutAfterLine: 0
     cutsceneVideo: {fileID: 0}
+    cinematicSubtitles: []
     onLineTriggered:
       m_PersistentCalls:
         m_Calls: []

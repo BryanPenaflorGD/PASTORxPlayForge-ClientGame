@@ -15,6 +15,7 @@ MonoBehaviour:
   beatGUID: b405d070-8c5f-465e-ab38-899c285f93de
   lines:
   - lineType: 1
+    bgmChange: {fileID: 0}
     speaker: {fileID: 0}
     dialogueText: 
     stageCharacters: []
@@ -27,6 +28,10 @@ MonoBehaviour:
       speaker: {fileID: 11400000, guid: 1c90d2f4fdae2a4408b42269ea4573b3, type: 2}
       dialogueText: The portal's opening! Let's go!
       voiceLine: {fileID: 8300000, guid: 3e17ada032df168428aaa8f3d8bd799b, type: 3}
+    cinematicSFX:
+    - playAtTime: 0.1
+      sfxClip: {fileID: 8300000, guid: 03ad92b734acd6b42a0d98bb028020a6, type: 3}
+      volume: 1
     onLineTriggered:
       m_PersistentCalls:
         m_Calls: []

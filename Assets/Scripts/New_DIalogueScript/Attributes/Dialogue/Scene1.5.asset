@@ -15,12 +15,18 @@ MonoBehaviour:
   beatGUID: 1cb47e6a-088e-456f-aa0b-ba458da6ccd8
   lines:
   - lineType: 1
+    bgmChange: {fileID: 0}
     speaker: {fileID: 0}
     dialogueText: 
     stageCharacters: []
     voiceLine: {fileID: 0}
     fadeOutAfterLine: 1
     cutsceneVideo: {fileID: 32900000, guid: 0b4562a778fb0bb4fab15cabb8e6e229, type: 3}
+    cinematicSubtitles: []
+    cinematicSFX:
+    - playAtTime: 0.1
+      sfxClip: {fileID: 8300000, guid: ecf108fbf4b3c8740a9588c5754b453f, type: 3}
+      volume: 1
     onLineTriggered:
       m_PersistentCalls:
         m_Calls: []

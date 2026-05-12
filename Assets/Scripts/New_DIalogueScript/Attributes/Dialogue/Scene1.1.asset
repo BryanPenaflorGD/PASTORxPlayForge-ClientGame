@@ -15,6 +15,7 @@ MonoBehaviour:
   beatGUID: 40271d4d-afd9-454e-b357-fff7bf7db26f
   lines:
   - lineType: 1
+    bgmChange: {fileID: 8300000, guid: bb2652e7b82abc24c881ef2f51938256, type: 3}
     speaker: {fileID: 0}
     dialogueText: 
     stageCharacters: []
@@ -22,6 +23,7 @@ MonoBehaviour:
     fadeOutAfterLine: 1
     cutsceneVideo: {fileID: 32900000, guid: 14e6f013516dc3247b97036f2a7eeb60, type: 3}
     cinematicSubtitles: []
+    cinematicSFX: []
     onLineTriggered:
       m_PersistentCalls:
         m_Calls: []

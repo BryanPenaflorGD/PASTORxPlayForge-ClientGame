@@ -8,13 +8,19 @@ public class VideoHandler : MonoBehaviour
     public VideoPlayer videoPlayer;
     public RawImage videoDisplayUI;
 
+    [Header("Audio Routing")]
+    [Tooltip("Assign an AudioSource that is routed to the SFX Mixer Group")]
+    public AudioSource videoAudioSource;
+
     private Action onVideoCompleteCallback;
     private Action onVideoPreparedCallback;
 
     void Awake()
     {
         videoPlayer.playOnAwake = false;
-        videoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
+
+        // Ensure the player is set to route to an AudioSource
+        videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
         videoPlayer.prepareCompleted += OnVideoPrepared;
     }
 
@@ -24,7 +30,6 @@ public class VideoHandler : MonoBehaviour
         videoDisplayUI.gameObject.SetActive(false);
     }
 
-    // --- NEW PAUSE METHODS ---
     public void PauseVideo()
     {
         if (videoPlayer.isPlaying) videoPlayer.Pause();
@@ -41,12 +46,16 @@ public class VideoHandler : MonoBehaviour
         if (videoPlayer.clip == clip) return;
 
         videoPlayer.clip = clip;
+
+        // --- FIX: Re-bind the AudioSource to the specific clip's track ---
         if (clip.audioTrackCount > 0)
         {
             videoPlayer.controlledAudioTrackCount = 1;
             videoPlayer.EnableAudioTrack(0, true);
-            videoPlayer.SetDirectAudioVolume(0, 1f);
+            // This line ensures the VideoPlayer sends audio to your specific AudioSource
+            videoPlayer.SetTargetAudioSource(0, videoAudioSource);
         }
+
         videoPlayer.Prepare();
     }
 
