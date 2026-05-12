@@ -29,7 +29,8 @@ public class QuizManager : MonoBehaviour
 
     private void Update()
     {
-        if (!timerRunning) return;
+        // Time.timeScale is 0 when paused — no PauseManager reference needed
+        if (!timerRunning || Time.timeScale == 0f) return;
 
         timer -= Time.deltaTime;
 

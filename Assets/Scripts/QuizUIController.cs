@@ -47,24 +47,11 @@ public class QuizUIController : MonoBehaviour
 
     private void Update()
     {
-        // Only update the text if the QuizManager instance exists 
-        // and a quiz is currently running
-        if (QuizManager.Instance != null && timerText != null)
+        if (QuizManager.Instance != null && timerText != null && Time.timeScale != 0f)
         {
             float time = QuizManager.Instance.CurrentTimer;
-
-            // CeilToInt turns 29.1 into 30 so the player sees whole numbers
             timerText.text = Mathf.CeilToInt(time).ToString();
-
-            // Optional: Turn the text red when time is low (less than 5 seconds)
-            if (time <= 5f)
-            {
-                timerText.color = Color.red;
-            }
-            else
-            {
-                timerText.color = Color.black;
-            }
+            timerText.color = time <= 5f ? Color.red : Color.black;
         }
     }
 
