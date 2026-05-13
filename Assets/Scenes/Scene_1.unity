@@ -2494,7 +2494,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -660, y: 0}
+  m_AnchoredPosition: {x: -650, y: 0}
   m_SizeDelta: {x: 450, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1031892023
@@ -2589,8 +2589,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2044d9d117c5b5f4c8594a312793da6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chapterIndex: 0
   dialoguePanel: {fileID: 186080386}
   characterNameBackground: {fileID: 1398403599}
+  defaultNameBox: {fileID: -942161498, guid: 626528cf1d425a742a990fbddf68de6b, type: 3}
   nameText: {fileID: 1027702749}
   dialogueText: {fileID: 1199634779}
   advanceButton: {fileID: 803525776}
@@ -3689,7 +3691,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -510, y: 0}
+  m_AnchoredPosition: {x: -410, y: 0}
   m_SizeDelta: {x: 450, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1389698521

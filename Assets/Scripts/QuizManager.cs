@@ -92,7 +92,7 @@ public class QuizManager : MonoBehaviour
 
     private void FinishQuiz()
     {
-        DialogSystem.Runtime.Core.ProgressionManager.Instance.CompleteCurrentQuiz();
+        ProgressionManager.Instance.CompleteCurrentStep(1);
         OnQuizFinished?.Invoke(
             correctCount,
             currentQuiz.questions.Count,

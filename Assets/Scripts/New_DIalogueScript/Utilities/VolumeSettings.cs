@@ -9,7 +9,7 @@ public class VolumeSettings : MonoBehaviour
     public Slider bgmSlider;
     public Slider sfxSlider;
 
-    void Start()
+    void Awake()
     {
         // Load saved values or default to 0.75f
         masterSlider.value = PlayerPrefs.GetFloat("MasterVol", 0.75f);

@@ -1,15 +1,21 @@
+using DialogSystem.Runtime.Core;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Progression")]
+    public int chapterIndex;
+
     [Header("UI Elements")]
     public GameObject dialoguePanel;
     public Image characterNameBackground;
+    public Sprite defaultNameBox; // NEW: Fallback sprite
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Button advanceButton;
@@ -66,8 +72,6 @@ public class DialogueManager : MonoBehaviour
         else
         {
             audioHandler.ResumeAudio();
-
-            // Culprit Fix: Only resume video if we are currently on a video line
             DialogueLine line = GetCurrentLine();
             if (line != null && line.lineType == LineType.VideoCutscene)
             {
@@ -162,6 +166,29 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // Helper to unify UI updates for both standard and cinematic lines
+    private void SetSpeakerUI(CharacterProfile speaker)
+    {
+        if (speaker != null)
+        {
+            nameText.text = speaker.characterName;
+            nameText.color = speaker.nameTextColor;
+
+            // Fix: If character has custom box, use it; otherwise, use default
+            if (characterNameBackground != null)
+            {
+                characterNameBackground.sprite = speaker.customDialogueBox != null
+                    ? speaker.customDialogueBox
+                    : defaultNameBox;
+            }
+        }
+        else
+        {
+            nameText.text = "";
+            if (characterNameBackground != null) characterNameBackground.sprite = defaultNameBox;
+        }
+    }
+
     void DisplayLine()
     {
         DialogueLine line = GetCurrentLine();
@@ -177,14 +204,7 @@ public class DialogueManager : MonoBehaviour
                 if (line.voiceLine != null) audioHandler.PlayVoiceLine(line.voiceLine);
 
                 dialoguePanel.SetActive(true);
-                if (line.speaker != null)
-                {
-                    nameText.text = line.speaker.characterName;
-                    nameText.color = line.speaker.nameTextColor;
-                    if (line.speaker.customDialogueBox != null)
-                        characterNameBackground.sprite = line.speaker.customDialogueBox;
-                }
-                else nameText.text = "";
+                SetSpeakerUI(line.speaker); // Unified call
 
                 UpdateCharacterSprites(line);
                 typingCoroutine = StartCoroutine(TypeText(line));
@@ -212,6 +232,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         nameText.text = "";
         dialogueText.text = "";
+        if (characterNameBackground != null) characterNameBackground.sprite = defaultNameBox;
         audioHandler.DuckBGM(false);
     }
 
@@ -321,8 +342,7 @@ public class DialogueManager : MonoBehaviour
     IEnumerator ShowCinematicSubtitle(TimedSubtitle sub)
     {
         dialoguePanel.SetActive(true);
-        nameText.text = sub.speaker != null ? sub.speaker.characterName : "";
-        if (sub.speaker != null) nameText.color = sub.speaker.nameTextColor;
+        SetSpeakerUI(sub.speaker); // FIX: Now updates the background sprite during videos
 
         if (sub.voiceLine != null)
         {
@@ -402,8 +422,25 @@ public class DialogueManager : MonoBehaviour
             transitionHandler.FadeToBlack(() => {
                 ClearUI();
                 audioHandler.StopBGM();
+                CompleteChapter();
             });
         }
+    }
+
+    void CompleteChapter()
+    {
+        isWaitingForEvent = true;
+        transitionHandler.FadeToBlack(() => {
+            ClearUI();
+            audioHandler.StopBGM();
+
+            if (ProgressionManager.Instance != null)
+            {
+                ProgressionManager.Instance.CompleteCurrentStep(chapterIndex);
+            }
+
+            SceneManager.LoadScene("Main_Menu");
+        });
     }
 
     void UpdateCharacterSprites(DialogueLine line)
