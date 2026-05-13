@@ -140,7 +140,7 @@ public class JumbleQuiz : MonoBehaviour
         else
         {
             //IGDI ANG PAGLIPAT NING SCENE
-            ProgressionManager.Instance.CompleteCurrentStep(2);
+            ProgressionManager.Instance.CompleteCurrentStep(3);
             SceneManager.LoadScene("SelectionScene");
         }
 

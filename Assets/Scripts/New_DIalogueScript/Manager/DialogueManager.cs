@@ -166,7 +166,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // Helper to unify UI updates for both standard and cinematic lines
     private void SetSpeakerUI(CharacterProfile speaker)
     {
         if (speaker != null)
@@ -174,7 +173,6 @@ public class DialogueManager : MonoBehaviour
             nameText.text = speaker.characterName;
             nameText.color = speaker.nameTextColor;
 
-            // Fix: If character has custom box, use it; otherwise, use default
             if (characterNameBackground != null)
             {
                 characterNameBackground.sprite = speaker.customDialogueBox != null
@@ -204,7 +202,7 @@ public class DialogueManager : MonoBehaviour
                 if (line.voiceLine != null) audioHandler.PlayVoiceLine(line.voiceLine);
 
                 dialoguePanel.SetActive(true);
-                SetSpeakerUI(line.speaker); // Unified call
+                SetSpeakerUI(line.speaker);
 
                 UpdateCharacterSprites(line);
                 typingCoroutine = StartCoroutine(TypeText(line));
@@ -296,9 +294,12 @@ public class DialogueManager : MonoBehaviour
         sortedSFX.Sort((a, b) => a.playAtTime.CompareTo(b.playAtTime));
         int currentIndex = 0;
 
-        while (!videoHandler.videoPlayer.isPlaying && !isPaused) yield return null;
+        // Wait for video to actually be prepared and playing, or if it resumed from pause
+        while (!videoHandler.videoPlayer.isPlaying && videoHandler.videoPlayer.time == 0 && !isPaused) yield return null;
 
-        while (videoHandler.videoPlayer.isPlaying || isPaused)
+        // Loop indefinitely. WaitAndFadeOutVideo will explicitly stop this coroutine when the video sequence ends.
+        // This prevents 'isPlaying' from returning false and killing the coroutine on Alt-Tab.
+        while (true)
         {
             while (isPaused) yield return null;
 
@@ -319,9 +320,12 @@ public class DialogueManager : MonoBehaviour
         int currentIndex = 0;
         Coroutine showSubRoutine = null;
 
-        while (!videoHandler.videoPlayer.isPlaying && !isPaused) yield return null;
+        // Wait for video to actually be prepared and playing, or if it resumed from pause
+        while (!videoHandler.videoPlayer.isPlaying && videoHandler.videoPlayer.time == 0 && !isPaused) yield return null;
 
-        while (videoHandler.videoPlayer.isPlaying || isPaused)
+        // Loop indefinitely until explicitly stopped by WaitAndFadeOutVideo.
+        // This prevents the subtitles from breaking when Alt-Tabbing causes isPlaying to temporarily toggle false.
+        while (true)
         {
             while (isPaused) yield return null;
 
@@ -336,13 +340,12 @@ public class DialogueManager : MonoBehaviour
             }
             yield return null;
         }
-        dialoguePanel.SetActive(false);
     }
 
     IEnumerator ShowCinematicSubtitle(TimedSubtitle sub)
     {
         dialoguePanel.SetActive(true);
-        SetSpeakerUI(sub.speaker); // FIX: Now updates the background sprite during videos
+        SetSpeakerUI(sub.speaker);
 
         if (sub.voiceLine != null)
         {
@@ -382,7 +385,10 @@ public class DialogueManager : MonoBehaviour
         float waitTime = videoDuration - videoFadeHeadstart;
         float elapsed = 0;
 
-        while (elapsed < waitTime)
+        // Use the VideoPlayer's actual time to check when to fade.
+        // This completely prevents fade desyncs if the game lags or the user Alt-Tabs.
+        // 'elapsed' acts purely as a failsafe timeout if the video player crashes.
+        while (videoHandler.videoPlayer.time < waitTime && elapsed < videoDuration + 2.0f)
         {
             while (isPaused) yield return null;
             elapsed += Time.deltaTime;

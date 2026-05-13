@@ -9,16 +9,25 @@ public class VolumeSettings : MonoBehaviour
     public Slider bgmSlider;
     public Slider sfxSlider;
 
-    void Awake()
+    void Start() // Changed to Start for better reliability with UI/Mixer initialization
     {
-        // Load saved values or default to 0.75f
+        // 1. Add listeners FIRST
+        masterSlider.onValueChanged.AddListener(SetMasterVolume);
+        bgmSlider.onValueChanged.AddListener(SetBGMVolume);
+        sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+
+        // 2. Load and set values. 
+        // Setting .value now triggers the listeners added above, 
+        // which automatically updates the AudioMixer.
         masterSlider.value = PlayerPrefs.GetFloat("MasterVol", 0.75f);
         bgmSlider.value = PlayerPrefs.GetFloat("BGMVol", 0.75f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVol", 0.75f);
 
-        masterSlider.onValueChanged.AddListener(SetMasterVolume);
-        bgmSlider.onValueChanged.AddListener(SetBGMVolume);
-        sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+        // 3. Force an update in case the slider values were already 
+        // equal to the saved values (which wouldn't trigger onValueChanged)
+        SetMasterVolume(masterSlider.value);
+        SetBGMVolume(bgmSlider.value);
+        SetSFXVolume(sfxSlider.value);
     }
 
     public void SetMasterVolume(float value) => SetMixerVolume("MasterVol", value);
