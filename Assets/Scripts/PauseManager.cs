@@ -1,32 +1,64 @@
 using UnityEngine;
-using UnityEngine.Video;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    private List<VideoPlayer> videoPlayers = new List<VideoPlayer>();
+    [Header("UI")]
+    public GameObject pauseMenuUI;
+
+    [Header("Settings")]
+    public string mainMenuSceneName = "MainMenu";
+
+    public static bool IsPaused { get; private set; } = false;
 
     void Start()
     {
-        // Register all videos at start
-        videoPlayers.AddRange(FindObjectsByType<VideoPlayer>(FindObjectsSortMode.None));
+        if (pauseMenuUI != null)
+            pauseMenuUI.SetActive(false);
     }
 
-    public void PauseAll()
+    // No Update() needed — button calls TogglePause() directly
+
+    public void TogglePause()
     {
-        foreach (var vp in videoPlayers)
-            vp.Pause();
+        if (IsPaused) Resume();
+        else Pause();
     }
 
-    public void ResumeAll()
+    public void Resume()
     {
-        foreach (var vp in videoPlayers)
-            vp.Play();
+        if (pauseMenuUI != null) pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        IsPaused = false;
     }
 
-    public void StopAll()
+    public void Pause()
     {
-        foreach (var vp in videoPlayers)
-            vp.Stop();
+        if (pauseMenuUI != null) pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        IsPaused = true;
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        IsPaused = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f;
+        IsPaused = false;
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }
