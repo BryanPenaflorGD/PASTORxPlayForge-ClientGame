@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37dc810ecb7bae24b9fd1f2f31345551, type: 3}
+  m_Name: Scene2. 2
+  m_EditorClassIdentifier: 
+  beatGUID: 7f6a9e5c-41bd-4f4a-9d48-276497edd6bc
+  lines:
+  - lineType: 1
+    bgmChange: {fileID: 0}
+    speaker: {fileID: 0}
+    dialogueText: 
+    stageCharacters: []
+    voiceLine: {fileID: 0}
+    fadeOutAfterLine: 0
+    cutsceneVideo: {fileID: 32900000, guid: 618cd4c887e434b43ab9943e0f1ecd10, type: 3}
+    cinematicSubtitles:
+    - showAtTime: 0.1
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: "When the ocean water is warm \u2014 like in the Pacific Ocean
+        or the South China Sea \u2014 it gives off lots of heat and moisture."
+      voiceLine: {fileID: 0}
+    - showAtTime: 9
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: "That\u2019s why typhoons usually start there. But if the water
+        is cool, like near land or in colder seas, the typhoon becomes weaker."
+      voiceLine: {fileID: 0}
+    - showAtTime: 22
+      hideAfterSeconds: 8
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: "Let\u2019s make our own mini typhoon! This warm water is like
+        the ocean, the ice is cool air, and this fan is the wind. "
+      voiceLine: {fileID: 0}
+    cinematicSFX: []
+    onLineTriggered:
+      m_PersistentCalls:
+        m_Calls: []

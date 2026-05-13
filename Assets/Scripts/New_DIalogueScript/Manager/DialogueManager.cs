@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour
     public Image characterNameBackground;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
+    public Button advanceButton;
 
     public Animator[] characterSlots;
 
@@ -41,12 +42,16 @@ public class DialogueManager : MonoBehaviour
     private bool isPaused = false;
     private Coroutine typingCoroutine;
     private Coroutine cinematicSubtitleRoutine;
-    private Coroutine cinematicSFXRoutine; // --- NEW ---
+    private Coroutine cinematicSFXRoutine;
 
     void Start()
     {
         ClearUI();
         foreach (Animator slot in characterSlots) { slot.gameObject.SetActive(false); }
+
+        if (advanceButton != null)
+            advanceButton.onClick.AddListener(OnAdvanceInput);
+
         if (currentChapter != null) StartChapter(currentChapter);
     }
 
@@ -60,8 +65,46 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            videoHandler.ResumeVideo();
             audioHandler.ResumeAudio();
+
+            // Culprit Fix: Only resume video if we are currently on a video line
+            DialogueLine line = GetCurrentLine();
+            if (line != null && line.lineType == LineType.VideoCutscene)
+            {
+                videoHandler.ResumeVideo();
+            }
+        }
+    }
+
+    public void OnAdvanceInput()
+    {
+        if (isPaused || isWaitingForEvent) return;
+
+        DialogueLine line = GetCurrentLine();
+        if (line == null || line.lineType != LineType.DialogueAndCharacters) return;
+
+        if (isTyping)
+        {
+            StopCoroutine(typingCoroutine);
+            dialogueText.text = line.dialogueText;
+            isTyping = false;
+            audioHandler.StopVoiceLine();
+            audioHandler.DuckBGM(false);
+
+            if (isAutoPlay)
+            {
+                if (autoPlayCoroutine != null) StopCoroutine(autoPlayCoroutine);
+                autoPlayCoroutine = StartCoroutine(AutoPlayWait());
+            }
+            else if (string.IsNullOrWhiteSpace(line.dialogueText))
+            {
+                HandlePostLineLogic();
+            }
+        }
+        else
+        {
+            if (autoPlayCoroutine != null) StopCoroutine(autoPlayCoroutine);
+            HandlePostLineLogic();
         }
     }
 
@@ -88,41 +131,6 @@ public class DialogueManager : MonoBehaviour
     {
         currentLineIndex = 0;
         DisplayLine();
-    }
-
-    void Update()
-    {
-        if (isPaused) return;
-
-        if (Input.GetMouseButtonDown(0) && !isWaitingForEvent)
-        {
-            DialogueLine line = GetCurrentLine();
-            if (line == null || line.lineType != LineType.DialogueAndCharacters) return;
-
-            if (isTyping)
-            {
-                StopCoroutine(typingCoroutine);
-                dialogueText.text = line.dialogueText;
-                isTyping = false;
-                audioHandler.StopVoiceLine();
-                audioHandler.DuckBGM(false); // --- RESTORE BGM ---
-
-                if (isAutoPlay)
-                {
-                    if (autoPlayCoroutine != null) StopCoroutine(autoPlayCoroutine);
-                    autoPlayCoroutine = StartCoroutine(AutoPlayWait());
-                }
-                else if (string.IsNullOrWhiteSpace(line.dialogueText))
-                {
-                    HandlePostLineLogic();
-                }
-            }
-            else
-            {
-                if (autoPlayCoroutine != null) StopCoroutine(autoPlayCoroutine);
-                HandlePostLineLogic();
-            }
-        }
     }
 
     DialogueLine GetCurrentLine()
@@ -159,7 +167,6 @@ public class DialogueManager : MonoBehaviour
         DialogueLine line = GetCurrentLine();
         if (line == null) return;
 
-        // --- NEW: BGM CHANGE ---
         if (line.bgmChange != null) audioHandler.PlayBGM(line.bgmChange);
 
         switch (line.lineType)
@@ -188,7 +195,6 @@ public class DialogueManager : MonoBehaviour
                 foreach (Animator slot in characterSlots)
                 {
                     slot.gameObject.SetActive(false);
-                    slot.runtimeAnimatorController = null;
                 }
                 PlayVideoWithTransitions(line, NextLine);
                 break;
@@ -206,7 +212,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         nameText.text = "";
         dialogueText.text = "";
-        audioHandler.DuckBGM(false); // --- RESTORE BGM ---
+        audioHandler.DuckBGM(false);
     }
 
     void HandlePostLineLogic()
@@ -239,43 +245,37 @@ public class DialogueManager : MonoBehaviour
             videoHandler.PlayVideo(line.cutsceneVideo,
                 onStart: () =>
                 {
-                    audioHandler.DuckBGM(true); // Duck BGM as soon as the video starts
+                    audioHandler.DuckBGM(true);
                     if (line.cinematicSubtitles != null && line.cinematicSubtitles.Length > 0)
                     {
                         if (cinematicSubtitleRoutine != null) StopCoroutine(cinematicSubtitleRoutine);
                         cinematicSubtitleRoutine = StartCoroutine(TrackVideoSubtitles(line.cinematicSubtitles));
                     }
 
-                    // --- NEW: TRACK TIMED SFX ---
                     if (line.cinematicSFX != null && line.cinematicSFX.Length > 0)
                     {
                         if (cinematicSFXRoutine != null) StopCoroutine(cinematicSFXRoutine);
                         cinematicSFXRoutine = StartCoroutine(TrackVideoSFX(line.cinematicSFX));
                     }
 
-                    float timeToWait = (float)line.cutsceneVideo.length - videoFadeHeadstart;
-                    StartCoroutine(WaitAndFadeOutVideo(Mathf.Max(0, timeToWait), onVideoComplete));
+                    float videoLength = (float)line.cutsceneVideo.length;
+                    StartCoroutine(WaitAndFadeOutVideo(videoLength, onVideoComplete));
                     transitionHandler.FadeToClear();
                 },
                 onComplete: () => {
-                    audioHandler.DuckBGM(false); // Restore BGM when the video is finished
+                    audioHandler.DuckBGM(false);
                 }
             );
         });
     }
 
-    // --- NEW: Video SFX Coroutine ---
     IEnumerator TrackVideoSFX(TimedSFX[] sfxList)
     {
         List<TimedSFX> sortedSFX = new List<TimedSFX>(sfxList);
         sortedSFX.Sort((a, b) => a.playAtTime.CompareTo(b.playAtTime));
         int currentIndex = 0;
 
-        // --- FIX: Wait until the video actually starts playing ---
-        while (!videoHandler.videoPlayer.isPlaying)
-        {
-            yield return null;
-        }
+        while (!videoHandler.videoPlayer.isPlaying && !isPaused) yield return null;
 
         while (videoHandler.videoPlayer.isPlaying || isPaused)
         {
@@ -298,23 +298,14 @@ public class DialogueManager : MonoBehaviour
         int currentIndex = 0;
         Coroutine showSubRoutine = null;
 
-        // Ensure panel starts off
-        dialoguePanel.SetActive(false);
+        while (!videoHandler.videoPlayer.isPlaying && !isPaused) yield return null;
 
-        // --- FIX: Wait until the video actually starts moving ---
-        while (!videoHandler.videoPlayer.isPlaying)
-        {
-            yield return null;
-        }
-
-        // Now loop as long as it's playing
         while (videoHandler.videoPlayer.isPlaying || isPaused)
         {
             while (isPaused) yield return null;
 
             if (currentIndex < sortedSubtitles.Count)
             {
-                // Use a small buffer (0.1) or just >= to catch the time
                 if (videoHandler.videoPlayer.time >= sortedSubtitles[currentIndex].showAtTime)
                 {
                     if (showSubRoutine != null) StopCoroutine(showSubRoutine);
@@ -324,7 +315,6 @@ public class DialogueManager : MonoBehaviour
             }
             yield return null;
         }
-
         dialoguePanel.SetActive(false);
     }
 
@@ -333,12 +323,11 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);
         nameText.text = sub.speaker != null ? sub.speaker.characterName : "";
         if (sub.speaker != null) nameText.color = sub.speaker.nameTextColor;
-        if (sub.speaker?.customDialogueBox != null) characterNameBackground.sprite = sub.speaker.customDialogueBox;
 
         if (sub.voiceLine != null)
         {
             audioHandler.PlayVoiceLine(sub.voiceLine);
-            audioHandler.DuckBGM(true); // --- DUCK BGM ---
+            audioHandler.DuckBGM(true);
         }
 
         dialogueText.text = "";
@@ -364,13 +353,15 @@ public class DialogueManager : MonoBehaviour
             }
             dialoguePanel.SetActive(false);
             dialogueText.text = "";
-            audioHandler.DuckBGM(false); // --- RESTORE BGM ---
+            audioHandler.DuckBGM(false);
         }
     }
 
-    IEnumerator WaitAndFadeOutVideo(float waitTime, System.Action onVideoComplete)
+    IEnumerator WaitAndFadeOutVideo(float videoDuration, System.Action onVideoComplete)
     {
+        float waitTime = videoDuration - videoFadeHeadstart;
         float elapsed = 0;
+
         while (elapsed < waitTime)
         {
             while (isPaused) yield return null;
@@ -380,7 +371,7 @@ public class DialogueManager : MonoBehaviour
 
         transitionHandler.FadeToBlack(() => {
             if (cinematicSubtitleRoutine != null) StopCoroutine(cinematicSubtitleRoutine);
-            if (cinematicSFXRoutine != null) StopCoroutine(cinematicSFXRoutine); // --- STOP SFX TRACKER ---
+            if (cinematicSFXRoutine != null) StopCoroutine(cinematicSFXRoutine);
             ClearUI();
             videoHandler.StopAndClearVideo();
             onVideoComplete?.Invoke();
@@ -410,7 +401,7 @@ public class DialogueManager : MonoBehaviour
             isWaitingForEvent = true;
             transitionHandler.FadeToBlack(() => {
                 ClearUI();
-                audioHandler.StopBGM(); // <--- Add this line here
+                audioHandler.StopBGM();
             });
         }
     }
@@ -420,7 +411,6 @@ public class DialogueManager : MonoBehaviour
         foreach (Animator slot in characterSlots)
         {
             slot.gameObject.SetActive(false);
-            slot.runtimeAnimatorController = null;
         }
 
         foreach (StageCharacterSetup setup in line.stageCharacters)
@@ -433,8 +423,7 @@ public class DialogueManager : MonoBehaviour
             if (!string.IsNullOrEmpty(setup.expression)) slot.Play(setup.expression, 0, 0f);
             slot.speed = setup.isTalking ? 1f : 0f;
 
-            RectTransform rect = slot.GetComponent<RectTransform>();
-            rect.localScale = new Vector3(setup.flipX ? -1 : 1, 1, 1);
+            slot.GetComponent<RectTransform>().localScale = new Vector3(setup.flipX ? -1 : 1, 1, 1);
 
             Image img = slot.GetComponent<Image>();
             if (img != null)
@@ -450,7 +439,6 @@ public class DialogueManager : MonoBehaviour
         isTyping = true;
         dialogueText.text = "";
 
-        // --- DUCK BGM IF TALKING ---
         if (!string.IsNullOrEmpty(line.dialogueText) || line.voiceLine != null)
             audioHandler.DuckBGM(true);
 
@@ -469,7 +457,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         isTyping = false;
-        if (line.voiceLine == null) audioHandler.DuckBGM(false); // --- RESTORE IF NO VOICE ---
+        if (line.voiceLine == null) audioHandler.DuckBGM(false);
 
         if (isAutoPlay) autoPlayCoroutine = StartCoroutine(AutoPlayWait());
         else if (string.IsNullOrWhiteSpace(line.dialogueText)) HandlePostLineLogic();
@@ -485,7 +473,7 @@ public class DialogueManager : MonoBehaviour
             yield return null;
         }
         while (audioHandler != null && audioHandler.IsVoicePlaying() || isPaused) yield return null;
-        audioHandler.DuckBGM(false); // --- RESTORE BGM ---
+        audioHandler.DuckBGM(false);
         HandlePostLineLogic();
     }
 }

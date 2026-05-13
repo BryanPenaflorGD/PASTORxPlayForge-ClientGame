@@ -9,17 +9,15 @@ public class VideoHandler : MonoBehaviour
     public RawImage videoDisplayUI;
 
     [Header("Audio Routing")]
-    [Tooltip("Assign an AudioSource that is routed to the SFX Mixer Group")]
     public AudioSource videoAudioSource;
 
     private Action onVideoCompleteCallback;
     private Action onVideoPreparedCallback;
+    private bool isPausedInternally = false;
 
     void Awake()
     {
         videoPlayer.playOnAwake = false;
-
-        // Ensure the player is set to route to an AudioSource
         videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
         videoPlayer.prepareCompleted += OnVideoPrepared;
     }
@@ -32,30 +30,36 @@ public class VideoHandler : MonoBehaviour
 
     public void PauseVideo()
     {
-        if (videoPlayer.isPlaying) videoPlayer.Pause();
+        if (videoPlayer.isPlaying)
+        {
+            isPausedInternally = true;
+            videoPlayer.Pause();
+            if (videoAudioSource != null) videoAudioSource.Pause();
+        }
     }
 
     public void ResumeVideo()
     {
-        if (videoPlayer.isPrepared) videoPlayer.Play();
+        // Only resume if the video was intentionally paused during playback
+        if (isPausedInternally && videoPlayer.isPrepared)
+        {
+            videoPlayer.Play();
+            if (videoAudioSource != null) videoAudioSource.UnPause();
+            isPausedInternally = false;
+        }
     }
 
     public void PrepareVideo(VideoClip clip)
     {
-        if (clip == null) return;
-        if (videoPlayer.clip == clip) return;
+        if (clip == null || videoPlayer.clip == clip) return;
 
         videoPlayer.clip = clip;
-
-        // --- FIX: Re-bind the AudioSource to the specific clip's track ---
         if (clip.audioTrackCount > 0)
         {
             videoPlayer.controlledAudioTrackCount = 1;
             videoPlayer.EnableAudioTrack(0, true);
-            // This line ensures the VideoPlayer sends audio to your specific AudioSource
             videoPlayer.SetTargetAudioSource(0, videoAudioSource);
         }
-
         videoPlayer.Prepare();
     }
 
@@ -63,6 +67,7 @@ public class VideoHandler : MonoBehaviour
     {
         onVideoCompleteCallback = onComplete;
         videoDisplayUI.gameObject.SetActive(true);
+        isPausedInternally = false;
 
         if (videoPlayer.clip == clip && videoPlayer.isPrepared)
         {
@@ -89,6 +94,7 @@ public class VideoHandler : MonoBehaviour
 
     void OnVideoEnded(VideoPlayer vp)
     {
+        isPausedInternally = false;
         onVideoCompleteCallback?.Invoke();
         onVideoCompleteCallback = null;
     }
@@ -96,6 +102,8 @@ public class VideoHandler : MonoBehaviour
     public void StopAndClearVideo()
     {
         videoPlayer.Stop();
+        isPausedInternally = false;
+        if (videoAudioSource != null) videoAudioSource.Stop();
         videoDisplayUI.gameObject.SetActive(false);
     }
 }

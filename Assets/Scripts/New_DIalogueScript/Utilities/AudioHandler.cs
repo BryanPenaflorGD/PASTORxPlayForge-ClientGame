@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.Audio; // Required for AudioMixer interaction
+using UnityEngine.Audio;
 
 public class AudioHandler : MonoBehaviour
 {
@@ -19,18 +19,11 @@ public class AudioHandler : MonoBehaviour
 
     private Coroutine duckCoroutine;
 
-    // IMPORTANT: Ensure these sources are assigned to the correct 
-    // Audio Mixer Groups (BGM, SFX, etc.) in the Unity Inspector.
-
     public void PlayBGM(AudioClip clip)
     {
         if (clip == null || bgmSource.clip == clip) return;
 
-        // If music is already playing, crossfade to the new one
-        if (bgmSource.isPlaying)
-        {
-            StartCoroutine(CrossFadeBGM(clip));
-        }
+        if (bgmSource.isPlaying) StartCoroutine(CrossFadeBGM(clip));
         else
         {
             bgmSource.clip = clip;
@@ -51,7 +44,6 @@ public class AudioHandler : MonoBehaviour
     public void PlaySFX(AudioClip clip, float volume = 1.0f)
     {
         if (clip == null) return;
-        // PlayOneShot allows multiple SFX to overlap on one source
         sfxSource.PlayOneShot(clip, volume);
     }
 
@@ -79,7 +71,6 @@ public class AudioHandler : MonoBehaviour
 
     private IEnumerator CrossFadeBGM(AudioClip newClip)
     {
-        // Fade Out current music
         while (bgmSource.volume > 0)
         {
             bgmSource.volume -= Time.deltaTime * fadeSpeed;
@@ -90,7 +81,6 @@ public class AudioHandler : MonoBehaviour
         bgmSource.clip = newClip;
         bgmSource.Play();
 
-        // Fade In new music
         while (bgmSource.volume < defaultBGMVolume)
         {
             bgmSource.volume += Time.deltaTime * fadeSpeed;
@@ -100,16 +90,22 @@ public class AudioHandler : MonoBehaviour
 
     public void PauseAudio()
     {
-        voiceSource.Pause();
-        sfxSource.Pause();
-        bgmSource.Pause();
+        if (voiceSource.isPlaying) voiceSource.Pause();
+        if (sfxSource.isPlaying) sfxSource.Pause();
+        if (bgmSource.isPlaying) bgmSource.Pause();
     }
 
     public void ResumeAudio()
     {
-        voiceSource.UnPause();
-        sfxSource.UnPause();
-        bgmSource.UnPause();
+        // UnPause only if the sources were active (not just having a clip assigned)
+        if (voiceSource.clip != null && voiceSource.time > 0 && voiceSource.time < voiceSource.clip.length)
+            voiceSource.UnPause();
+
+        if (sfxSource.clip != null)
+            sfxSource.UnPause();
+
+        if (bgmSource.clip != null)
+            bgmSource.UnPause();
     }
 
     public void StopVoiceLine() => voiceSource.Stop();

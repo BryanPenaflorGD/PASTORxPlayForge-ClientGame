@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3b150deeabc2b874aaf4a2ab71d6c253
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 358502
+  packageName: Audio Adjust (Trim, Fade, Volume)
+  packageVersion: 1.0.0
+  assetPath: Assets/IntuitiveCreative/CHANGELOG.md
+  uploadId: 880004

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37dc810ecb7bae24b9fd1f2f31345551, type: 3}
+  m_Name: Scene3. 23
+  m_EditorClassIdentifier: 
+  beatGUID: d13f41ca-0388-48f5-bef7-c258366e6539
+  lines:
+  - lineType: 0
+    bgmChange: {fileID: 0}
+    speaker: {fileID: 0}
+    dialogueText: (Both kids grab their bags and turn to Mr. Corin.)
+    stageCharacters:
+    - character: {fileID: 0}
+      expression: No Character Selected
+      position: 0
+      isTalking: 0
+      flipX: 0
+    - character: {fileID: 0}
+      expression: No Character Selected
+      position: 0
+      isTalking: 0
+      flipX: 0
+    - character: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      expression: MrCorin_Normal
+      position: 3
+      isTalking: 0
+      flipX: 0
+    voiceLine: {fileID: 0}
+    fadeOutAfterLine: 0
+    cutsceneVideo: {fileID: 0}
+    cinematicSubtitles: []
+    cinematicSFX: []
+    onLineTriggered:
+      m_PersistentCalls:
+        m_Calls: []

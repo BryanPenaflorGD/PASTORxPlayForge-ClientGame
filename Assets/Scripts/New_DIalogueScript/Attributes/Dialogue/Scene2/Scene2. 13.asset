@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37dc810ecb7bae24b9fd1f2f31345551, type: 3}
+  m_Name: Scene2. 13
+  m_EditorClassIdentifier: 
+  beatGUID: 4b811b4a-1c0b-447f-a05a-94d68c2eb49f
+  lines:
+  - lineType: 1
+    bgmChange: {fileID: 0}
+    speaker: {fileID: 0}
+    dialogueText: 
+    stageCharacters: []
+    voiceLine: {fileID: 0}
+    fadeOutAfterLine: 1
+    cutsceneVideo: {fileID: 32900000, guid: d885b1e31c4f09e47ab2937cc60398c3, type: 3}
+    cinematicSubtitles:
+    - showAtTime: 0.1
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: "Look here \u2014 our typhoon is moving toward land. What do
+        you think will happen next?"
+      voiceLine: {fileID: 0}
+    - showAtTime: 8
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: afee438a6a0a92a4085cf9806948403f, type: 2}
+      dialogueText: It gets weaker, right?
+      voiceLine: {fileID: 0}
+    - showAtTime: 11
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: 1c90d2f4fdae2a4408b42269ea4573b3, type: 2}
+      dialogueText: 'But even if it weakens, it can still bring heavy rain and floods. '
+      voiceLine: {fileID: 0}
+    - showAtTime: 17
+      hideAfterSeconds: 0
+      speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      dialogueText: "That\u2019s true, Aira. That\u2019s why we always need to prepare
+        and stay safe \u2014 listen to weather updates, prepare emergency kits, and
+        stay indoors during strong winds. "
+      voiceLine: {fileID: 0}
+    cinematicSFX: []
+    onLineTriggered:
+      m_PersistentCalls:
+        m_Calls: []

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37dc810ecb7bae24b9fd1f2f31345551, type: 3}
+  m_Name: Scene3. 19
+  m_EditorClassIdentifier: 
+  beatGUID: 51abcac8-316d-4cc9-89da-53d9498b0c5f
+  lines:
+  - lineType: 0
+    bgmChange: {fileID: 0}
+    speaker: {fileID: 11400000, guid: 1c90d2f4fdae2a4408b42269ea4573b3, type: 2}
+    dialogueText: "Hey\u2026 the rain finally stopped!"
+    stageCharacters:
+    - character: {fileID: 11400000, guid: 1c90d2f4fdae2a4408b42269ea4573b3, type: 2}
+      expression: Aira_Excited
+      position: 1
+      isTalking: 1
+      flipX: 0
+    - character: {fileID: 11400000, guid: afee438a6a0a92a4085cf9806948403f, type: 2}
+      expression: Liam_Amazed
+      position: 0
+      isTalking: 0
+      flipX: 0
+    - character: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      expression: MrCorin_Normal
+      position: 3
+      isTalking: 0
+      flipX: 0
+    voiceLine: {fileID: 8300000, guid: 5976c864f41a80a46a71600a1e1501fa, type: 3}
+    fadeOutAfterLine: 0
+    cutsceneVideo: {fileID: 0}
+    cinematicSubtitles: []
+    cinematicSFX: []
+    onLineTriggered:
+      m_PersistentCalls:
+        m_Calls: []

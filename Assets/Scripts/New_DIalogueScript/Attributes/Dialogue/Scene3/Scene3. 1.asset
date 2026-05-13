@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37dc810ecb7bae24b9fd1f2f31345551, type: 3}
+  m_Name: Scene3. 1
+  m_EditorClassIdentifier: 
+  beatGUID: 2bf6e8d6-e444-4a7a-a199-c5a83c66f8d3
+  lines:
+  - lineType: 0
+    bgmChange: {fileID: 8300000, guid: bb2652e7b82abc24c881ef2f51938256, type: 3}
+    speaker: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+    dialogueText: "Well done, Weather Warriors! You\u2019ve just learned how a typhoon
+      gains strength over warm seas \u2014 and weakens when it reaches land"
+    stageCharacters:
+    - character: {fileID: 11400000, guid: 1c90d2f4fdae2a4408b42269ea4573b3, type: 2}
+      expression: Aira_Normal
+      position: 1
+      isTalking: 0
+      flipX: 0
+    - character: {fileID: 11400000, guid: afee438a6a0a92a4085cf9806948403f, type: 2}
+      expression: Liam_Normal
+      position: 0
+      isTalking: 0
+      flipX: 0
+    - character: {fileID: 11400000, guid: b0a83c1970b921e49b4355e33f4cc1ed, type: 2}
+      expression: MrCorin_Normal
+      position: 3
+      isTalking: 1
+      flipX: 0
+    voiceLine: {fileID: 8300000, guid: dcf8df2271d7a364bb0785c23740eb07, type: 3}
+    fadeOutAfterLine: 0
+    cutsceneVideo: {fileID: 0}
+    cinematicSubtitles: []
+    cinematicSFX: []
+    onLineTriggered:
+      m_PersistentCalls:
+        m_Calls: []
