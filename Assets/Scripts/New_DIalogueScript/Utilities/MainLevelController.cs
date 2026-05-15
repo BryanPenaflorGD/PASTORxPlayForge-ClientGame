@@ -52,7 +52,7 @@ public class MainLevelController : MonoBehaviour
         if (txt != null)
         {
             txt.color = unlocked ? Color.black : new Color(0.5f, 0.5f, 0.5f, 0.5f);
-            if (finished) txt.text += " (CLEARED)";
+            if (finished) txt.text += "";
         }
     }
 
